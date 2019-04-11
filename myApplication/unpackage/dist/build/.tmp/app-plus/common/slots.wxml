@@ -1,0 +1,5 @@
+<import src="/components/m-input.vue.wxml" />
+<import src="/components/uni-icon/uni-icon.vue.wxml" />
+<import src="/components/uni-badge/uni-badge.vue.wxml" />
+<import src="/components/m-icon/m-icon.vue.wxml" />
+

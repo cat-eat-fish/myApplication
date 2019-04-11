@@ -1,0 +1,13 @@
+{
+  "usingComponents": {},
+  "navigationBarTitleText": "待办流程",
+  "titleNView": {
+    "buttons": [
+      {
+        "text": "新建",
+        "fontSize": "16px",
+        "color": "#FFFFFF"
+      }
+    ]
+  }
+}

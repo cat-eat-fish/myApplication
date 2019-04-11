@@ -1,0 +1,6 @@
+
+.forApproval{background-color: rgb(239,238,243);height:100%;overflow: auto;}
+.forApproval .item{margin: 30rpx 24rpx 0;border-radius: 10px;padding: 40rpx 24rpx;background-color: #FFFFFF;}
+.item-2,.item-3,.item-4{margin-top: 40rpx;}
+.item-4{font-size: 30rpx;color: rgb(248,54,0);}
+

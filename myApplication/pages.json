@@ -1,0 +1,228 @@
+{
+    "pages": [ //pages数组中第一项表示应用启动页,
+        {
+            "path": "pages/tabBar/information/information",
+            "style": {
+                "navigationBarTitleText": "消息"
+            }
+        }, {
+            "path": "pages/login/login",
+            "style": {
+                "navigationBarTitleText": ""
+            }
+        }, {
+            "path": "pages/reg/reg",
+            "style": {
+                "navigationBarTitleText": "注册"
+            }
+        }, {
+            "path": "pages/pwd/pwd",
+            "style": {
+                "navigationBarTitleText": "找回密码"
+            }
+        }
+        ,{
+            "path" : "pages/tabBar/application/application",
+            "style" : {
+				"navigationBarTitleText": "应用"
+			}
+        }
+        ,{
+            "path" : "pages/tabBar/mine/mine",
+            "style" : {
+				"navigationBarTitleText": "个人中心"
+			}
+        }
+        ,{
+            "path" : "pages/application/business/business",
+            "style" : {
+				"navigationBarTitleText": "业务申请",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "保存",
+							"fontSize": "16px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+        }
+        ,{
+            "path" : "pages/application/process/process",
+            "style" : {
+				"navigationBarTitleText": "待办流程",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "新建",
+							"fontSize": "16px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+        }
+        ,{
+            "path" : "pages/application/investigation/investigation",
+            "style" : {
+				"navigationBarTitleText": "协助调查",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "取消",
+							"fontSize": "16px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+        }
+        ,{
+            "path" : "pages/information/pendingInfo/pendingInfo",
+            "style" : {
+				"navigationBarTitleText": "待审信息"
+			}
+        }
+        ,{
+            "path" : "pages/application/reportingProcess/reportingProcess",
+            "style" : {
+				"navigationBarTitleText": "征信流程",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "保存",
+							"fontSize": "16px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+        }
+        ,{
+            "path" : "pages/application/ratingProcess/ratingProcess",
+            "style" : {
+				"navigationBarTitleText": "评级流程详情"
+			}
+        }
+        ,{
+            "path" : "pages/application/forApproval/forApproval",
+            "style" : {
+				"navigationBarTitleText": "待我审批"
+			}
+        }
+        ,{
+            "path" : "pages/application/approvalRecord/approvalRecord",
+            "style" : {
+				"navigationBarTitleText": "审批记录"
+			}
+        }
+        ,{
+            "path" : "pages/application/approvalMonitoring/approvalMonitoring",
+            "style" : {
+				"navigationBarTitleText": "审批监控"
+			}
+        }
+        ,{
+            "path" : "pages/application/launched/launched",
+            "style" : {
+				"navigationBarTitleText": "我发起的"
+			}
+        }
+        ,{
+            "path" : "pages/application/haveApproved/haveApproved",
+            "style" : {
+				"navigationBarTitleText": "我已审批"
+			}
+        }
+        ,{
+            "path" : "pages/application/approvalExam/approvalExam",
+            "style" : {
+				"navigationBarTitleText": "审批受理"
+			}
+        }
+        ,{
+            "path" : "pages/application/bossQuery/bossQuery",
+            "style" : {
+				"navigationBarTitleText": "支行长审查",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "取消",
+							"fontSize": "16px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+        }
+        ,{
+            "path" : "pages/application/bossExam/bossExam",
+            "style" : {
+				"navigationBarTitleText": "支行长查询",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "取消",
+							"fontSize": "16px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+        }
+        ,{
+            "path" : "pages/application/uploadData/uploadData",
+            "style" : {
+				"navigationBarTitleText": "上传资料",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "保存",
+							"fontSize": "16px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+        }
+        ,{
+            "path" : "pages/application/approvalNotice/approvalNotice",
+            "style" : {
+				"navigationBarTitleText": "审批通知"
+			}
+        }
+        ,{
+            "path" : "pages/test/test",
+            "style" : {
+				"navigationBarTitleText": "测试页面"
+			}
+        }
+    ],
+    "tabBar": {
+        "color": "#bbbbbb",
+        "selectedColor": "rgb(255,192,69)",
+        "backgroundColor": "#ffffff",
+        "list": [{
+            "pagePath": "pages/tabBar/information/information",
+            "text": "消息",
+            "iconPath": "static/img/home_tab_default_icon_message.png",
+            "selectedIconPath": "static/img/home_tab_selected_icon_message.png"
+        },{
+            "pagePath": "pages/tabBar/application/application",
+            "text": "应用",
+            "iconPath": "static/img/home_tab_default_icon_home.png",
+            "selectedIconPath": "static/img/home_tab_selected_icon_home.png"
+        }, {
+            "pagePath": "pages/tabBar/mine/mine",
+            "text": "我的",
+            "iconPath": "static/img/home_tab_default_icon_personal.png",
+            "selectedIconPath": "static/img/home_tab_selected_icon_personal.png"
+        }]
+    },
+    "globalStyle": {
+        "navigationBarTextStyle": "white",
+        "navigationBarBackgroundColor": "#ff801f",
+        "backgroundColor": "#fbf9fe"
+    }
+}

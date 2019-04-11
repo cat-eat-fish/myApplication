@@ -1,0 +1,20 @@
+
+.business{background-color: rgb(239,238,243);padding-bottom: 60rpx;}
+.business-excessive{height: 225rpx;color: #fff;padding: 0 15px; background: -o-linear-gradient(rgb(255, 128, 31), #ffbd43); background: -webkit-gradient(linear, left top, left bottom, from(rgb(255, 128, 31)), to(#ffbd43)); background: linear-gradient(rgb(255, 128, 31), #ffbd43);
+}
+.xl{width: 18px;height: 13px;margin-left: 40rpx;}
+.must{position: relative;}
+.must::before{content: "*";color: red;position: absolute;left: -8px;top: -2px;}
+.business-form{border-radius: 10px;margin: -80rpx 24rpx 0;background-color: #fff;}
+.business-form .item{display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex; border-bottom:1px solid rgb(230,230,230) ;}
+.business-form .item .text{margin: 40rpx 0 40rpx 40rpx;font-size: 26rpx;width: 40%;color: rgb(51,51,51);}
+.business-form .item input{margin: 32rpx 0 40rpx 40rpx;font-size: 26rpx;color: rgb(153,153,153);}
+button.js{width: 80rpx;height: 40rpx;text-align: center;line-height: 40rpx;font-size: 22rpx;margin: 33rpx 24rpx 33rpx 0;color: rgb(255,255,255);border: none;border-radius: 5px; /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(rgb(255, 128, 31), #ffbd43); /* Opera 11.1 - 12.0 */ /* Firefox 3.6 - 15 */
+	background: -webkit-gradient(linear, left top, left bottom, from(rgb(255, 128, 31)), to(#ffbd43));
+	background: linear-gradient(rgb(255, 128, 31), #ffbd43); /* 标准的语法 */
+}
+.item-xl{width: 14px;height: 10px;margin: 44rpx 24rpx 0 0;}
+.btn {margin: 60rpx 24rpx 0;}
+.btn button{color: #fff;background-color: #CFCFCF;}
+
