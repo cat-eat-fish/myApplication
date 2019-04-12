@@ -1664,7 +1664,9 @@ page, button, input, ._select, textarea {font-family:Microsoft YaHei;
 }
 button, input, ._select, textarea { font-size:100%;
 }
-uni-page-body, uni-page-refresh{height: 100%;}
+uni-page-body, uni-page-refresh{height: 100%;min-height: 100%;}
+
+/* uni-page-head[uni-page-head-type=default]~uni-page-wrapper{height: calc(100% - 44px)} */
 
 /*每个页面公共css */
 

@@ -1,5 +1,8 @@
 
-.application{background-color: rgb(230,230,230);width: 100%;height: 100%;}
+.application{background-color: rgb(230,230,230);height: 100%;}
+/* #ifdef APP-PLUS MP-WEIXIN */
+.application{background-color: rgb(230,230,230);height: 100vh;}
+/* #endif */
 .application-notice{padding: 25rpx 24rpx;margin: 10rpx 24rpx 40rpx; display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; border-radius: 10rpx;background-color: #fff;}
 .application-notice-bg{width: 100%; background-color: #ffc045;overflow: hidden;}
 .application-notice .img{width: 40rpx;height: 36rpx;padding-right: 14px;}

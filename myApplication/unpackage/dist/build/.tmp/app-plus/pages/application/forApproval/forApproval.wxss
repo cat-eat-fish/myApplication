@@ -1,6 +1,18 @@
 
-.forApproval{background-color: rgb(239,238,243);height:100%;overflow: auto;}
+.forApproval{background-color: rgb(239,238,243);}
+/* #ifdef APP-PLUS MP-WEIXIN */
+.forApproval{background-color: rgb(239,238,243);}
+/* #endif */
+.content-has{padding-top: 30rpx;}
+.forApproval .content-no{height: 100%; background-position: center;background-size: 40%;}
+.forApproval .content-no .img{width: 400rpx;height: 400rpx;position: absolute;top: 0;bottom: 0;left: 0;right: 0;margin: 48% auto;}
+.forApproval .content-no .text{font-size: 30rpx;position: absolute;top: 740rpx;bottom: 0;left: 0;right: 0;margin: auto;text-align: center;
+	background-image: -webkit-linear-gradient(0deg, #cc5500, #ccbb00);
+	  -webkit-background-clip: text;
+	  -webkit-text-fill-color: transparent;
+	  -webkit-animation: hue 60s infinite linear;
+}
 .forApproval .item{margin: 30rpx 24rpx 0;border-radius: 10px;padding: 40rpx 24rpx;background-color: #FFFFFF;}
-.item-2,.item-3,.item-4{margin-top: 40rpx;}
-.item-4{font-size: 30rpx;color: rgb(248,54,0);}
+.item-2,.item-3,.item-4,.item-5{margin-top: 40rpx;}
+.item-5{font-size: 30rpx;color: rgb(248,54,0);}
 

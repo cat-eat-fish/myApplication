@@ -1,5 +1,67 @@
 
-.pendingInfo{background-color: rgb(239,238,243);height:100%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* #ifdef APP-PLUS MP-WEIXIN */
+.pendingInfo{background-color: rgb(239,238,243);height:100vh;overflow: auto;}
+/* #endif */
+.pendingInfo{background-color: rgb(239,238,243);height:100%;overflow: auto;}
 .pendingInfo .item {overflow: hidden;margin: 0 24rpx;}
 .pendingInfo .item .item-datetime{font-size: 22rpx;color: #FFFFFF;border-radius: 10px; text-align: center;padding: 26rpx;background-color: rgb(206,206,206);width: 272rpx;margin: 80rpx auto 30rpx;}
 .pendingInfo .item .item-main{display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;}

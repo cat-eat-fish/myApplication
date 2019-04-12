@@ -1,5 +1,88 @@
 
-.mine{}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* #ifdef APP-PLUS  MP-WEIXIN*/
+
+/* #endif */
 .mine-excessive{height:230rpx;padding: 0 30rpx;display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;-webkit-box-pack: justify;-webkit-justify-content: space-between;-ms-flex-pack: justify;justify-content: space-between;overflow: hidden; /* Safari 5.1 - 6.0 */
 	  background: -o-linear-gradient(rgb(255, 128, 31), rgb(255,191,67)); /* Opera 11.1 - 12.0 */ /* Firefox 3.6 - 15 */
 	  background: -webkit-gradient(linear, left top, left bottom, from(rgb(255, 128, 31)), to(rgb(255,191,67)));
@@ -8,6 +91,7 @@
 .mine-excessive .thumb{width: 100rpx;height: 100rpx;margin-top: 29rpx;border-radius: 50%;}
 .login-text{margin: 40rpx 0 0;color: rgb(255,255,255);font-size: 34rpx;}
 .login-desc{margin: 20rpx 0 0;color: rgb(255,243,223);font-size: 24rpx;}
+.mine-excessive .imgtext{width: 120rpx;height:120rpx;border-radius: 50%;background-color: red;text-align: center;line-height: 120rpx;color: #fff;margin-top: 30rpx;}
 .mine-main{border-radius: 10px 10px 0 0;margin-top: -50rpx;background: #fff;padding: 30rpx 30rpx 0;}
 .item{display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;position: relative;margin: 30rpx;}
 .item-img{width: 80rpx;height: 80rpx;}

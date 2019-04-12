@@ -19,7 +19,10 @@
     "pages/application/haveApproved/haveApproved",
     "pages/application/approvalExam/approvalExam",
     "pages/application/bossQuery/bossQuery",
-    "pages/application/bossExam/bossExam"
+    "pages/application/bossExam/bossExam",
+    "pages/application/uploadData/uploadData",
+    "pages/application/approvalNotice/approvalNotice",
+    "pages/test/test"
   ],
   "subPackages": [],
   "window": {
@@ -52,6 +55,9 @@
         "selectedIconPath": "static/img/home_tab_selected_icon_personal.png"
       }
     ]
+  },
+  "networkTimeout": {
+    "request": 60000
   },
   "splashscreen": {
     "alwaysShowBeforeRender": true,
