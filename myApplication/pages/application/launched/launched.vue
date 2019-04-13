@@ -33,6 +33,7 @@
 </template>
 
 <script>
+	import {baseIp} from "../../../config.js"
     import {getUserInfo,setUserInfo} from '../../../service.js';
 	export default {
 		data() {
@@ -45,7 +46,7 @@
 		onLoad(){
 			var that = this;
 			uni.request({
-				url:`http://192.168.3.125:8080/ams/system/distribute.htm?module=send&userId=${getUserInfo().userId}&type=&time=&state=&customer_name=`,
+				url:`http://${baseIp()}/ams/system/distribute.htm?module=send&userId=${getUserInfo().userId}&type=&time=&state=&customer_name=`,
 				success(res){
 					var data = res.data;
 					that.dataInfo = data.object;

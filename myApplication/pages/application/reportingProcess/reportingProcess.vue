@@ -53,6 +53,12 @@
 				</view>
 			</view>
 			<view class="item">
+				<view class="text">申请理由 : </view>
+				<view class="field">
+					<input type="text" value="" v-model="dataInfo.applay_reason" placeholder="请输入申请理由" />
+				</view>
+			</view>
+			<view class="item">
 				<view class="text">是否有配偶 : </view>
 				<view class="field ra">
 					<radio-group class="group" @change="radioChange3">
@@ -87,6 +93,7 @@
 </template>
 
 <script>
+	import {baseIp} from "../../../config.js"
     import {getUserInfo,setUserInfo} from '../../../service.js';
 	export default {
 		data() {
@@ -102,7 +109,7 @@
 				
 				isShowOther:true,
 				
-				ishold:false,
+				ishold:false	,
 				seq:"",
 				
 				dataInfo:{
@@ -112,6 +119,7 @@
 					checkForSpouse:"",		//是否有配偶
 					spouseName:"",			//配偶名称
 					spouseNo:"",			//配偶证件号
+					applay_reason:"",		//申请理由
 				}
 			};
 		},
@@ -121,9 +129,10 @@
 		onLoad(){
 			var that = this;
 			uni.request({
-				url:"http://192.168.3.125:8080/ams/system/distribute.htm?module=pullDown&XLX=useType",
+				url:"http://"+baseIp()+"/ams/system/distribute.htm?module=pullDown&XLX=useType",
 				success(res){
 					var data = res.data;
+					console.log(data)
 					that.items = data.object;
 					that.dataInfo.userType = that.items[that.current].code
 				}
@@ -172,11 +181,18 @@
 				}
 			},
 			goUploadPage(){
-				var ishas = this.current3 == 0 ? true : false;
-				uni.navigateTo({
-					url:`/pages/application/uploadData/uploadData?ishas=${ishas}`
-				})
+				var that = this;
+				if(this.ishold){
+					var ishas = this.current3 == 0 ? true : false;
+					uni.navigateTo({
+						url:`/pages/application/uploadData/uploadData?ishas=${ishas}&mainId=${that.seq}`
+					})
+				}else{
+					uni.showToast({title:"请先保存数据，再上传文件！",icon:"none"})
+				}
+				
 			},
+			// 保存
 			isKeep(){
 				var that = this;
 				var pattcard = /^((d{18})|([0-9x]{18})|([0-9X]{18}))$/;
@@ -231,23 +247,24 @@
 				
 				let uploadData = this.dataInfo;
 				uploadData.userId = String(getUserInfo().userId)
-				var url = `http://192.168.3.125:8080/ams/system/distribute.htm?module=saveCredit&credit={userId:"${String(uploadData.userId)}",userType:"${String(uploadData.userType)}",customer_name:"${String(uploadData.customer_name)}",certNo:"${String(uploadData.certNo)}",checkForSpouse:"${String(uploadData.checkForSpouse)}",spouseName:"${String(uploadData.spouseName)}",spouseNo:"${String(uploadData.spouseNo)}"}`;
+				var url = `http://${baseIp()}/ams/system/distribute.htm?module=saveCredit&credit={userId:"${String(uploadData.userId)}",useType:"${String(uploadData.userType)}",customer_name:"${String(uploadData.customer_name)}",certNo:"${String(uploadData.certNo)}",checkForSpouse:"${String(uploadData.checkForSpouse)}",spouseName:"${String(uploadData.spouseName)}",spouseNo:"${String(uploadData.spouseNo)}",applay_reason:"${String(uploadData.applay_reason)}"}`;
+				
 				var that = this;
 				uni.showModal({
 					title: '是否保存',
 					content: '您还没有保存数据，是否保存？',
 					success: function (res) {
 						if (res.confirm) {
-							uni.showLoading({title:"加载中",mask:true})
+							uni.showLoading({title:"保存中",mask:true})
 							uni.request({
 								url:url,
 								success(res){
 									var data = res.data;
-									console.log(data)
 									uni.hideLoading()
 									if(data.code == 1){
 										that.ishold = true;
 										that.seq = data.object.seq
+										uni.showToast({title:data.message})
 									}
 								}
 							})
@@ -270,11 +287,19 @@
 						},
 					})
 				}else{
+					uni.showLoading({title:"提交中"})
 					var that = this;
 					uni.request({
-						url:`http://192.168.3.125:8080/ams/system/distribute.htm?module=submitZX&id=${that.seq}&userIds=${getUserInfo().userId}`,
+						url:`http://${baseIp()}/ams/system/distribute.htm?module=submitZX&id=${that.seq}&userId=${getUserInfo().userId}`,
 						success(res){
-							console.log(res)
+							var  data = res.data;
+							uni.hideLoading();
+							if(data.code == 1){
+								uni.showToast({title:data.message,duration:3000});
+								setTimeout(function(){
+									uni.navigateBack()
+								},3000)
+							}
 						},
 						fail(err){
 							console.log(err)

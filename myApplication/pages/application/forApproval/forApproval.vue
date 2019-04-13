@@ -12,11 +12,11 @@
 				</view>
 				<view class="item-2">
 					<text class="text">开始办理时间 ： </text>
-					<text class="txt">{{item.begindate}}</text>
+					<text class="txt">{{item.start_time}}</text>
 				</view>
 				<view class="item-3">
 					<text class="text">业务类型 ： </text>
-					<text class="txt">{{}}</text>
+					<text class="txt">{{item.this_type}}</text>
 				</view>
 				<view class="item-4">
 					<text class="text">发起人 ： </text>
@@ -31,6 +31,7 @@
 </template>
 
 <script>
+	import {baseIp} from "../../../config.js"
     import {getUserInfo,setUserInfo} from '../../../service.js';
 	export default {
 		data() {
@@ -44,11 +45,13 @@
 			var that = this;
 			var userInfo =getUserInfo();
 			uni.request({
-				url:`http://192.168.3.125:8080/ams/system/distribute.htm?module=pending&user_id=${userInfo.userId}`,
+				url:`http://${baseIp()}/ams/system/distribute.htm?module=pending&user_id=${userInfo.userId}`,
 				success(res){
 					var data = res.data;
-					that.dataInfo = data.object;
-					console.log(data.object)
+					data.object.map((item)=>{
+						item.this_type = item.bus_type == "01"? "评级认定审批" : item.bus_type == "04" ? "征信审批" : "";
+					})
+					that.dataInfo = data.object;	
 				}
 			})
 		},
@@ -64,10 +67,10 @@
 
 <style>
 	
-	.forApproval{background-color: rgb(239,238,243);}
 	/* #ifdef APP-PLUS MP-WEIXIN */
-	.forApproval{background-color: rgb(239,238,243);}
+	.forApproval{background-color: rgb(239,238,243);min-height: 100vh;}
 	/* #endif */
+	.forApproval{background-color: rgb(239,238,243);min-height: 100%;}
 	.content-has{padding-top: 30upx;}
 	.forApproval .content-no{height: 100%; background-position: center;background-size: 40%;}
 	.forApproval .content-no .img{width: 400upx;height: 400upx;position: absolute;top: 0;bottom: 0;left: 0;right: 0;margin: 48% auto;}

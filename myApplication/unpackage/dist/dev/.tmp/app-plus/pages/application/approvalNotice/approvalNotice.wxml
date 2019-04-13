@@ -1,2 +1,0 @@
-<import src="./approvalNotice.vue.wxml" />
-    <template is="457f0f72" data="{{ ...$root['0'], $root }}"/>

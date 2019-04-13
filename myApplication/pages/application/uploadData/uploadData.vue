@@ -1,6 +1,5 @@
 <template>
 	<view class="uploadData">
-		
 		<view class="uploadData-title">
 			<view class="line"></view>
 			<view class="text">法定代表人证件</view>
@@ -71,13 +70,11 @@
 </template>
 
 <script>
+	import {baseIp} from "../../../config.js"
+    import {getUserInfo,setUserInfo} from '../../../service.js';
 	export default {
 		data() {
 			return {
-// 				dataInfo:[
-// 					{id:0,title:"法定代表人",content:[{id:0,img:"../../../static/img/img1.png",text:"身份证正面"},{id:1,img:"../../../static/img/img2.png",text:"身份证背面"},{id:2,img:"../../../static/img/img3.png",text:"手持身份证正面照"}]},
-// 					{id:0,title:"授权书证照",content:[{id:0,img:"../../../static/img/img4.png",text:"授权书正面"},{id:1,img:"../../../static/img/img4.png",text:"授权书反面"}]}
-// 				],
 				image: 'url(../../../static/img/img1.png)',
 				image2: 'url(../../../static/img/img2.png)',
 				image3: 'url(../../../static/img/img3.png)',
@@ -90,11 +87,21 @@
 				image9: 'url(../../../static/img/img4.png)',
 				image10: 'url(../../../static/img/img4.png)',
 				
+				
+				num:"",
+				mainFlag:"",
+				mainId:"",
+				request:[],
 				ishas:true
 			};
 		},
 		onLoad(e){
 			this.ishas = e.ishas;
+			this.num = this.ishas == true ? "2" : "1";
+			this.mainId = e.mainId;
+		},
+		onNavigationBarButtonTap(e) {
+			this.isKeep()
 		},
 		methods:{
 			chooseImage() {uni.chooseImage({count: 1,sourceType: ['album', 'camera'],sizeType: ['compressed', 'original'],success: (res) => {this.image = `url(${res.tempFilePaths[0]})`;}})},
@@ -107,6 +114,88 @@
 			chooseImage8() {uni.chooseImage({count: 1,sourceType: ['album', 'camera'],sizeType: ['compressed', 'original'],success: (res) => {this.image8 = `url(${res.tempFilePaths[0]})`;}})},
 			chooseImage9() {uni.chooseImage({count: 1,sourceType: ['album', 'camera'],sizeType: ['compressed', 'original'],success: (res) => {this.image9 = `url(${res.tempFilePaths[0]})`;}})},
 			chooseImage10() {uni.chooseImage({count: 1,sourceType: ['album', 'camera'],sizeType: ['compressed', 'original'],success: (res) => {this.image10 = `url(${res.tempFilePaths[0]})`;}})},
+		
+			doKeep(){
+				var that = this;
+				var url = `http://${baseIp()}/ams/system/distribute.htm?module=uploadFile&userId=${getUserInfo().userId}&mainId=${that.mainId}&mainFlag=${that.mainFlag}&request=${that.request}`;
+				console.log(url)
+				uni.request({
+					url,
+					success(res){
+						var data = res.data;
+						console.log(data)
+					}
+				})
+			},
+			
+			isKeep(){
+				if(this.ishas == true){
+					if(this.image == "url(../../../static/img/img1.png)"){
+						uni.showToast({title:"请完善资料！",icon:"none"})
+						return ;
+					}
+					if(this.image2 == "url(../../../static/img/img2.png)"){
+						uni.showToast({title:"请完善资料！",icon:"none"})
+						return ;
+					}
+					if(this.image3 == "url(../../../static/img/img3.png)"){
+						uni.showToast({title:"请完善资料！",icon:"none"})
+						return ;
+					}
+					if(this.image4 == "url(../../../static/img/img4.png)"){
+						uni.showToast({title:"请完善资料！",icon:"none"})
+						return ;
+					}
+					if(this.image5 == "url(../../../static/img/img4.png)"){
+						uni.showToast({title:"请完善资料！",icon:"none"})
+						return ;
+					}
+					if(this.image6 == "url(../../../static/img/img1.png)"){
+						uni.showToast({title:"请完善资料！",icon:"none"})
+						return ;
+					}
+					if(this.image7 == "url(../../../static/img/img2.png)"){
+						uni.showToast({title:"请完善资料！",icon:"none"})
+						return ;
+					}
+					if(this.image8 == "url(../../../static/img/img3.png)"){
+						uni.showToast({title:"请完善资料！",icon:"none"})
+						return ;
+					}
+					if(this.image9 == "url(../../../static/img/img4.png)"){
+						uni.showToast({title:"请完善资料！",icon:"none"})
+						return ;
+					}
+					if(this.image10 == "url(../../../static/img/img4.png)"){
+						uni.showToast({title:"请完善资料！",icon:"none"})
+						return ;
+					}
+					
+					this.doKeep();
+				}else{
+					if(this.image == "url(../../../static/img/img1.png)"){
+						uni.showToast({title:"请完善资料！",icon:"none"})
+						return ;
+					}
+					if(this.image2 == "url(../../../static/img/img2.png)"){
+						uni.showToast({title:"请完善资料！",icon:"none"})
+						return ;
+					}
+					if(this.image3 == "url(../../../static/img/img3.png)"){
+						uni.showToast({title:"请完善资料！",icon:"none"})
+						return ;
+					}
+					if(this.image4 == "url(../../../static/img/img4.png)"){
+						uni.showToast({title:"请完善资料！",icon:"none"})
+						return ;
+					}
+					if(this.image5 == "url(../../../static/img/img4.png)"){
+						uni.showToast({title:"请完善资料！",icon:"none"})
+						return ;
+					}
+					this.doKeep()
+				}
+			}
 		}
 	}
 </script>

@@ -26,6 +26,7 @@
 </template>
 
 <script>
+	import {baseIp} from "../../../config.js"
 	import uniIcon from "@/components/uni-icon/uni-icon.vue"
 	export default {
 		components: {uniIcon},

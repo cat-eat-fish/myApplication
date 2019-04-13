@@ -1,2 +1,0 @@
-<import src="./reportingProcess.vue.wxml" />
-    <template is="9da0ec9c" data="{{ ...$root['0'], $root }}"/>

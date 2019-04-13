@@ -1,5 +1,5 @@
 <template>
-	<view class="investigation">
+	<view class="investigation consideration">
 		<view class="investigation-title">受理详细信息</view>
 		<view class="investigation-form form1">
 			<view class="item">
@@ -49,6 +49,28 @@
 			<view class="item">
 				<view class="text">实际控制人 : </view>
 				<view class="field">{{dataInfo.control_per}}</view>
+			</view>
+		</view>
+		<view class="investigation-title">审议投票</view>
+		<view class="investigation-form form1">
+			<view class="item">
+				<view class="text">投票意见 : </view>
+				<view class="field ra">
+					<radio-group class="group" @change="radioChange4">
+						<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in items4" :key="index">
+							<view>
+								<radio :value="item.value" :checked="index === current4" />
+							</view>
+							<view>{{item.name}}</view>
+						</label>
+					</radio-group>
+				</view>
+			</view>
+			<view class="item text">
+				<view class="text">投票意见 : </view>
+				<view class="field textarea">
+					<textarea v-model="votiOpinion"  auto-height />
+				</view>
 			</view>
 		</view>
 		<view class="investigation-title">审批信息</view>
@@ -125,12 +147,16 @@
 				current3: 1,
 				acceptid:"",
 				
+				items4: [{value: "tongyi",name: '同意'},{value: "butongyi",name: '不同意'}],
+				current4: 1,
 				
 				tiid:"",
 				pdId:"",
 				doc_id:"",
 				status:"",
 				comment:"",		
+				voti:"",			//投票结果
+				votiOpinion:"",		//投票意见
 				dataInfo:{},
 				Enclosure:[],		//附件
 			};
@@ -164,7 +190,15 @@
 					}
 				}
 			},
-
+			radioChange4(evt) {
+				for (let i = 0; i < this.items4.length; i++) {
+					if (this.items4[i].value === evt.target.value) {
+						this.current4 = i;
+						this.voti = evt.target.value == "tongyi" ? 0 : 1;
+						break;
+					}
+				}
+			},
 			radioChange2(evt) {
 				for (let i = 0; i < this.items2.length; i++) {
 					if (this.items2[i].value === evt.target.value) {

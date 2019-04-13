@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "业务申请",
-  "usingComponents": {
-    "tki-file-manager": "/components/tki-file-manager",
-    "uni-popup": "/components/uni-popup/uni-popup"
-  }
-}

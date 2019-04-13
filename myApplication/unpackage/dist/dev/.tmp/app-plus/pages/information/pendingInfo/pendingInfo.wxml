@@ -1,2 +1,0 @@
-<import src="./pendingInfo.vue.wxml" />
-    <template is="2233a08c" data="{{ ...$root['0'], $root }}"/>

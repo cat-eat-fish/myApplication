@@ -6,13 +6,13 @@
 		</view>
 		<view class="content-has" v-else>
 			<view class="item" v-for="(item,index) in dataInfo" :key="index">
-				<view class="item-datetime">{{item.applay_date}}</view>
+				<view class="item-datetime">{{item.approvetime}}</view>
 				<view class="item-main">
 					<view class="vimg">
 						<image class="img" src="../../../static/img/message_icon_01.png" mode=""></image>
 					</view>
 					<view class="text">
-						<view class="text-t">待审信息</view>
+						<view class="text-t">审批通知</view>
 						<view class="item-main-main">
 							<view class="item-main-main-1">
 								<view class="item-main-main-1-l">
@@ -27,19 +27,23 @@
 							</view>
 							<view class="item-main-main-3">
 								<text >业务名称 : </text>
-								<text> {{item.bus_type}}</text>
+								<text> {{item.symboltablename}}</text>
 							</view>
 							<view class="item-main-main-3">
 								<text>开始办理时间 : </text>
-								<text> {{item.applay_date}}</text>
+								<text> {{item.start_time}}</text>
 							</view>
 							<view class="item-main-main-4">
 								<text>发起人 : </text>
-								<text> {{item.name}}</text>
+								<text> {{item.approve_per}}</text>
 							</view>
-							<view class="item-main-main-5">
-								{{item.state}}
+							<view class="item-main-main-4">
+								<text>受理人 : </text>
+								<text> {{item.username}}</text>
 							</view>
+							<!-- <view class="item-main-main-5">
+								{{item.status}}
+							</view> -->
 						</view>
 					</view>
 				</view>
@@ -49,6 +53,7 @@
 </template>
 
 <script>
+	import {baseIp} from "../../../config.js"
     import {getUserInfo,setUserInfo} from '../../../service.js';
 	export default {
 		data() {
@@ -63,30 +68,29 @@
 				frontColor:  "#000000",
 				backgroundColor: "#FFFFFF"
 			});
+			var url = `http://${baseIp()}/ams/system/distribute.htm?module=approveList&userId=${getUserInfo().userId}`;
+			
 			uni.request({
-				url:`http://192.168.3.125:8080/ams/system/distribute.htm?module=approveListener&userId=${getUserInfo().userId}`,
+				url:url,
 				success(res){
 					that.dataInfo = res.data.object;
-					uni.request({
-						url:"http://192.168.3.125:8080/ams/system/distribute.htm?module=pullDown&XLX=useType",
-						success(res){
-							var data = res.data;
-							that.items = data.object;
-							that.dataInfo.map((item,index)=>{
-								if(!Boolean(Number(item.bus_type))){
-									item.bus_type = item.bus_type;
-								}else{
-									item.bus_type = that.items[Number(item.bus_type) - 1].name
-								}
-							})
-							
-						}
-					})
+// 					uni.request({
+// 						url:"http://"+baseIp()+"/ams/system/distribute.htm?module=pullDown&XLX=useType",
+// 						success(res){
+// 							var data = res.data;
+// 							that.items = data.object;
+// 							that.dataInfo.map((item,index)=>{
+// 								if(!Boolean(Number(item.bus_type))){
+// 									item.bus_type = item.bus_type;
+// 								}else{
+// 									item.bus_type = that.items[Number(item.bus_type) - 1].name
+// 								}
+// 							})
+// 							
+// 						}
+// 					})
 				}
 			})
-			
-			
-			
 		}
 	}
 </script>

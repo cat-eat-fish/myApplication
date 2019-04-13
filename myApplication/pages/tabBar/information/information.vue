@@ -46,6 +46,7 @@
 </template>
 
 <script>
+	import {baseIp} from "../../../config.js"
     import {getUserInfo,setUserInfo} from '../../../service.js';
 	import uniBadge from "@/components/uni-badge/uni-badge.vue"
 	import uniIcon from "@/components/uni-icon/uni-icon.vue"
@@ -69,7 +70,7 @@
 				});
 			}else{
 				uni.request({
-					url:`http://192.168.3.125:8080/ams/system/distribute.htm?module=pending_topInfo&userId=${userInfo.userId}`,
+					url:`http://${baseIp()}/ams/system/distribute.htm?module=pending_topInfo&userId=${userInfo.userId}`,
 					success(res) {
 						var data = res.data;
 						if(data.code == 1){	

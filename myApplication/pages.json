@@ -198,6 +198,21 @@
 				"navigationBarTitleText": "测试页面"
 			}
         }
+        ,{
+            "path" : "pages/application/consideration/consideration",
+            "style" : {
+				"navigationBarTitleText": "审议",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "取消",
+							"fontSize": "16px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+        }
     ],
     "tabBar": {
         "color": "#bbbbbb",

@@ -37,6 +37,7 @@
 </template>
 
 <script>
+	import {baseIp} from "../../../config.js"
     import {getUserInfo,setUserInfo} from '../../../service.js';
 	export default {
 		data() {
@@ -49,10 +50,9 @@
 		onLoad(){
 			var that = this;
 			uni.request({
-				url:`http://192.168.3.125:8080/ams/system/distribute.htm?module=approvedByMI&userId=${getUserInfo().userId}`,
+				url:`http://${baseIp()}/ams/system/distribute.htm?module=approvedByMI&userId=${getUserInfo().userId}`,
 				success(res){
 					var data = res.data
-					console.log(data)
 					that.dataInfo = data.object;
 				}
 			})

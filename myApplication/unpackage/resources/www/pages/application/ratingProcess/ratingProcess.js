@@ -1,2 +1,0 @@
-setCssToHead([".",[1],"ratingProcess{}\n",],undefined,{path:"./pages/application/ratingProcess/ratingProcess.wxss"})();
-document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/application/ratingProcess/ratingProcess.wxml') } }));

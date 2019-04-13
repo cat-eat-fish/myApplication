@@ -1,2 +1,0 @@
-<import src="./bossQuery.vue.wxml" />
-    <template is="15f2144a" data="{{ ...$root['0'], $root }}"/>

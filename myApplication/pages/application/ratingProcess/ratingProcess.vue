@@ -2,12 +2,13 @@
 	<view class="ratingProcess">
 		<view class="ratingProcess-title">
 			<view class="img">{{aa}}</view>
+			<view class="text">{{dataInfo.name}}</view>
 			<view class="text">{{bb}}</view>
 		</view>
 		<view class="ratingProcess-con">
 			<view class="item">
 				<view class="text-l">申报名称</view>
-				<view class="text-r">{{dataInfo.title}}</view>
+				<view class="text-r">{{dataInfo.title2}}</view>
 			</view>
 			<view class="item">
 				<view class="text-l">客户名称</view>
@@ -19,7 +20,7 @@
 			</view>
 			<view class="item">
 				<view class="text-l">客户类型</view>
-				<view class="text-r">{{}}</view>
+				<view class="text-r">{{dataInfo.cust_type}}</view>
 			</view>
 			<view class="item">
 				<view class="text-l">营销责任人</view>
@@ -27,11 +28,11 @@
 			</view>
 			<view class="item">
 				<view class="text-l">评级模型</view>
-				<view class="text-r">{{}}</view>
+				<view class="text-r">{{dataInfo.evaluate_modle}}</view>
 			</view>
 			<view class="item">
 				<view class="text-l">拟初评结果</view>
-				<view class="text-r">{{}}</view>
+				<view class="text-r">{{dataInfo.first_level}}</view>
 			</view>
 			<view class="item">
 				<view class="text-l">申请日期</view>
@@ -43,11 +44,11 @@
 			</view>
 			<view class="item">
 				<view class="text-l">上季度评级级别</view>
-				<view class="text-r">{{}}</view>
+				<view class="text-r">{{dataInfo.last_level}}</view>
 			</view>
 			<view class="item">
 				<view class="text-l">实际控制人</view>
-				<view class="text-r">{{dataInfo.name}}</view>
+				<view class="text-r">{{dataInfo.applay_per}}</view>
 			</view>
 			<view class="item-other">
 				<view class="text-l">附件列表</view>
@@ -62,6 +63,7 @@
 </template>
 
 <script>
+	import {baseIp} from "../../../config.js"
 	import uniSteps from '@/components/uni-steps/uni-steps.vue'
 	import uniIcon from "@/components/uni-icon/uni-icon.vue"
 	export default {
@@ -78,14 +80,15 @@
 		onLoad(e){
 			var that = this;
 			uni.request({
-				url:`http://192.168.3.125:8080/ams/system/distribute.htm?module=informationZX&acceptid=${e.acceptid}&doc_id=${e.doc_id}&pdid=${e.pdid}&piid=${e.piid}&mainId=${e.id2}`,
+				url:`http://${baseIp()}/ams/system/distribute.htm?module=informationPJ&acceptid=${e.acceptid}&doc_id=${e.doc_id}&pdid=${e.pdid}&piid=${e.piid}&mainId=${e.id2}`,
 				success(res){
 					var data = res.data;
 					that.dataInfo = data.object[0];
-					that.aa = data.object[0].customer_name.substr(data.object[0].customer_name.length-2)
+					console.log(data)
+					that.aa = data.object[0].applay_per.substr(data.object[0].applay_per.length-2)
 					data.object1.map((item)=>{
 						item.title = item.name
-						item.desc =  !item.approve_time ? `${item.status}` : item.status ? `${item.tokenname} -- ${item.approve_time} -- ${item.status}(${item.info})` : `${item.tokenname} -- ${item.approve_time}(${item.info})`;
+						item.desc =  !item.approve_time ? `${item.status}` : item.status ? `${item.tokenname} -- ${item.approve_time} -- ${item.status}` : `${item.tokenname} -- ${item.approve_time}`;
 						
 					})
 					var active = data.object1.map((item,index)=>{
@@ -96,7 +99,8 @@
 					var i = active.filter((val)=>{
 						return val
 					})
-					that.active = i.length == 0 ? active.length-1 : that.active = i[0]-1;
+					that.active = i.length == 0 ? active.length : that.active = i[0];
+					data.object1.unshift({title:`${data.object[0].applay_per}`,desc:`我发起的 -- ${data.object[0].applay_date}`});
 					that.list2 = data.object1;
 					that.bb = data.object1[data.object1.length-1].status
 				}

@@ -163,6 +163,7 @@
 </template>
 
 <script>
+	import {baseIp} from "../../../config.js"
 	import uniPopup from '@/components/uni-popup/uni-popup.vue'
 	// import mpvuePicker from '../../../components/mpvue-picker/mpvuePicker.vue';
 	// import cityData from '../../../common/city.data.js';
@@ -242,7 +243,7 @@
 			this.businessData.applay_date = formateDate(new Date(),"Y-M-D");
 			var that = this;
 			uni.request({
-				url:"http://192.168.3.125:8080/ams/system/distribute.htm?module=pullDown&XLX=sbType",
+				url:"http://"+baseIp()+"/ams/system/distribute.htm?module=pullDown&XLX=sbType",
 				success(res){
 					var data = res.data;
 					that.arrayInfo = data.object;
@@ -254,7 +255,7 @@
 				}
 			})
 			uni.request({
-				url:"http://192.168.3.125:8080/ams/system/distribute.htm?module=pullDown&XLX=customerType",
+				url:"http://"+baseIp()+"/ams/system/distribute.htm?module=pullDown&XLX=customerType",
 				success(res){
 					var data = res.data;
 					that.array2Info = data.object;
@@ -266,7 +267,7 @@
 				}
 			})
 			uni.request({
-				url:"http://192.168.3.125:8080/ams/system/distribute.htm?module=pullDown&XLX=level_modle",
+				url:"http://"+baseIp()+"/ams/system/distribute.htm?module=pullDown&XLX=level_modle",
 				success(res){
 					var data = res.data;
 					that.array4Info = data.object;
@@ -278,7 +279,7 @@
 				}
 			})
 			uni.request({
-				url:"http://192.168.3.125:8080/ams/system/distribute.htm?module=pullDown&XLX=levelType",
+				url:"http://"+baseIp()+"/ams/system/distribute.htm?module=pullDown&XLX=levelType",
 				success(res){
 					var data = res.data;
 					that.array6Info = that.array5Info = data.object;
@@ -293,7 +294,7 @@
 				}
 			})
 			uni.request({
-				url:"http://192.168.3.125:8080/ams/system/distribute.htm?module=check_dept",
+				url:"http://"+baseIp()+"/ams/system/distribute.htm?module=check_dept",
 				success(res){
 					var data = res.data;
 					that.array3Info = that.array7Info = data.object;
@@ -317,10 +318,6 @@
 			bindPickerChange: function(e) {
 				this.index = e.target.value;
 				this.businessData.title = this.arrayInfo[e.target.value].code;
-				uni.showToast({
-					title:"选择成功",
-				})
-				console.log(this.businessData.title)
 			},
 			bindPickerChange2: function(e) {
 				this.index2 = e.target.value;
@@ -332,9 +329,6 @@
 					return;
 				}
 				this.businessData.cust_type = this.array2Info[e.target.value - 1].code;
-				uni.showToast({
-					title:"选择成功",
-				})
 			},
 			bindPickerChange3: function(e) {
 				var that = this;
@@ -347,7 +341,7 @@
 					return ;
 				}
 				uni.request({
-					url:`http://192.168.3.125:8080/ams/system/distribute.htm?module=check_person&dept_id=${that.array3Info[e.target.value].id-1}`,
+					url:`http://${baseIp()}/ams/system/distribute.htm?module=check_person&dept_id=${that.array3Info[e.target.value].id-1}`,
 					success(res){
 						var data = res.data;
 						if(data.object.length == 0){
@@ -376,9 +370,6 @@
 			bindPickerChange3_1: function(e) {
 				this.index3_1 = e.target.value;
 				this.businessData.userIds2 = String(this.array3_1Info[this.index3_1].id);
-				uni.showToast({
-					title:"选择成功",
-				})
 				
 			},
 			bindPickerChange4: function(e) {
@@ -391,9 +382,6 @@
 					return;
 				}
 				this.businessData.evaluate_modle = this.array4Info[e.target.value - 1].code;
-				uni.showToast({
-					title:"选择成功",
-				})
 			},
 			bindPickerChange5: function(e) {
 				this.index5 = e.target.value;
@@ -405,9 +393,6 @@
 					return;
 				}
 				this.businessData.first_level = this.array5Info[e.target.value - 1].code;
-				uni.showToast({
-					title:"选择成功",
-				})
 			},
 			bindPickerChange6: function(e) {
 				this.index6 = e.target.value;
@@ -419,9 +404,6 @@
 					return;
 				}
 				this.businessData.lastLevel = this.array6Info[e.target.value - 1].code;
-				uni.showToast({
-					title:"选择成功",
-				})	
 			},
 			bindPickerChange7: function(e) {
 				var that = this;
@@ -434,7 +416,7 @@
 					return ;
 				}
 				uni.request({
-					url:`http://192.168.3.125:8080/ams/system/distribute.htm?module=check_person&dept_id=${that.array3Info[e.target.value].id-1}`,
+					url:`http://${baseIp()}/ams/system/distribute.htm?module=check_person&dept_id=${that.array3Info[e.target.value].id-1}`,
 					success(res){
 						var data = res.data;
 						if(data.object.length == 0){
@@ -461,9 +443,6 @@
 			bindPickerChange7_1: function(e) {
 				this.index7_1 = e.target.value;
 				this.businessData.userIds = String(this.array7_1Info[this.index7_1].id);
-				uni.showToast({
-					title:"选择成功",
-				})
 			},
 			
 			togglePopup(type) {
@@ -490,15 +469,12 @@
 						mask:true
 					})
 					uni.request({
-						url:`http://192.168.3.125:8080/ams/system/distribute.htm?module=submitApp&id=${that.seq}&userIds=${that.userIds}`,
+						url:`http://${baseIp()}/ams/system/distribute.htm?module=submitApp&id=${that.seq}&userIds=${that.userIds}`,
 						success(res){
 							var data = res.data;
 							if(data.code == 1){
 								uni.hideLoading()
-								uni.showToast({
-									title:data.message,
-									duration:3000
-								})
+								uni.showToast({title:data.message,duration:3000})
 								setTimeout(function(){
 									uni.navigateBack();
 								},3000)
@@ -539,28 +515,28 @@
 					})
 				}else{
 					uni.showLoading({
-						title: '加载中',
+						title: '检索中',
 						mask:true
 					});
+					var url = `http://${baseIp()}/ams/system/distribute.htm?module=checkCustomer&customerName=${that.businessData.customer_name}`;
+					
 					uni.request({
-						url:`http://192.168.3.125:8080/ams/system/distribute.htm?module=checkCustomer&customerName=${that.businessData.customer_name}`,
+						url:url,
 						success(res){
-							var data = res.data
-							that.getUserInfo = data.object
-							var dataInfo = data.object.map((item)=>{
-								return item.customer_name
-							})
 							uni.hideLoading();
-							that.type = "middle-list";
-							that.list = dataInfo
-// 							uni.showActionSheet({
-// 								itemList: dataInfo,
-// 								success: (e) => {  
-// 									that.isdis = true
-// 									that.businessData.customer_name = data.object[e.tapIndex].customer_name
-// 									that.businessData.customer_id = data.object[e.tapIndex].customer_id
-// 								}
-// 							})
+							var data = res.data;
+							if(data.object.length == 0){
+								that.type = "";
+								that.list = data.object;
+								uni.showToast({title:"暂无数据"})
+							}else{
+								that.getUserInfo = data.object
+								var dataInfo = data.object.map((item)=>{
+									return item.customer_name
+								})
+								that.type = "middle-list";
+								that.list = dataInfo
+							}
 						},
 						fail(err){
 							console.log(err);
@@ -655,8 +631,8 @@
 				delete uploadData.businessMechanism;
 				delete uploadData.businessName;
 				// delete uploadData.symboltablecode;
-				var url = `http://192.168.3.125:8080/ams/system/distribute.htm?module=saveBusiness&business={user_id:"${uploadData.user_id}", title:"${uploadData.title}",symboltablecode:"${uploadData.symboltablecode}",customer_name:"${uploadData.customer_name}",customer_id:"${uploadData.customer_id}",cust_type:"${uploadData.cust_type}",bus_code:"${uploadData.bus_code}",evaluate_modle:"${uploadData.evaluate_modle}",first_level:"${uploadData.first_level}",applay_date:"${uploadData.applay_date}",applay_reason:"${uploadData.applay_reason}",userIds:"${uploadData.userIds}",userIds2:"${uploadData.userIds2}",lastLevel:"${uploadData.lastLevel}",controlPer:"${uploadData.controlPer}"}`
-				console.log(url)
+				var url = `http://${baseIp()}/ams/system/distribute.htm?module=saveBusiness&business={user_id:"${uploadData.user_id}", title:"${uploadData.title}",symboltablecode:"01",customer_name:"${uploadData.customer_name}",customer_id:"${uploadData.customer_id}",cust_type:"${uploadData.cust_type}",bus_code:"${uploadData.bus_code}",evaluate_modle:"${uploadData.evaluate_modle}",first_level:"${uploadData.first_level}",applay_date:"${uploadData.applay_date}",applay_reason:"${uploadData.applay_reason}",userIds:"${uploadData.userIds}",userIds2:"${uploadData.userIds2}",lastLevel:"${uploadData.lastLevel}",controlPer:"${uploadData.controlPer}"}`
+				
 				var that = this;
 				uni.showModal({
 					title: '是否保存',
@@ -664,7 +640,7 @@
 					success: function (res) {
 						if (res.confirm) {
 							uni.showLoading({
-								title: '加载中',
+								title: '保存中',
 								mask:true
 							})
 							uni.request({

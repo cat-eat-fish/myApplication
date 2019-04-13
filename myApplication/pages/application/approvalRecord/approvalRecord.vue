@@ -26,6 +26,7 @@
 </template>
 
 <script>
+	import baseIp from "../../../config.js"
 	export default {
 		data() {
 			return {
