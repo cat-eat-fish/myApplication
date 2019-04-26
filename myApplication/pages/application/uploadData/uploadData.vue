@@ -107,24 +107,15 @@
 		},
 		onLoad(e){
 			this.ishas = e.ishas;
-			this.num = this.ishas == true ? 1 : 0;
+			this.num = e.ishas == "true" ? 1 : e.ishas == "false" ? 0 : null;
+			console.log(this.num)
 			this.mainId = e.mainId;
 		},
 		onNavigationBarButtonTap(e) {
 			this.isKeep()
 		},
 		methods:{
-			chooseImage() {
-				uni.chooseImage({
-					count: 1,
-					sizeType: [ 'original'],
-					success: (res) => {
-						this.uploadimg1.uri = res.tempFilePaths[0];
-						this.image = `url(${res.tempFilePaths[0]})`;
-					},
-				})
-				
-			},
+			chooseImage() {uni.chooseImage({count: 1,sizeType: [ 'original'],success: (res) => {this.uploadimg1.uri = res.tempFilePaths[0];this.image = `url(${res.tempFilePaths[0]})`;},})},
 			chooseImage2() {uni.chooseImage({count: 1,sourceType: ['album', 'camera'],sizeType: ['compressed', 'original'],success: (res) => {this.uploadimg2.uri = res.tempFilePaths[0];this.image2 = `url(${res.tempFilePaths[0]})`;}})},
 			chooseImage3() {uni.chooseImage({count: 1,sourceType: ['album', 'camera'],sizeType: ['compressed', 'original'],success: (res) => {this.uploadimg3.uri = res.tempFilePaths[0];this.image3 = `url(${res.tempFilePaths[0]})`;}})},
 			chooseImage4() {uni.chooseImage({count: 1,sourceType: ['album', 'camera'],sizeType: ['compressed', 'original'],success: (res) => {this.uploadimg4.uri = res.tempFilePaths[0];this.image4 = `url(${res.tempFilePaths[0]})`;}})},
@@ -138,7 +129,7 @@
 			doKeep(){
 				uni.showLoading({title:"上传中",mask:true});
 				var request = [];
-				if(this.ishas == true){
+				if(this.ishas == "true"){
 					request[0] = this.uploadimg1;
 					request[1] = this.uploadimg2;
 					request[2] = this.uploadimg3;
@@ -149,7 +140,7 @@
 					request[7] = this.uploadimg8;
 					request[8] = this.uploadimg9;
 					request[9] = this.uploadimg10;
-				}else{
+				}else if(this.ishas == "false"){
 					request[0] = this.uploadimg1;
 					request[1] = this.uploadimg2;
 					request[2] = this.uploadimg3;

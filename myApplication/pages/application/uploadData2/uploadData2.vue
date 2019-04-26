@@ -39,17 +39,13 @@
 				nodecode:"",
 				request:[],
 				ishas:0,
+				isstudy:"",
 			};
 		},
 		onLoad(e){
 			this.isstudy = e.isstudy;
 			this.mainId = e.mainId;
 			this.num = e.isstudy;
-			this.doc_id = e.doc_id;
-			this.pdid = e.pdid;
-			this.piid = e.piid;
-			this.tiid = e.tiid;
-			this.nodecode = e.nodecode;
 		},
 		onNavigationBarButtonTap(e) {
 			this.isKeep()
@@ -64,11 +60,10 @@
 				
 			},
 			chooseImage2() {uni.chooseImage({count: 1,sourceType: ['album', 'camera'],sizeType: ['compressed', 'original'],success: (res) => {this.uploadimg2.uri = res.tempFilePaths[0];this.image2 = `url(${res.tempFilePaths[0]})`;}})},
-			
 			doKeep(){
 				uni.showLoading({title:"上传中",mask:true});
 				var request = [];
-				if(this.ishas == 1){
+				if(this.isstudy == 1){
 					request[0] = this.uploadimg1;
 					request[1] = this.uploadimg2;
 					
@@ -78,9 +73,7 @@
 				
 				var that = this;
 				var url = `http://${baseIp()}/ams/system/distribute.htm?module=uploadFile_YD&userId=${getUserInfo().userId}&mainId=${that.mainId}&mainFlag=exam&mate=${that.num}`;
-				
-				// console.log(url,request)
-				// return ;
+				// console.log(url,JSON.stringify(request))
 				uni.uploadFile({
 					url, 
 					filePath:"",
@@ -96,9 +89,8 @@
 							uni.hideLoading();
 							uni.showToast({title:data.message,mask:true,duration:3000})
 							setTimeout(function(){
-								uni.navigateTo({url:`/pages/application/investigation2/investigation2?acceptid=${that.mainId}&doc_id=${that.doc_id}&pdid=${that.pdid}&piid=${that.piid}&tiid=${that.tiid}&nodecode=${that.nodecode}&isUp=true`})
-							},3000)
-							
+								uni.reLaunch({url:"/pages/tabBar/information/information"})
+							},3000);
 						}		
 					},	
 					fail:(err) => {

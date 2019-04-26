@@ -1,2 +1,0 @@
-setCssToHead([".",[1],"reg{background-color: #0A98D5;height: 100vh;}\n.",[1],"reg{background-color: #0A98D5;height: 100%;}\n",],undefined,{path:"./pages/reg/reg.wxss"})();
-document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/reg/reg.wxml') } }));
