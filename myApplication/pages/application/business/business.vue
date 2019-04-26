@@ -127,10 +127,7 @@
 				<input type="text" v-model="businessData.applay_reason" placeholder="请输入申请理由">
 			</view>
 			<view class="item">
-				<!-- <view class="text">协助调查岗</view> -->
-				<view class="uni-list-cell-left text must">
-					协助调查岗
-				</view>
+				<view class="uni-list-cell-left text must">协助调查岗</view>
 				<view class="uni-list-cell-db">
 					<picker @change="bindPickerChange7" :value="index7" :range="array7">
 						<view class="uni-input">{{array7[index7]}}</view>
@@ -472,11 +469,11 @@
 						url:`http://${baseIp()}/ams/system/distribute.htm?module=submitApp&id=${that.seq}&userIds=${that.userIds}`,
 						success(res){
 							var data = res.data;
+							uni.hideLoading()
 							if(data.code == 1){
-								uni.hideLoading()
-								uni.showToast({title:data.message,duration:3000})
+								uni.showToast({title:data.message,duration:3000,mask:true})
 								setTimeout(function(){
-									uni.navigateBack();
+									uni.reLaunch({url:"/pages/tabBar/information/information"})
 								},3000)
 							}
 						},
@@ -648,12 +645,12 @@
 								success(res){
 									var data = res.data;
 									if(data.code == 1){
-										uni.showToast({title:`${data.message},请及时提交!`,mask:true,duration:2000})
+										uni.hideLoading()
+										uni.showToast({title:`请及时提交!`,mask:true,duration:2000})
 										that.userIds = data.object.userIds;
 										that.ishold = true;
 										that.seq = data.object.seq;
 									}
-									uni.hideLoading()
 								},
 								fail(err){
 									console.log(err);

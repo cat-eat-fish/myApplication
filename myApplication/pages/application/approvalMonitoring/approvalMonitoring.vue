@@ -66,7 +66,7 @@
 <style>
 	
 	.approvalMonitoring{background-color: rgb(239,238,243);height:100%;overflow: auto;}
-	/* #ifdef APP-PLUS  MP-WEIXIN*/
+	/* #ifdef APP-PLUS */
 	.approvalMonitoring{background-color: rgb(239,238,243);height:100vh;overflow: auto;}
 	/* #endif */
 	.approvalMonitoring .content-no{height: 100%; background-position: center;background-size: 40%;}

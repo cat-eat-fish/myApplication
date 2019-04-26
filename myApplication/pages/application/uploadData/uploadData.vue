@@ -87,6 +87,16 @@
 				image9: 'url(../../../static/img/img4.png)',
 				image10: 'url(../../../static/img/img4.png)',
 				
+				uploadimg1:{uri:"",name:"request1"},
+				uploadimg2:{uri:"",name:"request2"},
+				uploadimg3:{uri:"",name:"request3"},
+				uploadimg4:{uri:"",name:"request4"},
+				uploadimg5:{uri:"",name:"request5"},
+				uploadimg6:{uri:"",name:"request6"},
+				uploadimg7:{uri:"",name:"request7"},
+				uploadimg8:{uri:"",name:"request8"},
+				uploadimg9:{uri:"",name:"request9"},
+				uploadimg10:{uri:"",name:"request10"},
 				
 				num:"",
 				mainFlag:"",
@@ -97,35 +107,84 @@
 		},
 		onLoad(e){
 			this.ishas = e.ishas;
-			this.num = this.ishas == true ? "2" : "1";
+			this.num = this.ishas == true ? 1 : 0;
 			this.mainId = e.mainId;
 		},
 		onNavigationBarButtonTap(e) {
 			this.isKeep()
 		},
 		methods:{
-			chooseImage() {uni.chooseImage({count: 1,sourceType: ['album', 'camera'],sizeType: ['compressed', 'original'],success: (res) => {this.image = `url(${res.tempFilePaths[0]})`;}})},
-			chooseImage2() {uni.chooseImage({count: 1,sourceType: ['album', 'camera'],sizeType: ['compressed', 'original'],success: (res) => {this.image2 = `url(${res.tempFilePaths[0]})`;}})},
-			chooseImage3() {uni.chooseImage({count: 1,sourceType: ['album', 'camera'],sizeType: ['compressed', 'original'],success: (res) => {this.image3 = `url(${res.tempFilePaths[0]})`;}})},
-			chooseImage4() {uni.chooseImage({count: 1,sourceType: ['album', 'camera'],sizeType: ['compressed', 'original'],success: (res) => {this.image4 = `url(${res.tempFilePaths[0]})`;}})},
-			chooseImage5() {uni.chooseImage({count: 1,sourceType: ['album', 'camera'],sizeType: ['compressed', 'original'],success: (res) => {this.image5 = `url(${res.tempFilePaths[0]})`;}})},
-			chooseImage6() {uni.chooseImage({count: 1,sourceType: ['album', 'camera'],sizeType: ['compressed', 'original'],success: (res) => {this.image6 = `url(${res.tempFilePaths[0]})`;}})},
-			chooseImage7() {uni.chooseImage({count: 1,sourceType: ['album', 'camera'],sizeType: ['compressed', 'original'],success: (res) => {this.image7 = `url(${res.tempFilePaths[0]})`;}})},
-			chooseImage8() {uni.chooseImage({count: 1,sourceType: ['album', 'camera'],sizeType: ['compressed', 'original'],success: (res) => {this.image8 = `url(${res.tempFilePaths[0]})`;}})},
-			chooseImage9() {uni.chooseImage({count: 1,sourceType: ['album', 'camera'],sizeType: ['compressed', 'original'],success: (res) => {this.image9 = `url(${res.tempFilePaths[0]})`;}})},
-			chooseImage10() {uni.chooseImage({count: 1,sourceType: ['album', 'camera'],sizeType: ['compressed', 'original'],success: (res) => {this.image10 = `url(${res.tempFilePaths[0]})`;}})},
+			chooseImage() {
+				uni.chooseImage({
+					count: 1,
+					sizeType: [ 'original'],
+					success: (res) => {
+						this.uploadimg1.uri = res.tempFilePaths[0];
+						this.image = `url(${res.tempFilePaths[0]})`;
+					},
+				})
+				
+			},
+			chooseImage2() {uni.chooseImage({count: 1,sourceType: ['album', 'camera'],sizeType: ['compressed', 'original'],success: (res) => {this.uploadimg2.uri = res.tempFilePaths[0];this.image2 = `url(${res.tempFilePaths[0]})`;}})},
+			chooseImage3() {uni.chooseImage({count: 1,sourceType: ['album', 'camera'],sizeType: ['compressed', 'original'],success: (res) => {this.uploadimg3.uri = res.tempFilePaths[0];this.image3 = `url(${res.tempFilePaths[0]})`;}})},
+			chooseImage4() {uni.chooseImage({count: 1,sourceType: ['album', 'camera'],sizeType: ['compressed', 'original'],success: (res) => {this.uploadimg4.uri = res.tempFilePaths[0];this.image4 = `url(${res.tempFilePaths[0]})`;}})},
+			chooseImage5() {uni.chooseImage({count: 1,sourceType: ['album', 'camera'],sizeType: ['compressed', 'original'],success: (res) => {this.uploadimg5.uri = res.tempFilePaths[0];this.image5 = `url(${res.tempFilePaths[0]})`;}})},
+			chooseImage6() {uni.chooseImage({count: 1,sourceType: ['album', 'camera'],sizeType: ['compressed', 'original'],success: (res) => {this.uploadimg6.uri = res.tempFilePaths[0];this.image6 = `url(${res.tempFilePaths[0]})`;}})},
+			chooseImage7() {uni.chooseImage({count: 1,sourceType: ['album', 'camera'],sizeType: ['compressed', 'original'],success: (res) => {this.uploadimg7.uri = res.tempFilePaths[0];this.image7 = `url(${res.tempFilePaths[0]})`;}})},
+			chooseImage8() {uni.chooseImage({count: 1,sourceType: ['album', 'camera'],sizeType: ['compressed', 'original'],success: (res) => {this.uploadimg8.uri = res.tempFilePaths[0];this.image8 = `url(${res.tempFilePaths[0]})`;}})},
+			chooseImage9() {uni.chooseImage({count: 1,sourceType: ['album', 'camera'],sizeType: ['compressed', 'original'],success: (res) => {this.uploadimg9.uri = res.tempFilePaths[0];this.image9 = `url(${res.tempFilePaths[0]})`;}})},
+			chooseImage10() {uni.chooseImage({count: 1,sourceType: ['album', 'camera'],sizeType: ['compressed', 'original'],success: (res) => {this.uploadimg10.uri = res.tempFilePaths[0];this.image10 = `url(${res.tempFilePaths[0]})`;}})},
 		
 			doKeep(){
+				uni.showLoading({title:"上传中",mask:true});
+				var request = [];
+				if(this.ishas == true){
+					request[0] = this.uploadimg1;
+					request[1] = this.uploadimg2;
+					request[2] = this.uploadimg3;
+					request[3] = this.uploadimg4;
+					request[4] = this.uploadimg5;
+					request[5] = this.uploadimg6;
+					request[6] = this.uploadimg7;
+					request[7] = this.uploadimg8;
+					request[8] = this.uploadimg9;
+					request[9] = this.uploadimg10;
+				}else{
+					request[0] = this.uploadimg1;
+					request[1] = this.uploadimg2;
+					request[2] = this.uploadimg3;
+					request[3] = this.uploadimg4;
+					request[4] = this.uploadimg5;
+				}
 				var that = this;
-				var url = `http://${baseIp()}/ams/system/distribute.htm?module=uploadFile&userId=${getUserInfo().userId}&mainId=${that.mainId}&mainFlag=${that.mainFlag}&request=${that.request}`;
-				console.log(url)
-				uni.request({
-					url,
-					success(res){
-						var data = res.data;
-						console.log(data)
+				var url = `http://${baseIp()}/ams/system/distribute.htm?module=uploadFile_YD&userId=${getUserInfo().userId}&mainId=${that.mainId}&mainFlag=${that.mainFlag}&mate=${that.num}&flag=3`;	
+				
+				uni.uploadFile({
+					url, 
+					filePath:"",
+					name:"",
+					files:request,
+					success: (res) => {
+						if(typeof(res.data) == 'string'){
+							var data = JSON.parse(res.data);
+						}else{
+							var data =res.data;
+						}
+						if(data.code == 1){
+							uni.hideLoading();
+							uni.showToast({title:data.message,mask:true,duration:3000})
+							setTimeout(function(){
+								uni.navigateTo({url:`/pages/application/reportingProcess/reportingProcess?mainId=${that.mainId}&ishas=${that.num}&isupload=true&ishold=true`})
+							},3000)
+							
+						}
+					},	
+					fail:(err) => {
+						console.log(err)
 					}
-				})
+				});
+				
+				
 			},
 			
 			isKeep(){
@@ -202,7 +261,7 @@
 
 <style>
 	.uploadData{height:100%;background-color: rgb(239,238,243);overflow: auto;}
-	/* #ifdef APP-PLUS MP-WEIXIN */
+	/* #ifdef APP-PLUS  */
 	.uploadData{height:100vh;background-color: rgb(239,238,243);}
 	/* #endif */
 	.uploadData .uploadData-title{margin: 40upx 30upx 30upx;display: flex;}

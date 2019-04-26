@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "上传身份核查件",
+  "titleNView": {
+    "buttons": [
+      {
+        "text": "保存",
+        "fontSize": "16px",
+        "color": "#FFFFFF"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

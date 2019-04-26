@@ -14,6 +14,7 @@
 				<text class="text">{{item.text}}</text>
 			</view>
 		</view>
+		<!-- <view @click="go">aaaaa</view> -->
 	</view>
 </template>
 
@@ -31,6 +32,7 @@
 			};
 		},
 		methods:{
+			// go(){uni.navigateTo({url:"/pages/jump/jump"})},
 			goPage(e){
 				uni.navigateTo({
 					url:e
@@ -41,9 +43,9 @@
 </script>
 
 <style>
-	.application{background-color: rgb(230,230,230);height: 100%;}
-	/* #ifdef APP-PLUS MP-WEIXIN */
-	.application{background-color: rgb(230,230,230);height: 100vh;}
+	.application{background-color: rgb(230,230,230);height: 100%;min-height: 100%;}
+	/* #ifdef APP-PLUS */
+	.application{background-color: rgb(230,230,230);height: 100vh;min-height: 100vh;}
 	/* #endif */
 	.application-notice{padding: 25upx 24upx;margin: 10upx 24upx 40upx; display: flex; border-radius: 10upx;background-color: #fff;}
 	.application-notice-bg{width: 100%; background-color: #ffc045;overflow: hidden;}

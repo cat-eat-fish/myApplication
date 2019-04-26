@@ -25,7 +25,7 @@
 </template>
 
 <script>
-	import {baseIp} from "../../config.js"
+	import {baseIp,api_login} from "../../config.js"
     import {getUserInfo,setUserInfo} from '../../service.js';
     import {mapState,mapMutations} from 'vuex'
     import mInput from '../../components/m-input.vue'
@@ -57,7 +57,7 @@
 		onLoad() {
 			let userInfo = getUserInfo();
 			if(userInfo.isLogin === true){
-				uni.switchTab({
+				uni.reLaunch({
 					url:"/pages/tabBar/mine/mine"
 				})
 			}
@@ -90,16 +90,16 @@
                     account: this.account,
                     password: this.password
                 };
-				var that = this;
+				var that = this,url = api_login(that.account,that.password);
 				uni.request({
-					url:"http://"+baseIp()+"/ams/system/distribute.htm?module=login&username="+that.account+"&password="+that.password+"&methodyd=1",
+					url,
 					success: (res) => {
 						var data = res.data;
 						if(data.code == 1){
 							setUserInfo(data.user);
 							this.login();
-							uni.switchTab({
-								url:"/pages/tabBar/mine/mine"
+							uni.reLaunch({
+								url:"/pages/tabBar/information/information"
 							})
 						}else{
 							uni.showToast({
@@ -117,10 +117,10 @@
 </script>
 
 <style>
-	/* #ifdef APP-PLUS MP-WEIXIN */
-	.login{width: 100vh;position: relative;}
+	/* #ifdef APP-PLUS  */
+	.login{width: 100vh;position: relative;min-height:100vh;}
 	/* #endif */
-	.login{width: 100%;position: relative;}
+	.login{width: 100%;position: relative;min-height:100%;}
 	.login-main{position: relative; margin: 0 60upx;padding: 0 60upx 1px; background-color: #fff;margin-top: -120upx;border-radius: 10px;box-shadow: 2px 4px 20px rgb(230,230,230);}
 	.userImg{width: 22px;height: 30px;    margin: 0 24upx 10upx 10upx;}
 	.login-excessive{height: 300upx;background-color: #ffa33e;}

@@ -1,0 +1,91 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.launched{background-color: rgb(239,238,243);height:100vh;overflow: auto;}
+
+.launched{background-color: rgb(239,238,243);height:100%;overflow: auto;}
+.launched .content-no{height: 100%; background-position: center;background-size: 40%;}
+.launched .content-no .img{width: 400rpx;height: 400rpx;position: absolute;top: 0;bottom: 0;left: 0;right: 0;margin: 48% auto;}
+.launched .content-no .text{position: absolute;top: 740rpx;bottom: 0;left: 0;right: 0;margin: auto;text-align: center;
+	background-image: -webkit-linear-gradient(0deg, #cc5500, #ccbb00);
+	  -webkit-background-clip: text;
+	  -webkit-text-fill-color: transparent;
+	  -webkit-animation: hue 60s infinite linear;
+}
+.launched .item{position: relative; margin: 80rpx 24rpx 0;border-radius: 10px;padding: 40rpx 24rpx;background-color: #FFFFFF;}
+.launched .item:first-child{margin-top: 30rpx;}
+.launched .item-2,.launched .item-3,.launched .item-4,.launched .item-5{margin-top: 20rpx;}
+.launched .item-5 .txt{font-size: 30rpx;color: rgb(248,54,0);}
+.launched .operation{display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;-webkit-box-pack: space-evenly;-webkit-justify-content: space-evenly;-ms-flex-pack: space-evenly;justify-content: space-evenly; position: absolute;margin: 0 24rpx;bottom: -50rpx;left: 0;right: 0;padding: 10rpx 26rpx;border-radius: 20px;font-size: 24rpx;color: #FFFFFF; /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(rgb(255, 128, 31), rgb(255,191,67)); /* Opera 11.1 - 12.0 */ /* Firefox 3.6 - 15 */
+  background: -webkit-gradient(linear, left top, left bottom, from(rgb(255, 128, 31)), to(rgb(255,191,67)));
+  background: linear-gradient(rgb(255, 128, 31), rgb(255,191,67)); /* 标准的语法 */
+}
+.launched  .operation-i{position: relative;width: 50%;text-align: center;}
+.operation-i::after{content:""; top: 14rpx; right:-12rpx; position: absolute;width: 1px;height: 26rpx;background-color: #FFFFFF;}
+.operation-i:last-child::after{width: 0;}
+

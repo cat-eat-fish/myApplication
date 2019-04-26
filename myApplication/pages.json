@@ -66,7 +66,7 @@
         ,{
             "path" : "pages/application/investigation/investigation",
             "style" : {
-				"navigationBarTitleText": "协助调查",
+				"navigationBarTitleText": "",
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
@@ -157,21 +157,6 @@
 			}
         }
         ,{
-            "path" : "pages/application/bossExam/bossExam",
-            "style" : {
-				"navigationBarTitleText": "支行长查询",
-				"app-plus": {
-					"titleNView": {
-						"buttons": [{
-							"text": "取消",
-							"fontSize": "16px",
-							"color": "#FFFFFF"
-						}]
-					}
-				}
-			}
-        }
-        ,{
             "path" : "pages/application/uploadData/uploadData",
             "style" : {
 				"navigationBarTitleText": "上传资料",
@@ -206,6 +191,115 @@
 					"titleNView": {
 						"buttons": [{
 							"text": "取消",
+							"fontSize": "16px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+        }
+        ,{
+            "path" : "pages/jump/jump",
+            "style" : {
+				"navigationBarTitleText": "本地页面"
+			}
+        }
+        ,{
+            "path" : "pages/application/ratingProcess2/ratingProcess2",
+            "style" : {
+				"navigationBarTitleText": "征信受理详情"
+			}
+        }
+        ,{
+            "path" : "pages/application/investigation2/investigation2",
+            "style" : {
+				"navigationBarTitleText": ""
+			}
+        }
+        ,{
+            "path" : "pages/application/uploadData2/uploadData2",
+            "style" : {
+				"navigationBarTitleText": "上传身份核查件",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "保存",
+							"fontSize": "16px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+				
+			}
+        }
+        ,{
+            "path" : "pages/application/financialTrial/financialTrial",
+            "style" : {
+				"navigationBarTitleText": "财审会认定审批流程",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "保存",
+							"fontSize": "16px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+        }
+        ,{
+            "path" : "pages/application/investigation3/investigation3",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/application/ratingProcess3/ratingProcess3",
+            "style" : {
+				"navigationBarTitleText": "财审会认定审批"
+			}
+        }
+        ,{
+            "path" : "pages/application/creditGranting/creditGranting",
+            "style" : {
+				"navigationBarTitleText": "授信认定审批",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "保存",
+							"fontSize": "16px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+        }
+        ,{
+            "path" : "pages/application/ratingProcess4/ratingProcess4",
+            "style" : {
+				"navigationBarTitleText": "授信审批详情"
+			}
+        }
+        ,{
+            "path" : "pages/application/investigation4/investigation4",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/application/ratingProcess5/ratingProcess5",
+            "style" : {
+				"navigationBarTitleText": "授信审批详情"
+			}
+        }
+        ,{
+            "path" : "pages/application/investigation5/investigation5",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/application/useLetter/useLetter",
+            "style" : {
+				"navigationBarTitleText": "用信审批",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"text": "保存",
 							"fontSize": "16px",
 							"color": "#FFFFFF"
 						}]

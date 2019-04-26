@@ -31,14 +31,22 @@
 		<view class="login-v" v-else>
 			<button type="primary" @click="logout" class="logout">退出登录</button>
 		</view>
+	
+	
+	
 	</view>
 </template>
 
 <script>
+	import Paho from '@/common/js/paho-mqtt-min.js'
+	// import { startMqtt } from '@/mqtt/mqtt.js'
     import {getUserInfo,setUserInfo} from '../../../service.js';
 	export default {
 		data() {
 			return {
+// 				client: new Paho.Client('127.0.0.1',61623, 'clienthtml'),
+// 				topic: 'topic',
+				
 				aa:"",
 				dataInfo:[
 					{id:0,img:"../../../static/img/center_list_icon1.png",text:"公司管理",url:""},
@@ -49,24 +57,48 @@
 			};
 		},
 		onLoad() {
-			let userInfo = getUserInfo();
-			let nowTime = Math.round(new Date() / 1000);
-			if(userInfo.overdue <= nowTime){
-				let userIn = {user:false}
-				setUserInfo(userIn);
-				this.login()
-			}else{
-				this.isLogin = userInfo.isLogin;
-				this.userInfo = userInfo
-				this.aa = userInfo.name.substr(userInfo.name.length-2)
-			}
+			this.getInfo();
+// 			this.client.connect({onSuccess: this.onConnect,userName: 'admin',password: 'password'});
+// 			this.client.onConnectedLost = this.onConnectedLost;
+// 			this.client.onMessageArrived = this.onMessageArrived;	
 		},
 		methods:{
+// 			onConnectedLost : function(responseObject){  
+// 				console.log("onConnectionLost:"+responseObject.errorMessage);
+// 			},
+// 			onMessageArrived : function (message) {
+// 				console.log("onMessageArrived:"+message.payloadString);
+// 			},
+// 			onConnect:function onConnect() {
+// 			  // Once a connection has been made, make a subscription and send a message.
+// 			  console.log("onConnect");
+// 			  this.client.subscribe(this.topic);
+// 			  // message = new Paho.MQTT.Message("Hello");
+// 			  // message.destinationName = "World";
+// 			  // client.send(message);
+// 			},
+			
+			// 初始化
+			getInfo(){
+				let userInfo = getUserInfo();
+				let nowTime = Math.round(new Date() / 1000);
+				if(userInfo.overdue <= nowTime){
+					let userIn = {user:false}
+					setUserInfo(userIn);
+					this.login()
+				}else{
+					this.isLogin = userInfo.isLogin;
+					this.userInfo = userInfo
+					this.aa = userInfo.name.substr(userInfo.name.length-2)
+				}
+			},
+			// 点击登录
 			login(){
 				uni.reLaunch({
 					url:"/pages/login/login"
 				});
 			},
+			// 推出
 			logout(){
 				let userIn = {user:false}
 				setUserInfo(userIn);
@@ -80,7 +112,7 @@
 	}
 </script>
 <style>
-	/* #ifdef APP-PLUS  MP-WEIXIN*/
+	/* #ifdef APP-PLUS */
 	
 	/* #endif */
 	.mine-excessive{height:230upx;padding: 0 30upx;display: flex;justify-content: space-between;overflow: hidden;

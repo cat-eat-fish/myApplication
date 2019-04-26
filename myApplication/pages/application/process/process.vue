@@ -41,7 +41,7 @@
 	}
 </script>
 <style>
-	/* #ifdef APP-PLUS MP-WEIXIN */
+	/* #ifdef APP-PLUS  */
 	.process-card{margin:30upx 24upx 0;border: 1px solid red;border-radius: 10px;box-shadow: 0px 0px 10px red;}
 	/* #endif */
 	.process-card{margin:30upx 24upx 0;border: 1px solid red;border-radius: 10px;box-shadow: 0px 0px 10px red;}

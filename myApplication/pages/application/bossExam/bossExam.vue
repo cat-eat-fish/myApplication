@@ -113,10 +113,10 @@
 </script>
 
 <style>
-	/* #ifdef APP-PLUS MP-WEIXIN */
+	.bossExam{background-color: rgb(239,238,243);height: 100%;overflow: auto;}
+	/* #ifdef APP-PLUS  */
 	.bossExam{background-color: rgb(239,238,243);height: 100vh;overflow: auto;}
 	/* #endif */
-	.bossExam{background-color: rgb(239,238,243);height: 100%;overflow: auto;}
 	.bossExam-title{font-size: 30upx;color: rgb(254,138,20);margin: 40upx 0 20upx 30upx;}
 	.bossExam-form{margin: 20upx 24upx 50upx;background-color: #fff;border-radius: 10px;padding: 20upx 0;}
 	.bossExam-form .item{display: flex;padding: 20upx 24upx;}

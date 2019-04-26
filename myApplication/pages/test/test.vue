@@ -1,5 +1,8 @@
 <template>
 	<view class="wrapper">
+		    <view class="struct" @click="go">
+		       aaa
+		    </view>
 		<view class="handRight">
 			<view class="handTitle">手写板</view>
 		</view>	
@@ -50,8 +53,14 @@ export default {
 		  slideValue: this.slideValue, // 0, 25, 50, 75, 100
 		  canvasName: 'handWriting',
 		})
+		
 	},
 	methods:{
+		go(){
+			uni.reLaunch({
+				url:`/pages/tabBar/information/information`,
+			})
+		},
 	 // 选择画笔颜色
 	  selectColorEvent(event) {
 		  this.selectColor = event;

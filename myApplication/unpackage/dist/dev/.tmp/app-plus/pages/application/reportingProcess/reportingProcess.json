@@ -1,0 +1,15 @@
+{
+  "navigationBarTitleText": "征信流程",
+  "titleNView": {
+    "buttons": [
+      {
+        "text": "保存",
+        "fontSize": "16px",
+        "color": "#FFFFFF"
+      }
+    ]
+  },
+  "usingComponents": {
+    "uni-popup": "/components/uni-popup/uni-popup"
+  }
+}

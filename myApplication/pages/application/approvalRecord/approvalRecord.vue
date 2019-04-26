@@ -39,7 +39,7 @@
 </script>
 
 <style>
-	/* #ifdef APP-PLUS MP-WEIXIN */
+	/* #ifdef APP-PLUS  */
 	.approvalRecord{background-color: rgb(239,238,243);height:100vh;overflow: auto;}
 	/* #endif */
 	.approvalRecord{background-color: rgb(239,238,243);height:100%;overflow: auto;}

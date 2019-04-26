@@ -16,11 +16,7 @@
 // 
 // export default {getUsers,addUser}
 
-export function getUserInfo(){
-	let userInfo = uni.getStorageSync("userInfo");
-	if(!userInfo){userInfo = '{}'}
-	return JSON.parse(userInfo);
-};
+
 
 export function setUserInfo(userINFO){
 	let time =60*60*24;
@@ -33,7 +29,11 @@ export function setUserInfo(userINFO){
 	}
 	uni.setStorageSync("userInfo", JSON.stringify(userInfo));
 }
-
+export function getUserInfo(){
+	let userInfo = uni.getStorageSync("userInfo")
+	if(!userInfo){userInfo = '{}'}
+	return JSON.parse(userInfo);
+};
 
 export function getCid(){
 	let cid = uni.getStorageSync("cid");

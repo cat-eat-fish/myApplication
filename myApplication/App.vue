@@ -1,4 +1,9 @@
 <script>
+	
+	
+	
+	
+	
     import {getCid,setCid} from './service.js';
 	// #ifdef APP-PLUS
 		
@@ -61,10 +66,6 @@
 		onHide: function() {
 			// console.log('App Hide');
 		},
-		
-		
-		
-		
 	}
 </script>
 

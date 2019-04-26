@@ -59,7 +59,7 @@
 </script>
 	
 <style>
-	/* #ifdef APP-PLUS MP-WEIXIN */
+	/* #ifdef APP-PLUS */
 	.pendingInfo{background-color: rgb(239,238,243);height:100vh;overflow: auto;}
 	/* #endif */
 	.pendingInfo{background-color: rgb(239,238,243);height:100%;overflow: auto;}

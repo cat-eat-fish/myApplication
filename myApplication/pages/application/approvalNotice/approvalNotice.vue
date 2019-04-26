@@ -74,21 +74,6 @@
 				url:url,
 				success(res){
 					that.dataInfo = res.data.object;
-// 					uni.request({
-// 						url:"http://"+baseIp()+"/ams/system/distribute.htm?module=pullDown&XLX=useType",
-// 						success(res){
-// 							var data = res.data;
-// 							that.items = data.object;
-// 							that.dataInfo.map((item,index)=>{
-// 								if(!Boolean(Number(item.bus_type))){
-// 									item.bus_type = item.bus_type;
-// 								}else{
-// 									item.bus_type = that.items[Number(item.bus_type) - 1].name
-// 								}
-// 							})
-// 							
-// 						}
-// 					})
 				}
 			})
 		}
@@ -97,9 +82,9 @@
 
 <style>
 	uni-page-body, uni-page-refresh{height: auto;}
-	.approvalNotice{background-color: rgb(239,238,243);height:100%}
-	/* #ifdef APP-PLUS  MP-WEIXIN*/
-	.approvalNotice{background-color: rgb(239,238,243);height:100%}
+	.approvalNotice{background-color: rgb(239,238,243);height:100%;min-height: 100vh;}
+	/* #ifdef APP-PLUS */
+	.approvalNotice{background-color: rgb(239,238,243);height:100%;min-height: 100vh;}
 	/* #endif */
 	.approvalNotice .content-no{height: 100%; background-position: center;background-size: 40%;}
 	.approvalNotice .content-no .img{width: 400upx;height: 400upx;position: absolute;top: 0;bottom: 0;left: 0;right: 0;margin: 48% auto;}

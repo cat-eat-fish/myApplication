@@ -52,12 +52,7 @@
 					<input type="text" value="" v-model="dataInfo.certNo" placeholder="请输入证件号码" />
 				</view>
 			</view>
-			<view class="item">
-				<view class="text">申请理由 : </view>
-				<view class="field">
-					<input type="text" value="" v-model="dataInfo.applay_reason" placeholder="请输入申请理由" />
-				</view>
-			</view>
+			
 			<view class="item">
 				<view class="text">是否有配偶 : </view>
 				<view class="field ra">
@@ -85,17 +80,36 @@
 			</view>
 		</view>
 		<view class="btns">
-			<button type="default" @click="goUploadPage">上传文件</button>
-			<button type="default">附件列表</button>
-			<button type="default" @click="submitAcce">提交受理</button>
+			<button type="warn" @click="goUploadPage">上传文件</button>
+			<button type="warn" @click="showDataImg">附件列表</button>
+			<button type="primary" @click="submitAcce">提交受理</button>
 		</view>
+		
+		<!-- 附件列表 -->
+		<uni-popup :show="type === 'middle-list'" position="middle" mode="fixed" @hidePopup="togglePopup('')">
+			<scroll-view class="uni-center center-box" :scroll-y="true">
+				<view class="uni-list-item" v-for="(item, index) in uploadData" :key="index">
+					<view @click="showImg(item.imgPath)" style="margin: 20upx 0;">
+						{{ item.annexname }}
+					</view>
+				</view>
+			</scroll-view>
+		</uni-popup>
+		<!-- 附件具体图片 -->
+		<uni-popup :show="type === 'middle-img'" position="middle" mode="insert" @hidePopup="togglePopup('')">
+			<view class="uni-center center-box">
+				<image class="image" :src="annexeImg" />
+			</view>
+		</uni-popup>
 	</view>
 </template>
 
 <script>
 	import {baseIp} from "../../../config.js"
     import {getUserInfo,setUserInfo} from '../../../service.js';
+	import uniPopup from '@/components/uni-popup/uni-popup.vue'
 	export default {
+		components: {uniPopup},
 		data() {
 			return {
 				items: [],
@@ -109,8 +123,13 @@
 				
 				isShowOther:true,
 				
-				ishold:false	,
+				ishold:false,		//是否保存
+				isupload:false,		//是否上传
+				uploadData:[],
 				seq:"",
+				type:"",
+				annexeImg:"",
+				
 				
 				dataInfo:{
 					userType:"",			//用途
@@ -126,20 +145,68 @@
 		onNavigationBarButtonTap(e) {
 			this.isKeep()
 		},
-		onLoad(){
-			var that = this;
-			uni.request({
-				url:"http://"+baseIp()+"/ams/system/distribute.htm?module=pullDown&XLX=useType",
-				success(res){
-					var data = res.data;
-					console.log(data)
-					that.items = data.object;
-					that.dataInfo.userType = that.items[that.current].code
-				}
-			})
+		onLoad(e){
+			this.getType();
+			this.seq = e.mainId ? e.mainId : "";
+			this.current3 = e.ishas == null ? 0 : e.ishas == 1 ? 0 : e.ishas == 0 ? 1 : "";
+			this.isShowOther = this.current3 == 0 ? true : false;
 			this.dataInfo.checkForSpouse = this.items3[this.current2].value;
+			this.isupload = e.isupload == undefined ? false : true;
+			this.ishold = e.ishold == undefined ? false : true;
+		},
+		watch:{
+			seq(val,oldval){
+				if(val != ""){
+					this.getDataImg();
+				}
+			},
+			
 		},
 		methods:{
+			togglePopup(type) {
+				this.type = type;
+			},
+			showDataImg(){
+				if(this.uploadData == ""){
+					uni.showToast({title:"暂无附件",mask:true,icon:"none"});
+					return;
+				}else{
+					this.togglePopup('middle-list')
+				}
+			},
+			showImg(path){
+				this.annexeImg = path;
+				this.togglePopup('middle-img');
+				console.log(path)
+			},
+			getType(){
+				var that = this;
+				uni.request({
+					url:"http://"+baseIp()+"/ams/system/distribute.htm?module=pullDown&XLX=useType",
+					success(res){
+						var data = res.data;
+						// console.log(data)
+						that.items = data.object;
+						that.dataInfo.userType = that.items[that.current].code
+					}
+				})
+			},
+			// 
+			getDataImg(){
+				var that = this;
+				if(this.seq != ""){
+					var url = `http://${baseIp()}/ams/system/distribute.htm?module=zllb_YD&mainId=${that.seq}`
+					console.log(url)
+					uni.request({
+						url,
+						success(res){
+							var data = res.data;
+							that.uploadData = data.object;
+						}
+					})
+				}
+			},
+			
 			radioChange(evt) {
 				for (let i = 0; i < this.items.length; i++) {
 					if (this.items[i].code === evt.target.value) {
@@ -161,7 +228,7 @@
 				for (let i = 0; i < this.items3.length; i++) {
 					if (this.items3[i].value === evt.target.value) {
 						this.current3 = i;
-						if(this.current3 == 1){
+						if(i == 1){
 							this.isShowOther = false;
 							this.dataInfo.checkForSpouse = "0"
 						}else{
@@ -243,12 +310,10 @@
 					this.dataInfo.spouseName = ""
 					this.dataInfo.spouseNo = ""
 				}
-				
-				
 				let uploadData = this.dataInfo;
 				uploadData.userId = String(getUserInfo().userId)
 				var url = `http://${baseIp()}/ams/system/distribute.htm?module=saveCredit&credit={userId:"${String(uploadData.userId)}",useType:"${String(uploadData.userType)}",customer_name:"${String(uploadData.customer_name)}",certNo:"${String(uploadData.certNo)}",checkForSpouse:"${String(uploadData.checkForSpouse)}",spouseName:"${String(uploadData.spouseName)}",spouseNo:"${String(uploadData.spouseNo)}",applay_reason:"${String(uploadData.applay_reason)}"}`;
-				
+				// console.log(url)
 				var that = this;
 				uni.showModal({
 					title: '是否保存',
@@ -264,7 +329,7 @@
 									if(data.code == 1){
 										that.ishold = true;
 										that.seq = data.object.seq
-										uni.showToast({title:data.message})
+										uni.showToast({title:data.message,mask:true})
 									}
 								}
 							})
@@ -286,6 +351,18 @@
 							}
 						},
 					})
+				}else if(!this.isupload){
+					uni.showModal({
+						title: '您还没有上传文件',
+						content: '您还没有上传文件，请先上传！',
+						success: function (res) {
+							if (res.confirm) {
+								console.log('用户点击确定');
+							} else if (res.cancel) {
+								console.log('用户点击取消');
+							}
+						},
+					})
 				}else{
 					uni.showLoading({title:"提交中"})
 					var that = this;
@@ -293,11 +370,11 @@
 						url:`http://${baseIp()}/ams/system/distribute.htm?module=submitZX&id=${that.seq}&userId=${getUserInfo().userId}`,
 						success(res){
 							var  data = res.data;
-							uni.hideLoading();
 							if(data.code == 1){
-								uni.showToast({title:data.message,duration:3000});
+								uni.hideLoading();
+								uni.showToast({title:data.message,mask:true,duration:3000})
 								setTimeout(function(){
-									uni.navigateBack()
+									uni.reLaunch({url:`/pages/tabBar/information/information`})
 								},3000)
 							}
 						},
@@ -313,7 +390,7 @@
 
 <style>
 	.reportingProcess{background-color: rgb(239,238,243);height: 100%;overflow: auto;}
-	/* #ifdef APP-PLUS MP-WEIXIN */
+	/* #ifdef APP-PLUS */
 	.reportingProcess{background-color: rgb(239,238,243);height: 100vh;}
 	/* #endif */
 	
@@ -346,7 +423,7 @@
 	}
 	
 	.btns {margin: 60upx 24upx 0;}
-	.btns button{color: #fff;background-color: #CFCFCF;}
+	/* .btns button{color: #fff;background-color: #CFCFCF;} */
 	.btns{display: flex;justify-content: space-between;margin: 60upx 24upx;}
 	.btns button{width: 28%;}
 </style>

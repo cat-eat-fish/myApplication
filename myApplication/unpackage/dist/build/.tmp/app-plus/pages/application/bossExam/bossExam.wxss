@@ -1,0 +1,30 @@
+
+.bossExam{background-color: rgb(239,238,243);height: 100%;overflow: auto;}
+
+.bossExam{background-color: rgb(239,238,243);height: 100vh;overflow: auto;}
+
+.bossExam-title{font-size: 30rpx;color: rgb(254,138,20);margin: 40rpx 0 20rpx 30rpx;}
+.bossExam-form{margin: 20rpx 24rpx 50rpx;background-color: #fff;border-radius: 10px;padding: 20rpx 0;}
+.bossExam-form .item{display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;padding: 20rpx 24rpx;}
+.bossExam-form .item .text{font-size: 26rpx;color: rgb(121,121,121);}
+.bossExam-form .item .field{font-size: 26rpx;color: rgb(102,102,102);margin-left: 10rpx;}
+.bossExam-form .item .field.red{color: red;}
+.bossExam-form .item .field.ra{display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;color: rgb(102,102,102);}
+.bossExam-form .field.ra .group{display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;}
+.bossExam-form .uni-list-cell {display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;}
+.bossExam-form .uni-list-cell:nth-child(1),.uni-list-cell:nth-child(3),.uni-list-cell:nth-child(5){margin-left: 35rpx;}
+.bossExam-form .uni-list-cell:nth-child(2),.uni-list-cell:nth-child(4),.uni-list-cell:nth-child(6){margin-left: 100rpx;}
+.bossExam-form .item.text{display: block;}
+.bossExam-form .item .field.textarea{width: 100%;height: 90rpx;}
+.btns{display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;-webkit-box-pack: justify;-webkit-justify-content: space-between;-ms-flex-pack: justify;justify-content: space-between;margin: 60rpx 24rpx;}
+.btns button{width: 48%;}
+.item .text.x{position: relative;}
+.item .text.x::before{position: absolute;content:"*";color: red;top: -2px;left: -6px;}
+.bossExam-form .uni-list-cell::after{height:0}
+.bossExam-form .uni-list-cell-pd {padding: 0;}
+.bossExam-form .upload{color: #ffffff;width: 40px;background-color: red;text-align: center;-webkit-box-flex: 1;-webkit-flex: 1;-ms-flex: 1;flex: 1;border-radius: 10px; /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(rgb(255, 128, 31), #ffbd43); /* Opera 11.1 - 12.0 */ /* Firefox 3.6 - 15 */
+	background: -webkit-gradient(linear, left top, left bottom, from(rgb(255, 128, 31)), to(#ffbd43));
+	background: linear-gradient(rgb(255, 128, 31), #ffbd43); /* 标准的语法 */
+}
+

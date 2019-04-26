@@ -1,0 +1,50 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.approvalRecord{background-color: rgb(239,238,243);height:100vh;overflow: auto;}
+
+.approvalRecord{background-color: rgb(239,238,243);height:100%;overflow: auto;}
+.approvalRecord .item{margin: 30rpx 24rpx 0;border-radius: 10px;padding: 40rpx 24rpx;background-color: #FFFFFF;}
+.approvalRecord .item-2,.approvalRecord .item-3,.approvalRecord .item-4{margin-top: 40rpx;}
+.approvalRecord .item-5 .txt{font-size: 30rpx;color: rgb(248,54,0);}
+.approvalRecord .item-5{margin-top: 50rpx;}
+

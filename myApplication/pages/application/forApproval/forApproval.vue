@@ -16,7 +16,7 @@
 				</view>
 				<view class="item-3">
 					<text class="text">业务类型 ： </text>
-					<text class="txt">{{item.this_type}}</text>
+					<text class="txt">{{item.t_type}}</text>
 				</view>
 				<view class="item-4">
 					<text class="text">发起人 ： </text>
@@ -43,23 +43,45 @@
 		},
 		onLoad(){
 			var that = this;
-			var userInfo =getUserInfo();
+			var userInfo =getUserInfo(),
+				url = `http://${baseIp()}/ams/system/distribute.htm?module=pending&user_id=${userInfo.userId}`;
+			console.log(url)
 			uni.request({
-				url:`http://${baseIp()}/ams/system/distribute.htm?module=pending&user_id=${userInfo.userId}`,
+				url,
 				success(res){
 					var data = res.data;
+					
 					data.object.map((item)=>{
-						item.this_type = item.bus_type == "01"? "评级认定审批" : item.bus_type == "04" ? "征信审批" : "";
+						item.t_type = item.flow_type == "01"? "评级认定审批" : item.flow_type == "02" ? "财审会认定审批" : item.flow_type == "03" ?  "授信审批" : item.flow_type == "04" ? "征信审批" : item.flow_type == "05" ? "财审会认定审批" : "";
 					})
+					console.log(data)
 					that.dataInfo = data.object;	
 				}
 			})
 		},
 		methods:{
 			goPage(e){
-				uni.navigateTo({
-					url:`/pages/application/investigation/investigation?acceptid=${e.acceptid}&doc_id=${e.doc_id}&pdid=${e.pdid}&piid=${e.piid}&tiid=${e.tiid}`,
-				})
+				if(e.flow_type == "01"){
+					uni.navigateTo({
+						url:`/pages/application/investigation/investigation?acceptid=${e.acceptid}&doc_id=${e.id}&pdid=${e.pdid}&piid=${e.processinstanceid}&tiid=${e.tiid}&nodecode=${e.nodecode}`,
+					})
+				}else if(e.flow_type == "02"){
+					uni.navigateTo({
+						url:`/pages/application/investigation4/investigation4?acceptid=${e.acceptid}&doc_id=${e.id}&pdid=${e.pdid}&piid=${e.processinstanceid}&tiid=${e.tiid}&nodecode=${e.nodecode}`,
+					})
+				}else if(e.flow_type == "03"){
+					uni.navigateTo({
+						url:`/pages/application/investigation5/investigation5?acceptid=${e.acceptid}&doc_id=${e.id}&pdid=${e.pdid}&piid=${e.processinstanceid}&tiid=${e.tiid}&nodecode=${e.nodecode}`,
+					})
+				}else if(e.flow_type == "04"){
+					uni.navigateTo({
+						url:`/pages/application/investigation2/investigation2?acceptid=${e.acceptid}&doc_id=${e.id}&pdid=${e.pdid}&piid=${e.processinstanceid}&tiid=${e.tiid}&nodecode=${e.nodecode}`,
+					})
+				}else if(e.flow_type == "05"){
+					uni.navigateTo({
+						url:`/pages/application/investigation3/investigation3?acceptid=${e.acceptid}&doc_id=${e.id}&pdid=${e.pdid}&piid=${e.processinstanceid}&tiid=${e.tiid}&nodecode=${e.nodecode}`,
+					})
+				}
 			}
 		}
 	}
@@ -67,10 +89,10 @@
 
 <style>
 	
-	/* #ifdef APP-PLUS MP-WEIXIN */
+	.forApproval{background-color: rgb(239,238,243);min-height: 100%;}
+	/* #ifdef APP-PLUS  */
 	.forApproval{background-color: rgb(239,238,243);min-height: 100vh;}
 	/* #endif */
-	.forApproval{background-color: rgb(239,238,243);min-height: 100%;}
 	.content-has{padding-top: 30upx;}
 	.forApproval .content-no{height: 100%; background-position: center;background-size: 40%;}
 	.forApproval .content-no .img{width: 400upx;height: 400upx;position: absolute;top: 0;bottom: 0;left: 0;right: 0;margin: 48% auto;}

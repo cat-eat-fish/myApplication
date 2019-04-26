@@ -9,6 +9,7 @@
     },
     "transformPx" : false,
     "app-plus" : {
+		"usingComponents":true,
         /* 5+App特有相关 */
         "modules" : {
             "Push" : {}
@@ -64,14 +65,7 @@
     /* SDK配置 */
     "quickapp" : {},
     /* 快应用特有相关 */
-    "mp-weixin" : {
-        /* 小程序特有相关 */
-        "appid" : "",
-        "setting" : {
-            "urlCheck" : false
-        },
-        "usingComponents" : true
-    },
+   
     "h5" : {
         "title" : "审核",
         "domain" : "",

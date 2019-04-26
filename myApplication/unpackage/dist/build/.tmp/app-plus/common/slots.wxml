@@ -1,0 +1,13 @@
+<import src="/components/uni-popup/uni-popup.vue.wxml" />
+<import src="/components/tki-file-manager.vue.wxml" />
+<import src="/components/uni-icon/uni-icon.vue.wxml" />
+<import src="/components/m-input.vue.wxml" />
+<import src="/components/uni-badge/uni-badge.vue.wxml" />
+<import src="/components/uni-steps/uni-steps.vue.wxml" />
+<import src="/components/m-icon/m-icon.vue.wxml" />
+<import src="/common/slots.wxml" />
+
+<template name="2ecd0350-default-2ecd0350-11"><view class="_view 2ecd0350 bottom-title">退回节点</view><view class="_view 2ecd0350 bottom-content"><view class="_view 2ecd0350 field ra"><radio-group class="_radio-group 2ecd0350 group" bindchange="handleProxy" data-eventid="{{'2ecd0350-28'}}" data-comkey="{{$k}}"><label class="_label 2ecd0350 uni-list-cell uni-list-cell-pd" wx:key="index" key="{{index}}" wx:for="{{items4}}" wx:for-index="index" wx:for-item="item"><view class="_view 2ecd0350"><radio value="{{item.value}}" checked="{{index === current4}}" class="_radio 2ecd0350" /></view><view class="_view 2ecd0350">{{item.name}}</view></label></radio-group></view><view class="_view 2ecd0350 item text"><view class="_view 2ecd0350 text">退回原因 :</view><view class="_view 2ecd0350 field textarea"><textarea class="_textarea 2ecd0350 textarea-t" value="{{backReasion}}" bindinput="handleProxy" auto-height data-eventid="{{'2ecd0350-29'}}" data-comkey="{{$k}}" /></view></view></view><view class="_view 2ecd0350 bottom-btn uni-popup-btns"><button type="primary" bindtap="handleProxy" data-eventid="{{'2ecd0350-30'}}" data-comkey="{{$k}}" class="_button 2ecd0350">确定</button><button type="warn" bindtap="handleProxy" data-eventid="{{'2ecd0350-31'}}" data-comkey="{{$k}}" class="_button 2ecd0350">取消</button></view></template>
+
+<template name="1e6a5892-default-1e6a5892-0"><scroll-view class="_scroll-view 1e6a5892 uni-center center-box" scroll-y="{{true}}"><view bindtap="handleProxy" class="_view 1e6a5892 uni-list-item" wx:key="index" key="{{index}}" data-eventid="{{'1e6a5892-3-'+index}}" data-comkey="{{$k}}" wx:for="{{list}}" wx:for-index="index" wx:for-item="item">{{ item }}</view></scroll-view></template>
+

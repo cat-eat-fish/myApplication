@@ -121,7 +121,7 @@
 <style>
 	.bossQuery{background-color: rgb(239,238,243);height: 100%;overflow: auto;}
 	
-	/* #ifdef APP-PLUS MP-WEIXIN */
+	/* #ifdef APP-PLUS */
 	.bossQuery{background-color: rgb(239,238,243);height: 100vh;overflow: auto;}
 	/* #endif */
 	.bossQuery-title{font-size: 30upx;color: rgb(254,138,20);margin: 40upx 0 20upx 30upx;}

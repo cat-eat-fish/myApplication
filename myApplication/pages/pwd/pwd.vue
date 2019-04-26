@@ -90,7 +90,7 @@
 </script>
 
 <style>
-	/* #ifdef APP-PLUS  MP-WEIXIN*/
+	/* #ifdef APP-PLUS */
 	.pwd{background-color: #0A98D5;height: 100vh;}
 	/* #endif */
 	.pwd{background-color: #0A98D5;height: 100%;}

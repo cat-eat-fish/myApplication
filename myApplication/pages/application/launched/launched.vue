@@ -16,7 +16,7 @@
 				</view>
 				<view class="item-3">
 					<text class="text">业务类型 ： </text>
-					<text class="txt">{{item.bus_type}}</text>
+					<text class="txt">{{item.t_type}}</text>
 				</view>
 				<view class="item-4">
 					<text class="text">客户名称 ：</text>
@@ -45,26 +45,51 @@
 		},
 		onLoad(){
 			var that = this;
+			var url = `http://${baseIp()}/ams/system/distribute.htm?module=send&userId=${getUserInfo().userId}`
+			console.log(url)
 			uni.request({
-				url:`http://${baseIp()}/ams/system/distribute.htm?module=send&userId=${getUserInfo().userId}&type=&time=&state=&customer_name=`,
+				url,
 				success(res){
 					var data = res.data;
+					
+					data.object.map((item)=>{
+						item.t_type = item.flow_type == "01" ? "评级认定审批" : item.flow_type == "03" ?  "授信审批" : item.flow_type == "04" ? "征信查询" : item.flow_type == "05" ? "财审会认定审批" : item.flow_type == "02" ? "授信审批" : "";
+					})
+					console.log(data)
 					that.dataInfo = data.object;
 				}
 			})
 		},
 		methods:{
 			goPage(e){
-				uni.navigateTo({
-					url:`/pages/application/ratingProcess/ratingProcess?acceptid=${e.acceptid}&doc_id=${e.doc_id}&pdid=${e.pdid}&piid=${e.piid}&id2=${e.id2}`
-				})
+				if(e.flow_type == "01"){
+					uni.navigateTo({
+						url:`/pages/application/ratingProcess/ratingProcess?acceptid=${e.acceptid}&doc_id=${e.doc_id}&pdid=${e.pdid}&piid=${e.piid}&id2=${e.id2}`
+					})
+				}else if(e.flow_type == "02"){ 
+					uni.navigateTo({
+						url:`/pages/application/ratingProcess4/ratingProcess4?acceptid=${e.acceptid}&doc_id=${e.doc_id}&pdid=${e.pdid}&piid=${e.piid}&id2=${e.id2}`
+					})
+				}else if(e.flow_type == "03"){ 
+					uni.navigateTo({
+						url:`/pages/application/ratingProcess5/ratingProcess5?acceptid=${e.acceptid}&doc_id=${e.doc_id}&pdid=${e.pdid}&piid=${e.piid}&id2=${e.id2}`
+					})
+				}else if(e.flow_type == "04"){ 
+					uni.navigateTo({
+						url:`/pages/application/ratingProcess2/ratingProcess2?acceptid=${e.acceptid}&doc_id=${e.doc_id}&pdid=${e.pdid}&piid=${e.piid}&id2=${e.id2}`
+					})
+				}else if(e.flow_type == "05"){ 
+					uni.navigateTo({
+						url:`/pages/application/ratingProcess3/ratingProcess3?acceptid=${e.acceptid}&doc_id=${e.doc_id}&pdid=${e.pdid}&piid=${e.piid}&id2=${e.id2}`
+					})
+				}
 			}
 		}
 	}
 </script>
 
 <style>
-	/* #ifdef APP-PLUS MP-WEIXIN */
+	/* #ifdef APP-PLUS  */
 	.launched{background-color: rgb(239,238,243);height:100vh;overflow: auto;}
 	/* #endif */
 	.launched{background-color: rgb(239,238,243);height:100%;overflow: auto;}

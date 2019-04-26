@@ -41,19 +41,21 @@
 			</view>
 		</view>
 		
-		<button type="default" @click="goPage">测试页面</button>
+		
+		
 	</view>
 </template>
 
 <script>
-	import {baseIp} from "../../../config.js"
     import {getUserInfo,setUserInfo} from '../../../service.js';
+	import {baseIp,api_information} from "../../../config.js"
 	import uniBadge from "@/components/uni-badge/uni-badge.vue"
 	import uniIcon from "@/components/uni-icon/uni-icon.vue"
 	export default {
 		components: {uniIcon,uniBadge},
 		data() {
 			return {
+				pageActive:true,
 				info:[
 					{id:0,url:"/pages/application/forApproval/forApproval",title:'待审核消息',pid:0,desc:"待审核信息待审核信息待审核信息待审核信息",time:"昨天",num:"2"},
 					{id:1,url:"/pages/application/approvalNotice/approvalNotice",title:'审批信息通知',pid:1,desc:"审批信息通知审批信息通知",time:"昨天",num:"2"},
@@ -61,18 +63,24 @@
 				dataInfo:{count1: "0",count2: "0",time1: "",time2: "",title1: "",title2: "",}
 			};
 		},
-		onLoad() {
+		onLoad(e) {
 			var that = this;
-			var userInfo =getUserInfo();
-			if(!userInfo.isLogin){
+			if(!getUserInfo().isLogin){
 				uni.reLaunch({
 					url: '/pages/login/login'
 				});
 			}else{
+				this.getInfo();
+			}
+		},
+		methods:{
+			getInfo(){
+				var that = this;
 				uni.request({
-					url:`http://${baseIp()}/ams/system/distribute.htm?module=pending_topInfo&userId=${userInfo.userId}`,
+					url:`http://${baseIp()}/ams/system/distribute.htm?module=pending_topInfo&userId=${getUserInfo().userId}`,
 					success(res) {
 						var data = res.data;
+						// console.log(data)
 						if(data.code == 1){	
 							that.dataInfo = data.object[0];
 						}
@@ -81,9 +89,7 @@
 						console.log(err)
 					}
 				})
-			}
-		},
-		methods:{
+			},
 			goPage1(){
 				uni.navigateTo({
 					url:"/pages/application/forApproval/forApproval"
@@ -105,7 +111,7 @@
 </script>
 
 <style>
-	/* #ifdef APP-PLUS MP-WEIXIN*/
+	/* #ifdef APP-PLUS */
 	.information{width: 100vh;background-color: #fff;}
 	/* #endif */
 	.information{width: 100%;background-color: #fff;}

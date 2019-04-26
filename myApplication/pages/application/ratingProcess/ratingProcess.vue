@@ -84,10 +84,10 @@
 				success(res){
 					var data = res.data;
 					that.dataInfo = data.object[0];
-					console.log(data)
+					// console.log(data)
 					that.aa = data.object[0].applay_per.substr(data.object[0].applay_per.length-2)
 					data.object1.map((item)=>{
-						item.title = item.name
+						item.title = item.info == "" ? `${item.name}` : `${item.name} -- ${item.info}`;
 						item.desc =  !item.approve_time ? `${item.status}` : item.status ? `${item.tokenname} -- ${item.approve_time} -- ${item.status}` : `${item.tokenname} -- ${item.approve_time}`;
 						
 					})
@@ -119,7 +119,7 @@
 </script>
 
 <style>
-	/* #ifdef APP-PLUS MP-WEIXIN */
+	/* #ifdef APP-PLUS  */
 	.ratingProcess{}
 	/* #endif */
 	.ratingProcess{}
