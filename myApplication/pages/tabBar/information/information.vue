@@ -63,6 +63,14 @@
 				dataInfo:{count1: "0",count2: "0",time1: "",time2: "",title1: "",title2: "",}
 			};
 		},
+		// 监听下拉刷新
+		onPullDownRefresh() {
+			// this.reload = true;
+			// this.last_id = "";
+			// this.getBanner();
+			// this.getList();
+			this.getInfo();
+		},
 		onLoad(e) {
 			var that = this;
 			if(!getUserInfo().isLogin){
@@ -79,8 +87,8 @@
 				uni.request({
 					url:`http://${baseIp()}/ams/system/distribute.htm?module=pending_topInfo&userId=${getUserInfo().userId}`,
 					success(res) {
+						uni.stopPullDownRefresh();
 						var data = res.data;
-						// console.log(data)
 						if(data.code == 1){	
 							that.dataInfo = data.object[0];
 						}

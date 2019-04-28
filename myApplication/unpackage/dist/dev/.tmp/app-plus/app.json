@@ -76,7 +76,7 @@
     "alwaysShowBeforeRender": true,
     "autoclose": false
   },
-  "appname": "myApplication",
+  "appname": "审批",
   "compilerVersion": "1.9.3",
   "usingComponents": {}
 }

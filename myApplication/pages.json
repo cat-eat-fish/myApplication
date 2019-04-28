@@ -3,7 +3,9 @@
         {
             "path": "pages/tabBar/information/information",
             "style": {
-                "navigationBarTitleText": "消息"
+                "navigationBarTitleText": "消息",
+				"enablePullDownRefresh": true
+				
             }
         }, {
             "path": "pages/login/login",

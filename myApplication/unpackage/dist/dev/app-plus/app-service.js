@@ -3387,7 +3387,7 @@ return root;
 
 
 
-__wxAppCode__['app.json']={"pages":["pages/tabBar/information/information","pages/login/login","pages/reg/reg","pages/pwd/pwd","pages/tabBar/application/application","pages/tabBar/mine/mine","pages/application/business/business","pages/application/process/process","pages/application/investigation/investigation","pages/information/pendingInfo/pendingInfo","pages/application/reportingProcess/reportingProcess","pages/application/ratingProcess/ratingProcess","pages/application/forApproval/forApproval","pages/application/approvalRecord/approvalRecord","pages/application/approvalMonitoring/approvalMonitoring","pages/application/launched/launched","pages/application/haveApproved/haveApproved","pages/application/approvalExam/approvalExam","pages/application/bossQuery/bossQuery","pages/application/uploadData/uploadData","pages/application/approvalNotice/approvalNotice","pages/test/test","pages/application/consideration/consideration","pages/jump/jump","pages/application/ratingProcess2/ratingProcess2","pages/application/investigation2/investigation2","pages/application/uploadData2/uploadData2","pages/application/financialTrial/financialTrial","pages/application/investigation3/investigation3","pages/application/ratingProcess3/ratingProcess3","pages/application/creditGranting/creditGranting","pages/application/ratingProcess4/ratingProcess4","pages/application/investigation4/investigation4","pages/application/ratingProcess5/ratingProcess5","pages/application/investigation5/investigation5","pages/application/useLetter/useLetter","pages/web-view/web-view"],"subPackages":[],"window":{"navigationBarTextStyle":"white","navigationBarBackgroundColor":"#ff801f","backgroundColor":"#fbf9fe"},"tabBar":{"color":"#bbbbbb","selectedColor":"rgb(255,192,69)","backgroundColor":"#ffffff","list":[{"pagePath":"pages/tabBar/information/information","text":"消息","iconPath":"static/img/home_tab_default_icon_message.png","selectedIconPath":"static/img/home_tab_selected_icon_message.png"},{"pagePath":"pages/tabBar/application/application","text":"应用","iconPath":"static/img/home_tab_default_icon_home.png","selectedIconPath":"static/img/home_tab_selected_icon_home.png"},{"pagePath":"pages/tabBar/mine/mine","text":"我的","iconPath":"static/img/home_tab_default_icon_personal.png","selectedIconPath":"static/img/home_tab_selected_icon_personal.png"}]},"networkTimeout":{"request":60000},"splashscreen":{"alwaysShowBeforeRender":true,"autoclose":false},"appname":"myApplication","compilerVersion":"1.9.3","usingComponents":{}};
+__wxAppCode__['app.json']={"pages":["pages/tabBar/information/information","pages/login/login","pages/reg/reg","pages/pwd/pwd","pages/tabBar/application/application","pages/tabBar/mine/mine","pages/application/business/business","pages/application/process/process","pages/application/investigation/investigation","pages/information/pendingInfo/pendingInfo","pages/application/reportingProcess/reportingProcess","pages/application/ratingProcess/ratingProcess","pages/application/forApproval/forApproval","pages/application/approvalRecord/approvalRecord","pages/application/approvalMonitoring/approvalMonitoring","pages/application/launched/launched","pages/application/haveApproved/haveApproved","pages/application/approvalExam/approvalExam","pages/application/bossQuery/bossQuery","pages/application/uploadData/uploadData","pages/application/approvalNotice/approvalNotice","pages/test/test","pages/application/consideration/consideration","pages/jump/jump","pages/application/ratingProcess2/ratingProcess2","pages/application/investigation2/investigation2","pages/application/uploadData2/uploadData2","pages/application/financialTrial/financialTrial","pages/application/investigation3/investigation3","pages/application/ratingProcess3/ratingProcess3","pages/application/creditGranting/creditGranting","pages/application/ratingProcess4/ratingProcess4","pages/application/investigation4/investigation4","pages/application/ratingProcess5/ratingProcess5","pages/application/investigation5/investigation5","pages/application/useLetter/useLetter","pages/web-view/web-view"],"subPackages":[],"window":{"navigationBarTextStyle":"white","navigationBarBackgroundColor":"#ff801f","backgroundColor":"#fbf9fe"},"tabBar":{"color":"#bbbbbb","selectedColor":"rgb(255,192,69)","backgroundColor":"#ffffff","list":[{"pagePath":"pages/tabBar/information/information","text":"消息","iconPath":"static/img/home_tab_default_icon_message.png","selectedIconPath":"static/img/home_tab_selected_icon_message.png"},{"pagePath":"pages/tabBar/application/application","text":"应用","iconPath":"static/img/home_tab_default_icon_home.png","selectedIconPath":"static/img/home_tab_selected_icon_home.png"},{"pagePath":"pages/tabBar/mine/mine","text":"我的","iconPath":"static/img/home_tab_default_icon_personal.png","selectedIconPath":"static/img/home_tab_selected_icon_personal.png"}]},"networkTimeout":{"request":60000},"splashscreen":{"alwaysShowBeforeRender":true,"autoclose":false},"appname":"审批","compilerVersion":"1.9.3","usingComponents":{}};
 __wxAppCode__['app.wxml']=$gwx('./app.wxml');
 
 __wxAppCode__['components/m-icon/m-icon.json']={"usingComponents":{},"component":true};
@@ -3513,7 +3513,7 @@ __wxAppCode__['pages/reg/reg.wxml']=$gwx('./pages/reg/reg.wxml');
 __wxAppCode__['pages/tabBar/application/application.json']={"navigationBarTitleText":"应用","usingComponents":{}};
 __wxAppCode__['pages/tabBar/application/application.wxml']=$gwx('./pages/tabBar/application/application.wxml');
 
-__wxAppCode__['pages/tabBar/information/information.json']={"navigationBarTitleText":"消息","usingComponents":{"uni-icon":"/components/uni-icon/uni-icon","uni-badge":"/components/uni-badge/uni-badge"}};
+__wxAppCode__['pages/tabBar/information/information.json']={"navigationBarTitleText":"消息","enablePullDownRefresh":true,"usingComponents":{"uni-icon":"/components/uni-icon/uni-icon","uni-badge":"/components/uni-badge/uni-badge"}};
 __wxAppCode__['pages/tabBar/information/information.wxml']=$gwx('./pages/tabBar/information/information.wxml');
 
 __wxAppCode__['pages/tabBar/mine/mine.json']={"navigationBarTitleText":"个人中心","usingComponents":{}};
@@ -4341,7 +4341,7 @@ function getData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"app-plus","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"app-plus","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -10420,7 +10420,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"app-plus","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_PLATFORM":"app-plus","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$mp[vm.mpType];
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -10441,14 +10441,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"app-plus","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"app-plus","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$mp[vm.mpType];
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"app-plus","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"app-plus","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$mp[vm.mpType];
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -10517,7 +10517,7 @@ var patch = function(oldVnode, vnode) {
         });
         var diffData = diff(data, mpData);
         if (Object.keys(diffData).length) {
-            if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"app-plus","BASE_URL":"/"}).VUE_APP_DEBUG) {
+            if (Object({"VUE_APP_PLATFORM":"app-plus","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
                 console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
                     ']差量更新',
                     JSON.stringify(diffData));
@@ -15856,8 +15856,16 @@ var _config = __webpack_require__(/*! ../../../config.js */ "E:\\project\\myAppl
 //
 //
 //
-var uniBadge = function uniBadge() {return __webpack_require__.e(/*! import() | components/uni-badge/uni-badge */ "components/uni-badge/uni-badge").then(__webpack_require__.bind(null, /*! @/components/uni-badge/uni-badge.vue */ "E:\\project\\myApplication\\components\\uni-badge\\uni-badge.vue"));};var uniIcon = function uniIcon() {return __webpack_require__.e(/*! import() | components/uni-icon/uni-icon */ "components/uni-icon/uni-icon").then(__webpack_require__.bind(null, /*! @/components/uni-icon/uni-icon.vue */ "E:\\project\\myApplication\\components\\uni-icon\\uni-icon.vue"));};var _default = { components: { uniIcon: uniIcon, uniBadge: uniBadge }, data: function data() {return { pageActive: true, info: [{ id: 0, url: "/pages/application/forApproval/forApproval", title: '待审核消息', pid: 0, desc: "待审核信息待审核信息待审核信息待审核信息", time: "昨天", num: "2" }, { id: 1, url: "/pages/application/approvalNotice/approvalNotice", title: '审批信息通知', pid: 1, desc: "审批信息通知审批信息通知", time: "昨天", num: "2" }], dataInfo: { count1: "0", count2: "0", time1: "", time2: "", title1: "", title2: "" } };}, onLoad: function onLoad(e) {var that = this;if (!(0, _service.getUserInfo)().isLogin) {uni.reLaunch({ url: '/pages/login/login' });} else {this.getInfo();}}, methods: { getInfo: function getInfo() {var that = this;uni.request({ url: "http://".concat((0, _config.baseIp)(), "/ams/system/distribute.htm?module=pending_topInfo&userId=").concat((0, _service.getUserInfo)().userId), success: function success(res) {var data = res.data; // console.log(data)
-          if (data.code == 1) {that.dataInfo = data.object[0];}}, fail: function fail(err) {console.log(err, " at pages\\tabBar\\information\\information.vue:89");} });}, goPage1: function goPage1() {uni.navigateTo({ url: "/pages/application/forApproval/forApproval" });}, goPage2: function goPage2() {uni.navigateTo({ url: "/pages/application/approvalNotice/approvalNotice" });
+var uniBadge = function uniBadge() {return __webpack_require__.e(/*! import() | components/uni-badge/uni-badge */ "components/uni-badge/uni-badge").then(__webpack_require__.bind(null, /*! @/components/uni-badge/uni-badge.vue */ "E:\\project\\myApplication\\components\\uni-badge\\uni-badge.vue"));};var uniIcon = function uniIcon() {return __webpack_require__.e(/*! import() | components/uni-icon/uni-icon */ "components/uni-icon/uni-icon").then(__webpack_require__.bind(null, /*! @/components/uni-icon/uni-icon.vue */ "E:\\project\\myApplication\\components\\uni-icon\\uni-icon.vue"));};var _default = { components: { uniIcon: uniIcon, uniBadge: uniBadge }, data: function data() {return { pageActive: true, info: [{ id: 0, url: "/pages/application/forApproval/forApproval", title: '待审核消息', pid: 0, desc: "待审核信息待审核信息待审核信息待审核信息", time: "昨天", num: "2" }, { id: 1, url: "/pages/application/approvalNotice/approvalNotice", title: '审批信息通知', pid: 1, desc: "审批信息通知审批信息通知", time: "昨天", num: "2" }], dataInfo: { count1: "0", count2: "0", time1: "", time2: "", title1: "", title2: "" } };}, // 监听下拉刷新
+  onPullDownRefresh: function onPullDownRefresh() {// this.reload = true;
+    // this.last_id = "";
+    // this.getBanner();
+    // this.getList();
+    this.getInfo();}, onLoad: function onLoad(e) {var that = this;if (!(0, _service.getUserInfo)().isLogin) {uni.reLaunch({ url: '/pages/login/login' });} else {this.getInfo();}}, methods: { getInfo: function getInfo() {var that = this;uni.request({ url: "http://".concat((0, _config.baseIp)(), "/ams/system/distribute.htm?module=pending_topInfo&userId=").concat((0, _service.getUserInfo)().userId), success: function success(res) {uni.stopPullDownRefresh();var data = res.data;if (data.code == 1) {that.dataInfo = data.object[0];}}, fail: function fail(err) {console.log(err, " at pages\\tabBar\\information\\information.vue:97");} });}, goPage1: function goPage1() {uni.navigateTo({ url: "/pages/application/forApproval/forApproval" });
+    },
+    goPage2: function goPage2() {
+      uni.navigateTo({
+        url: "/pages/application/approvalNotice/approvalNotice" });
 
     },
     // 测试页面
