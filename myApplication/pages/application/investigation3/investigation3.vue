@@ -104,7 +104,7 @@
 			</view>
 			<view v-if="inve == '联社财务主任审批'">
 				<view class="item">
-					<view class="text">联社财务主任审查结果 : </view>
+					<view class="text">联社财务主任结果 : </view>
 					<view class="field ra">
 						<radio-group class="group" @change="radioChange">
 							<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in items" :key="index">
@@ -306,8 +306,39 @@
 			
 		</view>
 		
+		<view class="investigation-title">资料列表</view>
+		<view class="investigation-form form3">
+			<view class="uni-card" >
+				<view class="uni-list">
+					<view class="uni-list-cell uni-collapse">
+						<view class="uni-list-cell-navigate uni-navigate-bottom" hover-class="uni-list-cell-hover" :class="lists[1].open ? 'uni-active' : ''"
+						 @click="triggerCollapse(1)">
+							{{lists[1].name}}
+						</view>
+						<view class="uni-list uni-collapse" :class="lists[1].open ? 'uni-active' : ''">
+							<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,key) in lists[1].pages" :key="key" @click="goDetailPage2(item,key)">
+								<view class="uni-list-cell-navigate uni-navigate-right"> {{item}} </view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="item" v-if="path.length != 0 ">
+				<view class="text">新增列表</view>
+				<view class="textarea">
+					<view class="item-list" v-for="(item,index) in path" :key="index">
+						<view class="desc">{{item}}</view>
+						<view class="del" @click="delImgList" :data-value="index">删除</view>
+					</view>
+				</view>
+			</view>
+			<view class="itemBtn" v-if="path.length != 0 ">
+				<button type="primary" @click="doUpload">点击上传</button>
+			</view>
+		</view>
 		<view class="btns">
-			<button type="warn" @click="downEnclosure">资料列表</button>
+			<button type="warn" @tap="openFile">增加资料</button>
+			<tki-file-manager ref="filemanager" @result="resultPath"></tki-file-manager>
 			<uni-popup :show="type === 'middle-list'" position="middle" mode="fixed" @hidePopup="togglePopup('')">
 				<scroll-view class="uni-center center-box" :scroll-y="true">
 					<view class="uni-list-item" v-for="(item, index) in dataUoloadInfo" :key="index">
@@ -465,6 +496,16 @@
 				nodeListInfo:[],
 				nodeList:[],
 				// 退回
+				// 资料相关
+				lists: [
+					{id: 'view',name: '图片预览',open: false,pages: []},
+					{id: 'view',name: '附件下载查看',open: false,pages: []}
+				],
+				listImgInfo:[],
+				
+				listFJInfo:[],
+				path:[],
+				isUp:false,
 			};
 		},
 		onNavigationBarButtonTap(e) {
@@ -481,6 +522,68 @@
 			this.getUpload();
 		},
 		methods:{
+			// 上传文件
+			delImgList(e){
+				this.path.splice(e.target.dataset.value, 1)
+			},
+			doUpload(){
+				uni.showLoading({title:"上传中",mask:true})
+				var request = []
+				this.path.map((item,index)=>{
+					request[index] = {name:index+1,uri:""}
+				})
+				this.path.map((item,index)=>{
+					request[index].uri = item;
+				})
+				var that = this;
+				var url = `http://${baseIp()}/ams/system/distribute.htm?module=PJupload&userId=${getUserInfo().userId}&mainId=${that.acceptid}`;
+				console.log(url)
+				// return;
+				uni.uploadFile({
+					url, 
+					filePath: "",
+					name: '',
+					files:request,
+					success: (res) => {
+						if(typeof(res.data) == 'string'){
+							var data = JSON.parse(res.data);
+						}else{
+							var data =res.data;
+						}
+						if(data.code == 1){
+							that.isUp = true;
+							uni.hideLoading();
+							uni.showToast({title:data.message,mask:true})
+						}
+					}
+				});
+			},
+			openFile(){
+				this.$refs.filemanager._openFile()
+			},
+			resultPath(e){
+				this.path.push(`file://${e}`);
+			},
+			// 资料相关
+			triggerCollapse(e) {
+				if (!this.lists[e].pages) {
+					this.goDetailPage(this.lists[e].url);
+					return;
+				}
+				for (var i = 0; i < this.lists.length; ++i) {
+					if (e === i) {
+						this.lists[i].open = !this.lists[e].open;
+					} else {
+						this.lists[i].open = false;
+					}
+				}
+			},
+			goDetailPage(e,i) {
+				uni.previewImage({  current:this.listImgInfo[i],urls: this.listImgInfo});
+			},
+			goDetailPage2(e,i) {
+				uni.navigateTo({url:`/pages/web-view/web-view?url=${this.listFJInfo[i]}`})
+			},
 			// 页面初始化数据  详细信息
 			getInfo(){
 				var that = this;
@@ -493,6 +596,18 @@
 						console.log(data)
 						that.dataInfo = data.object[0];
 						that.inve = data.tokenName;
+						that.listFJInfo = data.object2.map((item,index)=>{
+							return item.imgPath
+						})
+						that.listFJInfo = that.listFJInfo.filter(item=>{
+							return item;
+						})
+						that.lists[1].pages = data.object2.map((item,index)=>{
+							return item.annexname
+						})
+						that.lists[1].pages = that.lists[1].pages.filter(item=>{
+							return item;
+						})
 						uni.setNavigationBarTitle({title: data.tokenName});
 					}
 				})
@@ -881,6 +996,7 @@
 	.investigation-form .uni-list-cell-pd {padding: 0;}
 	
 	button.vote{width: 100%;}
+	.investigation-form.form3 .uni-list-cell{margin: 0;}
 	
 	
 	.example {padding: 0 30upx 30upx}

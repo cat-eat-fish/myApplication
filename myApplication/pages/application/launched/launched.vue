@@ -90,7 +90,7 @@
 
 <style>
 	/* #ifdef APP-PLUS  */
-	.launched{background-color: rgb(239,238,243);height:100vh;overflow: auto;}
+	.launched{background-color: rgb(239,238,243);height:100vh;min-height:100vh;overflow: auto;}
 	/* #endif */
 	.launched{background-color: rgb(239,238,243);height:100%;overflow: auto;}
 	.launched .content-no{height: 100%; background-position: center;background-size: 40%;}

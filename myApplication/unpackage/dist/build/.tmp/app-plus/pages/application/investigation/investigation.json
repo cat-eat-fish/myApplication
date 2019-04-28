@@ -1,0 +1,16 @@
+{
+  "navigationBarTitleText": "",
+  "titleNView": {
+    "buttons": [
+      {
+        "text": "取消",
+        "fontSize": "16px",
+        "color": "#FFFFFF"
+      }
+    ]
+  },
+  "usingComponents": {
+    "tki-file-manager": "/components/tki-file-manager",
+    "uni-popup": "/components/uni-popup/uni-popup"
+  }
+}

@@ -148,7 +148,7 @@
 					request[4] = this.uploadimg5;
 				}
 				var that = this;
-				var url = `http://${baseIp()}/ams/system/distribute.htm?module=uploadFile_YD&userId=${getUserInfo().userId}&mainId=${that.mainId}&mainFlag=${that.mainFlag}&mate=${that.num}&flag=3`;	
+				var url = `http://${baseIp()}/ams/system/distribute.htm?module=uploadFile_YD&userId=${getUserInfo().userId}&mainId=${that.mainId}&mainFlag=${that.mainFlag}&mate=${that.num}&flag=1`;	
 				
 				uni.uploadFile({
 					url, 

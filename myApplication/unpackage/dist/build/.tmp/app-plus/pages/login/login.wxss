@@ -1,0 +1,151 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.login{width: 100vh;position: relative;min-height:100vh;}
+
+.login{width: 100%;position: relative;min-height:100%;}
+.login-main{position: relative; margin: 0 60rpx;padding: 0 60rpx 1px; background-color: #fff;margin-top: -120rpx;border-radius: 10px;-webkit-box-shadow: 2px 4px 20px rgb(230,230,230);box-shadow: 2px 4px 20px rgb(230,230,230);}
+.userImg{width: 22px;height: 30px;    margin: 0 24rpx 10rpx 10rpx;}
+.login-excessive{height: 300rpx;background-color: #ffa33e;}
+.login-text{font-size:36px;font-weight: bold;text-align: center;padding-top: 60rpx;
+background-image: -webkit-gradient(linear, left 0, right 0, from(#f83600), to(#f9c423));
+-webkit-background-clip: text; /*必需加前缀 -webkit- 才支持这个text值 */
+-webkit-text-fill-color: transparent; /*text-fill-color会覆盖color所定义的字体颜色： */}
+.input-row{position: relative;}
+.input-row::after{content:'';position: absolute;bottom: -8px; height: 1px;width: 100%;background-color: #cfcfcf;}
+.input-row.user{margin-top: 170rpx;}
+.input-row.pass{margin: 100rpx 0 100px;}
+.loginBtn{width: 120px;height: 120px;position: absolute;bottom: -75px;left: 0;right: 0;margin: 0 auto;}
+.forgetPassword{margin-top: 200rpx; position: relative; display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;-webkit-box-pack: center;-webkit-justify-content: center;-ms-flex-pack: center;justify-content: center;font-size: 26rpx;color: rgb(254,138,20);}
+.forgetPassword::after{content: "";position: absolute;bottom: -10rpx;height: 1px;width: 176rpx;background-color: rgb(254,198,20);}
+.forgetPasswordImg{width: 30rpx;height: 26rpx;}
+
+/* 原生组件模式下需要注意组件外部样式 */
+m-input {width: 100%;min-height: 100%;display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;}
+.content {display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;-webkit-box-flex: 1;-webkit-flex: 1;-ms-flex: 1;flex: 1;-webkit-box-orient: vertical;-webkit-box-direction: normal;-webkit-flex-direction: column;-ms-flex-direction: column;flex-direction: column;background-color: #efeff4;padding: 20rpx;}
+.input-group {background-color: #ffffff;margin-top: 40rpx;position: relative;}
+.input-group::before {position: absolute;right: 0;top: 0;left: 0;height: 1rpx;content: '';-webkit-transform: scaleY(.5);-ms-transform: scaleY(.5);transform: scaleY(.5);background-color: #c8c7cc;}
+.input-group::after {position: absolute;right: 0;bottom: 0;left: 0;height: 1rpx;content: '';-webkit-transform: scaleY(.5);-ms-transform: scaleY(.5);transform: scaleY(.5);background-color: #c8c7cc;}
+.input-row {display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;-webkit-box-orient: horizontal;-webkit-box-direction: normal;-webkit-flex-direction: row;-ms-flex-direction: row;flex-direction: row;position: relative;}
+.input-row .title {width: 20%;height: 50rpx;min-height: 50rpx;padding: 15rpx 0;padding-left: 30rpx;line-height: 50rpx;}
+.input-row.border::after {position: absolute;right: 0;bottom: 0;left: 15rpx;height: 1rpx;content: '';-webkit-transform: scaleY(.5);-ms-transform: scaleY(.5);transform: scaleY(.5);background-color: #c8c7cc;}
+.btn-row {margin-top: 50rpx;padding: 20rpx;}
+button.primary {background-color: #0faeff;}
+

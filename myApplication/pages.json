@@ -307,6 +307,12 @@
 				}
 			}
         }
+        ,{
+            "path" : "pages/web-view/web-view",
+            "style" : {
+				"navigationBarTitleText": "文件预览"
+			}
+        }
     ],
     "tabBar": {
         "color": "#bbbbbb",

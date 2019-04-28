@@ -37,6 +37,11 @@
 					<uni-number-box @change="change" :min="0"  :max="9999999"  :value="dataInfo.money"></uni-number-box>
 				</view>
 			</view>
+			<view class="item">
+				<view class="text">资料上传</view>
+				<input  @tap="openFile" disabled  type="text" placeholder="附件上传">
+				<tki-file-manager ref="filemanager" @result="resultPath"></tki-file-manager>
+			</view>
 			<view class="item" v-if="path.length != 0 ">
 				<view class="text">资料列表</view>
 				<view class="textarea">
@@ -48,7 +53,7 @@
 			</view>
 		</view>
 		<view class="btns">
-			<button type="warn" @click="upload">附件上传</button>
+			<button type="warn" @click="doUpload">附件上传</button>
 			<tki-file-manager ref="filemanager" @result="resultPath"></tki-file-manager>
 			<button type="primary" @click="submitAcce">提交受理</button>
 		</view>
@@ -75,8 +80,9 @@
 				},
 				seq:"",						//保存成功的返回值
 				ishold:false,				//判断是否保存
-				isupload:true,				//判断是否上传
 				path:[],					//资料列表
+				
+				isUp:false,
 			};
 		},
 		onNavigationBarButtonTap(e) {
@@ -86,6 +92,60 @@
 			this.getBm();
 		},
 		methods:{
+			// 附件上传
+			delList(e){
+				this.path.splice(e.target.dataset.value, 1)
+			},
+			doUpload(){
+				if(!this.ishold){
+					uni.showModal({
+						title: '您还没有保存',
+						content: '您还没有保存数据，请先保存！',
+						success: function (res) {
+							if (res.confirm) {
+								// console.log('用户点击确定');
+							} else if (res.cancel) {
+								// console.log('用户点击取消');
+							}
+						},
+					})
+					return;
+				}
+				if(this.path.length == 0){
+					uni.showToast({title:"请先选择资料！",icon:"none"});
+					return;
+				}
+				uni.showLoading({title:"上传中",mask:true})
+				var request = []
+				this.path.map((item,index)=>{
+					request[index] = {name:index+1,uri:""}
+				})
+				this.path.map((item,index)=>{
+					request[index].uri = item;
+				})
+				var that = this;
+				var url = `http://${baseIp()}/ams/system/distribute.htm?module=PJupload&userId=${getUserInfo().userId}&mainId=${that.seq}`;
+				
+				// return;
+				uni.uploadFile({
+					url, 
+					filePath: "",
+					name: '',
+					files:request,
+					success: (res) => {
+						if(typeof(res.data) == 'string'){
+							var data = JSON.parse(res.data);
+						}else{
+							var data =res.data;
+						}
+						if(data.code == 1){
+							that.isUp = true;
+							uni.hideLoading();
+							uni.showToast({title:data.message,mask:true})
+						}
+					}
+				});
+			},
 			// 数据初始化
 			getBm(){
 				var that = this;
@@ -100,12 +160,15 @@
 			change(value) {
 				this.dataInfo.money = value;
 			},
+			openFile(){
+				this.$refs.filemanager._openFile()
+			},
 			// 附件上传
 			upload(){
 				this.$refs.filemanager._openFile()
 			},
 			resultPath(e){
-				this.path.push(e);
+				this.path.push(`file://${e}`);
 			},
 			// 保存
 			isKeep(){
@@ -171,18 +234,21 @@
 							}
 						},
 					})
-				}else if(!this.isupload){
+				}else if(!this.isUp){
 					uni.showModal({
-						title: '您还没有上传文件',
-						content: '您还没有上传文件，请先上传！',
+						title: '您还没有上传资料',
+						content: '您还没有上传资料，请先上传！',
 						success: function (res) {
 							if (res.confirm) {
-								console.log('用户点击确定');
+								// console.log('用户点击确定');
+								return ;
 							} else if (res.cancel) {
-								console.log('用户点击取消');
+								// console.log('用户点击取消');
+								return ;
 							}
 						},
 					})
+					return;
 				}else{
 					uni.showLoading({title:"提交中"})
 					var that = this,
@@ -248,4 +314,10 @@
 	/* .btns button{color: #fff;background-color: #CFCFCF;} */
 	.btns{display: flex;justify-content: space-between;margin: 60upx 24upx;}
 	.btns button{width: 28%;}
+	
+	.textarea{width: 60%;}
+	.item-list{display: flex;width: 100%;margin: 20upx 0;}
+	.item-list .desc{width: 70%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+	.item-list .del{width: 20%;text-align: center;background-color: rgb(255, 128, 31);color: #FFFFFF;border-radius: 10px;}
+	.uni-list-cell-pd{padding: 5px;}
 </style>

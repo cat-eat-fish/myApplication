@@ -72,7 +72,7 @@
 				}
 				
 				var that = this;
-				var url = `http://${baseIp()}/ams/system/distribute.htm?module=uploadFile_YD&userId=${getUserInfo().userId}&mainId=${that.mainId}&mainFlag=exam&mate=${that.num}`;
+				var url = `http://${baseIp()}/ams/system/distribute.htm?module=uploadFile_YD&userId=${getUserInfo().userId}&mainId=${that.mainId}&mainFlag=exam&mate=${that.num}&flag=3`;
 				// console.log(url,JSON.stringify(request))
 				uni.uploadFile({
 					url, 

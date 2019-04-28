@@ -26,24 +26,20 @@
 				<view class="text-l">摘要</view>
 				<view class="text-r">{{dataInfo.remark}}</view>
 			</view>
-			
 			<view class="item">
 				<view class="text-l">金额</view>
 				<view class="text-r">{{dataInfo.purchase_amount}}</view>
 			</view>
-			
-			<view v-if="true">
-				<view class="uni-card" v-for="(list,index) in lists" :key="index">
-					<view class="uni-list">
-						<view class="uni-list-cell uni-collapse">
-							<view class="uni-list-cell-navigate uni-navigate-bottom" hover-class="uni-list-cell-hover" :class="list.open ? 'uni-active' : ''"
-							 @click="triggerCollapse(index)">
-								{{list.name}}
-							</view>
-							<view class="uni-list uni-collapse" :class="list.open ? 'uni-active' : ''">
-								<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,key) in list.pages" :key="key" @click="goDetailPage(item,key)">
-									<view class="uni-list-cell-navigate uni-navigate-right"> {{item.name ? item.name : item}} </view>
-								</view>
+			<view class="uni-card" >
+				<view class="uni-list">
+					<view class="uni-list-cell uni-collapse">
+						<view class="uni-list-cell-navigate uni-navigate-bottom" hover-class="uni-list-cell-hover" :class="lists[1].open ? 'uni-active' : ''"
+						 @click="triggerCollapse(1)">
+							{{lists[1].name}}
+						</view>
+						<view class="uni-list uni-collapse" :class="lists[1].open ? 'uni-active' : ''">
+							<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,key) in lists[1].pages" :key="key" @click="goDetailPage2(item,key)">
+								<view class="uni-list-cell-navigate uni-navigate-right"> {{item}} </view>
 							</view>
 						</view>
 					</view>
@@ -80,14 +76,14 @@
 				// 附件信息
 				type: '',
 				annexeImg:"",
-				listsInfo:[],
-				lists: [{
-						id: 'view',
-						name: '附件预览',
-						open: false,
-						pages: []
-					}
+				lists: [
+					{id: 'view',name: '图片预览',open: false,pages: []},
+					{id: 'view',name: '附件查看',open: false,pages: []}
 				],
+				listsInfo:[],
+				listImgInfo:[],
+				
+				listFJInfo:[],
 				// 附件信息
 			};
 		},
@@ -118,12 +114,20 @@
 						
 						
 					}
-					if(data.object3){
-						that.listsInfo = data.object3;
-						that.lists[0].pages = data.object3.map((item)=>{
-							return item.annexname
-						})
-					}
+					that.listsInfo = data.object2;
+					that.listFJInfo = data.object2.map((item,index)=>{
+						return item.imgPath;
+					})
+					that.listFJInfo = that.listFJInfo.filter(item=>{
+						return item;
+					})
+					
+					that.lists[1].pages = data.object2.map((item,index)=>{
+						return item.annexname
+					})
+					that.lists[1].pages = that.lists[1].pages.filter(item=>{
+						return item;
+					})
 				}
 			})
 		},
@@ -144,10 +148,9 @@
 					}
 				}
 			},
-			goDetailPage(e,i) {
-				this.annexeImg = this.listsInfo[i].imgPath;
-				this.togglePopup('middle-img')
-			}
+			goDetailPage2(e,i) {
+				uni.navigateTo({url:`/pages/web-view/web-view?url=${this.listFJInfo[i]}`})
+			},
 		}
 	}
 </script>

@@ -316,41 +316,86 @@
 					</radio-group>
 				</view>
 			</view>
-			<view class="btns">
-				<button type="warn" @click="downEnclosure">资料列表</button>
-				<button type="warn" v-if="inve == '审查' || inve == '选择审议投票人' || inve == '审议	'" @click="togglePopup('bottom-share')" data-position="bottom">退回</button>
-				<uni-popup :show="type === 'bottom-share'" position="bottom" @hidePopup="togglePopup('')">
-					<view class="bottom-title">退回节点</view>
-					<view class="bottom-content">
-						<view class="field ra">
-							<radio-group class="group" @change="radioChange4">
-								<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in items4" :key="index">
-									<view>
-										<radio :value="item.value" :checked="index === current4" />
-									</view>
-									<view>{{item.name}}</view>
-								</label>
-							</radio-group>
+			
+		</view>
+		
+		<view class="investigation-title">资料列表</view>
+		<view class="investigation-form form3">
+			<view class="uni-card" >
+				<view class="uni-list">
+					<!-- <view class="uni-list-cell uni-collapse">
+						<view class="uni-list-cell-navigate uni-navigate-bottom" hover-class="uni-list-cell-hover" :class="lists[0].open ? 'uni-active' : ''"
+						 @click="triggerCollapse(0)">
+							{{lists[0].name}}
 						</view>
-						<view class="item text" >
-							<view class="text">退回原因 : </view>
-							<view class="field textarea">
-								<textarea class="textarea-t" v-model="backReasion"  auto-height />
+						<view class="uni-list uni-collapse" :class="lists[0].open ? 'uni-active' : ''">
+							<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,key) in lists[0].pages" :key="key" @click="goDetailPage(item,key)">
+								<view class="uni-list-cell-navigate uni-navigate-right"> {{item}} </view>
+							</view>
+						</view>
+					</view> -->
+					<view class="uni-list-cell uni-collapse">
+						<view class="uni-list-cell-navigate uni-navigate-bottom" hover-class="uni-list-cell-hover" :class="lists[1].open ? 'uni-active' : ''"
+						 @click="triggerCollapse(1)">
+							{{lists[1].name}}
+						</view>
+						<view class="uni-list uni-collapse" :class="lists[1].open ? 'uni-active' : ''">
+							<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,key) in lists[1].pages" :key="key" @click="goDetailPage2(item,key)">
+								<view class="uni-list-cell-navigate uni-navigate-right"> {{item}} </view>
 							</view>
 						</view>
 					</view>
-					<view class="bottom-btn uni-popup-btns" >
-						<button type="primary" @click="back">确定</button>
-						<button type="warn" @click="togglePopup('')">取消</button>
-					</view>
-				</uni-popup>
-				<button type="primary" @click="submitAcce">提交</button>
+				</view>
 			</view>
+			<view class="item" v-if="path.length != 0 ">
+				<view class="text">新增列表</view>
+				<view class="textarea">
+					<view class="item-list" v-for="(item,index) in path" :key="index">
+						<view class="desc">{{item}}</view>
+						<view class="del" @click="delImgList" :data-value="index">删除</view>
+					</view>
+				</view>
+			</view>
+			<view class="itemBtn" v-if="path.length != 0 ">
+				<button type="primary" @click="doUpload">点击上传</button>
+			</view>
+		</view>
+		<view class="btns">
+			<button type="warn" @tap="openFile">增加资料</button>
+			<tki-file-manager ref="filemanager" @result="resultPath"></tki-file-manager>
+			<button type="warn" v-if="inve == '审查' || inve == '选择审议投票人' || inve == '审议	'" @click="togglePopup('bottom-share')" data-position="bottom">退回</button>
+			<uni-popup :show="type === 'bottom-share'" position="bottom" @hidePopup="togglePopup('')">
+				<view class="bottom-title">退回节点</view>
+				<view class="bottom-content">
+					<view class="field ra">
+						<radio-group class="group" @change="radioChange4">
+							<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in items4" :key="index">
+								<view>
+									<radio :value="item.value" :checked="index === current4" />
+								</view>
+								<view>{{item.name}}</view>
+							</label>
+						</radio-group>
+					</view>
+					<view class="item text" >
+						<view class="text">退回原因 : </view>
+						<view class="field textarea">
+							<textarea class="textarea-t" v-model="backReasion"  auto-height />
+						</view>
+					</view>
+				</view>
+				<view class="bottom-btn uni-popup-btns" >
+					<button type="primary" @click="back">确定</button>
+					<button type="warn" @click="togglePopup('')">取消</button>
+				</view>
+			</uni-popup>
+			<button type="primary" @click="submitAcce">提交</button>
 		</view>
 	</view>
 </template>
 
 <script>
+	import tkiFileManager from "@/components/tki-file-manager.vue"
 	import {deteleObject} from "@/common/util.js"
 	import uniPopup from '@/components/uni-popup/uni-popup.vue'
 	import {baseIp} from "../../../config.js"
@@ -373,7 +418,7 @@
 		return `${year}-${month}-${day}`;
 	}
 	export default {
-		components: {uniPopup},
+		components: {tkiFileManager,uniPopup},
 		data() {
 			return {
 				
@@ -462,6 +507,16 @@
 				nodeListInfo:[],
 				nodeList:[],
 				// 退回
+				// 资料相关
+				lists: [
+					{id: 'view',name: '图片预览',open: false,pages: []},
+					{id: 'view',name: '附件下载查看',open: false,pages: []}
+				],
+				listImgInfo:[],
+				
+				listFJInfo:[],
+				path:[],
+				isUp:false,
 			};
 		},
 		onNavigationBarButtonTap(e) {
@@ -503,26 +558,42 @@
 					that.now = data.object[0].tokenName;
 					uni.setNavigationBarTitle({title: data.object[0].tokenName})
 					that.inve = data.object[0].tokenName;
-					if(data.object1.length != 0){
-						that.votiResult = data.object1.map((item)=>{
-							return `${item.USERNAME} : ${item.STATUS2}`
-						})
-						that.votiStatus = true;
-						var nowInfo = data.object1.filter((item)=>{
-							return item.USERNAME == getUserInfo().name
-						})
-						that.isvoti = true;
-						if(nowInfo[0] != undefined){
-							that.current = nowInfo[0].STATUS == 1 ? 0 : 1;
-							that.status = nowInfo[0].STATUS;
-							that.thistp= true;
-						}else{
-							that.thistp = false;
-						}
-					}else{
-						that.thistp = false;
-						that.votiStatus = false;
-					}
+					var isImg = ['jpg','png','gif'];
+					// that.listImgInfo = data.object2.map((item,index)=>{
+					// 	if(item.imgPath.substr(-3).indexOf(isImg[index]) != -1){
+					// 		return item.imgPath
+					// 	}
+					// })
+					// that.listImgInfo = that.listImgInfo.filter(item=>{
+					// 	return item;
+					// })
+					that.listFJInfo = data.object2.map((item,index)=>{
+						return item.imgPath
+						// if(item.imgPath.substr(-3).indexOf(isImg[index]) == -1){
+						// 	return item.imgPath
+						// }
+					})
+					that.listFJInfo = that.listFJInfo.filter(item=>{
+						return item;
+					})
+					
+					
+					// that.lists[0].pages = data.object2.filter((item,index)=>{
+					// 	return item.imgPath.substr(-3).indexOf(isImg[index]) != -1
+					// 	
+					// })
+					// that.lists[0].pages = that.lists[0].pages.filter(item=>{
+					// 	return item;
+					// })
+					that.lists[1].pages = data.object2.map((item,index)=>{
+						return item.annexname
+						// if(item.imgPath.substr(-3).indexOf(isImg[index]) == -1){
+						// 	return item.annexname
+						// }
+					})
+					that.lists[1].pages = that.lists[1].pages.filter(item=>{
+						return item;
+					})
 					
 				}
 			})
@@ -530,6 +601,68 @@
 			this.getpj();
 		},
 		methods:{
+			// 上传文件
+			delImgList(e){
+				this.path.splice(e.target.dataset.value, 1)
+			},
+			doUpload(){
+				uni.showLoading({title:"上传中",mask:true})
+				var request = []
+				this.path.map((item,index)=>{
+					request[index] = {name:index+1,uri:""}
+				})
+				this.path.map((item,index)=>{
+					request[index].uri = item;
+				})
+				var that = this;
+				var url = `http://${baseIp()}/ams/system/distribute.htm?module=PJupload&userId=${getUserInfo().userId}&mainId=${that.acceptid}`;
+				console.log(url)
+				// return;
+				uni.uploadFile({
+					url, 
+					filePath: "",
+					name: '',
+					files:request,
+					success: (res) => {
+						if(typeof(res.data) == 'string'){
+							var data = JSON.parse(res.data);
+						}else{
+							var data =res.data;
+						}
+						if(data.code == 1){
+							that.isUp = true;
+							uni.hideLoading();
+							uni.showToast({title:data.message,mask:true})
+						}
+					}
+				});
+			},
+			openFile(){
+				this.$refs.filemanager._openFile()
+			},
+			resultPath(e){
+				this.path.push(`file://${e}`);
+			},
+			// 资料相关
+			triggerCollapse(e) {
+				if (!this.lists[e].pages) {
+					this.goDetailPage(this.lists[e].url);
+					return;
+				}
+				for (var i = 0; i < this.lists.length; ++i) {
+					if (e === i) {
+						this.lists[i].open = !this.lists[e].open;
+					} else {
+						this.lists[i].open = false;
+					}
+				}
+			},
+			goDetailPage(e,i) {
+				uni.previewImage({  current:this.listImgInfo[i],urls: this.listImgInfo});
+			},
+			goDetailPage2(e,i) {
+				uni.navigateTo({url:`/pages/web-view/web-view?url=${this.listFJInfo[i]}`})
+			},
 			// 选择时间
 			bindDateChange: function(e) {
 				this.date = e.target.value
@@ -706,8 +839,8 @@
 				
 				uni.showLoading({title:"投票中",mask:true,})
 				var that = this,
-					url = `http://${baseIp()}/ams/system/distribute.htm?module=saveVote&userId=${getUserInfo().userId}&status=${that.votiStatus}&comment=${that.votiOpinion}&taskInstanceId=${that.tiid}&acceptId=${that.acceptid}&docId=${that.doc_id}&tokenName=${that.inve}&pdid=${that.pdid}&nodecode=${that.nodecode}`;
-				// console.log(url)
+					url = `http://${baseIp()}/ams/system/distribute.htm?module=saveVote&userId=${getUserInfo().userId}&status=${that.votiStatus}&comment=${that.votiOpinion}&taskInstanceId=${that.tiid}&acceptId=${that.acceptid}&docId=${that.doc_id}&tokenName=${that.inve}&pdid=${that.pdid}&nodeCode=${that.nodecode}`;
+				
 				uni.request({
 					url,
 					success(res){
@@ -730,14 +863,6 @@
 			// 删除审议投票人
 			delList(e){
 				this.tprList.splice(e.target.dataset.value, 1)
-			},
-			// 附件下载
-			downEnclosure(){
-				if(this.Enclosure.length == 0){
-					uni.showToast({title:"暂无附件",icon:"none"})
-				}else{
-					console.log("有附件")
-				}
 			},
 			// 退回
 			back(){
@@ -769,6 +894,11 @@
 			},
 			// 提交审核
 			submitAcce(){
+				
+				if(this.isUp == 'false'){
+					uni.showToast({title:"检测到您有要上传的文件，请先上传",icon:"none"})
+					return ;
+				}
 				var that = this;
 				var url =`http://${baseIp()}/ams/system/distribute.htm?module=approveDoc&userId=${getUserInfo().userId}&taskInstanceId=${that.tiid}&mainId=${that.mianId}&pdId=${that.pdid}&piId=${that.piid}&docId=${that.doc_id}&comment=${that.comment}&status=${that.status}&userIds=${that.inveder}&approveLevel=${that.sd}`;
 				if(this.inve == "审查"){
@@ -894,6 +1024,8 @@
 	.investigation-form .uni-list-cell-pd {padding: 0;}
 	
 	button.vote{width: 100%;}
+	
+	.investigation-form.form3 .uni-list-cell{margin: 0;}
 	
 	
 	.example {padding: 0 30upx 30upx}

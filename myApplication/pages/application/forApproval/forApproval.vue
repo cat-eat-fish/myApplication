@@ -91,7 +91,7 @@
 	
 	.forApproval{background-color: rgb(239,238,243);min-height: 100%;}
 	/* #ifdef APP-PLUS  */
-	.forApproval{background-color: rgb(239,238,243);min-height: 100vh;}
+	.forApproval{background-color: rgb(239,238,243);height:100vh;min-height: 100vh;}
 	/* #endif */
 	.content-has{padding-top: 30upx;}
 	.forApproval .content-no{height: 100%; background-position: center;background-size: 40%;}

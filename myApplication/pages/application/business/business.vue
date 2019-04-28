@@ -16,7 +16,7 @@
 		<view class="business-form">
 			<view class="item">
 				<view class="text">业务名称</view>
-				<input type="text" disabled :value="businessData.businessName" placeholder="请输入业务名称">
+				<input type="text" disabled :value="businessName" placeholder="请输入业务名称">
 			</view>
 			<!-- <view class="item">
 				<view class="text">业务代码</view>
@@ -24,7 +24,7 @@
 			</view> -->
 			<view class="item">
 				<view class="text">业务机构</view>
-				<input type="text" disabled :value="businessData.businessMechanism" placeholder="请输入业务机构">
+				<input type="text" disabled :value="businessMechanism" placeholder="请输入业务机构">
 			</view>
 			<view class="item">
 				<view class="text">业务类型</view>
@@ -153,7 +153,7 @@
 			</view>
 		</view>
 		<view class="btns">
-			<button type="warn">附件上传</button>
+			<button type="warn" @click="doUpload">附件上传</button>
 			<button type="primary" @click="submitAcce">提交受理</button>
 		</view>
 	</view>
@@ -205,11 +205,13 @@
 				array7_1: [],	//['请选择营销责任人', ]
 				array7_1Info:[],
 				
+				businessName:"评级认定审批",		//业务名称
+				businessMechanism:"孝义农商行全辖汇总",	//   业务机构
+				
 				isdis:false,
 				businessData:{
 					title:"",				// 申报名称
-					businessName:"评级认定审批",		//业务名称
-					businessMechanism:"孝义农商行全辖汇总",	//   业务机构
+					
 					symboltablecode:"评级",			//业务类型
 					customer_name:"",				//客户名称
 					customer_id:"",					//客户号
@@ -230,6 +232,7 @@
 				// 保存完返回的userIds
 				userIds:"",
 				seq:"",
+				isUp:false,
 				ishold:false,
 			};
 		},
@@ -310,7 +313,6 @@
 		beforeDestroy(){
 			return false
 		},
-		
 		methods:{
 			bindPickerChange: function(e) {
 				this.index = e.target.value;
@@ -441,7 +443,56 @@
 				this.index7_1 = e.target.value;
 				this.businessData.userIds = String(this.array7_1Info[this.index7_1].id);
 			},
-			
+			doUpload(){
+				if(!this.ishold){
+					uni.showModal({
+						title: '您还没有保存',
+						content: '您还没有保存数据，请先保存！',
+						success: function (res) {
+							if (res.confirm) {
+								// console.log('用户点击确定');
+							} else if (res.cancel) {
+								// console.log('用户点击取消');
+							}
+						},
+					})
+					return;
+				}
+				if(this.path.length == 0){
+					uni.showToast({title:"请先选择资料！",icon:"none"});
+					return;
+				}
+				uni.showLoading({title:"上传中",mask:true})
+				var request = []
+				this.path.map((item,index)=>{
+					request[index] = {name:index+1,uri:""}
+				})
+				this.path.map((item,index)=>{
+					request[index].uri = item;
+				})
+				var that = this;
+				var url = `http://${baseIp()}/ams/system/distribute.htm?module=PJupload&userId=${getUserInfo().userId}&mainId=${that.seq}`;
+				
+				// return;
+				uni.uploadFile({
+					url, 
+					filePath: "",
+					name: '',
+					files:request,
+					success: (res) => {
+						if(typeof(res.data) == 'string'){
+							var data = JSON.parse(res.data);
+						}else{
+							var data =res.data;
+						}
+						if(data.code == 1){
+							that.isUp = true;
+							uni.hideLoading();
+							uni.showToast({title:data.message,mask:true})
+						}
+					}
+				});
+			},
 			togglePopup(type) {
 				this.type = type;
 			},
@@ -453,12 +504,30 @@
 						content: '您还没有保存数据，请先保存！',
 						success: function (res) {
 							if (res.confirm) {
-								console.log('用户点击确定');
+								// console.log('用户点击确定');
+								return ;
 							} else if (res.cancel) {
-								console.log('用户点击取消');
+								// console.log('用户点击取消');
+								return ;
 							}
 						},
 					})
+					return;
+				}else if(!this.isUp){
+					uni.showModal({
+						title: '您还没有上传资料',
+						content: '您还没有上传资料，请先上传！',
+						success: function (res) {
+							if (res.confirm) {
+								// console.log('用户点击确定');
+								return ;
+							} else if (res.cancel) {
+								// console.log('用户点击取消');
+								return ;
+							}
+						},
+					})
+					return;
 				}else{
 					var that = this;
 					uni.showLoading({
@@ -495,7 +564,7 @@
 				this.$refs.filemanager._openFile()
 			},
 			resultPath(e){
-				this.path.push(e);
+				this.path.push(`file://${e}`);
 			},
 			
 			delList(e){
@@ -625,8 +694,8 @@
 				let uploadData = this.businessData;
 				uploadData.user_id = String(getUserInfo().userId);
 				uploadData.bus_code = "";
-				delete uploadData.businessMechanism;
-				delete uploadData.businessName;
+				// delete uploadData.businessMechanism;
+				// delete uploadData.businessName;
 				// delete uploadData.symboltablecode;
 				var url = `http://${baseIp()}/ams/system/distribute.htm?module=saveBusiness&business={user_id:"${uploadData.user_id}", title:"${uploadData.title}",symboltablecode:"01",customer_name:"${uploadData.customer_name}",customer_id:"${uploadData.customer_id}",cust_type:"${uploadData.cust_type}",bus_code:"${uploadData.bus_code}",evaluate_modle:"${uploadData.evaluate_modle}",first_level:"${uploadData.first_level}",applay_date:"${uploadData.applay_date}",applay_reason:"${uploadData.applay_reason}",userIds:"${uploadData.userIds}",userIds2:"${uploadData.userIds2}",lastLevel:"${uploadData.lastLevel}",controlPer:"${uploadData.controlPer}"}`
 				

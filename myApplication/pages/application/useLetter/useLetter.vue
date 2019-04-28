@@ -243,7 +243,7 @@
 			</view>
 		</view>
 		<view class="btns">
-			<button type="warn">附件上传</button>
+			<button type="warn" @click="doUpload">附件上传</button>
 			<button type="primary" @click="submitAcce">提交受理</button>
 		</view>
 	</view>
@@ -316,6 +316,7 @@
 				// 保存完返回的userIds
 				userIds:"",
 				seq:"",
+				isUp:false,
 				ishold:false,
 			};
 		},
@@ -332,6 +333,57 @@
 		},
 		
 		methods:{
+			// 附件上传
+			doUpload(){
+				if(!this.ishold){
+					uni.showModal({
+						title: '您还没有保存',
+						content: '您还没有保存数据，请先保存！',
+						success: function (res) {
+							if (res.confirm) {
+								// console.log('用户点击确定');
+							} else if (res.cancel) {
+								// console.log('用户点击取消');
+							}
+						},
+					})
+					return;
+				}
+				if(this.path.length == 0){
+					uni.showToast({title:"请先选择资料！",icon:"none"});
+					return;
+				}
+				uni.showLoading({title:"上传中",mask:true})
+				var request = []
+				this.path.map((item,index)=>{
+					request[index] = {name:index+1,uri:""}
+				})
+				this.path.map((item,index)=>{
+					request[index].uri = item;
+				})
+				var that = this;
+				var url = `http://${baseIp()}/ams/system/distribute.htm?module=PJupload&userId=${getUserInfo().userId}&mainId=${that.seq}`;
+				
+				// return;
+				uni.uploadFile({
+					url, 
+					filePath: "",
+					name: '',
+					files:request,
+					success: (res) => {
+						if(typeof(res.data) == 'string'){
+							var data = JSON.parse(res.data);
+						}else{
+							var data =res.data;
+						}
+						if(data.code == 1){
+							that.isUp = true;
+							uni.hideLoading();
+							uni.showToast({title:data.message,mask:true})
+						}
+					}
+				});
+			},
 			// 获取客户类型
 			getUserType(){
 				var that = this;
@@ -560,6 +612,21 @@
 							}
 						},
 					})
+				}else if(!this.isUp){
+					uni.showModal({
+						title: '您还没有上传资料',
+						content: '您还没有上传资料，请先上传！',
+						success: function (res) {
+							if (res.confirm) {
+								// console.log('用户点击确定');
+								return ;
+							} else if (res.cancel) {
+								// console.log('用户点击取消');
+								return ;
+							}
+						},
+					})
+					return;
 				}else{
 					var that = this;
 					uni.showLoading({
@@ -594,7 +661,7 @@
 				this.$refs.filemanager._openFile()
 			},
 			resultPath(e){
-				this.path.push(e);
+				this.path.push(`file://${e}`);
 			},	
 			delList(e){
 				this.path.splice(e.target.dataset.value, 1)

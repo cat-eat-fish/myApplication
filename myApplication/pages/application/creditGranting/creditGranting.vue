@@ -87,7 +87,7 @@
 					利率
 				</view>
 				<view class="uni-list-cell-db">
-					<input type="text" v-model="businessData.rate" placeholder="请填写贷款用途">
+					<input type="text" v-model="businessData.rate" placeholder="请填写利率">
 				</view>
 			</view>
 			<view class="item">
@@ -95,7 +95,7 @@
 					贷款类型
 				</view>
 				<view class="">
-					<checkbox-group @change="checkboxChange">
+					<checkbox-group class="group"  @change="checkboxChange">
 						<label class="uni-list-cell uni-list-cell-pd" v-for="item in businessData.type" :key="item.value">
 							<view>
 								<checkbox :value="item.value" :checked="item.checked" />
@@ -170,7 +170,7 @@
 			</view>
 		</view>
 		<view class="btns">
-			<button type="warn">附件上传</button>
+			<button type="warn" @click="doUpload">附件上传</button>
 			<button type="primary" @click="submitAcce">提交受理</button>
 		</view>
 	</view>
@@ -265,6 +265,7 @@
 				// 保存完返回的userIds
 				userIds:"",
 				seq:"",
+				isUp:false,
 				ishold:false,
 			};
 		},
@@ -353,6 +354,57 @@
 		},
 		
 		methods:{
+			// 附件上传
+			doUpload(){
+				if(!this.ishold){
+					uni.showModal({
+						title: '您还没有保存',
+						content: '您还没有保存数据，请先保存！',
+						success: function (res) {
+							if (res.confirm) {
+								// console.log('用户点击确定');
+							} else if (res.cancel) {
+								// console.log('用户点击取消');
+							}
+						},
+					})
+					return;
+				}
+				if(this.path.length == 0){
+					uni.showToast({title:"请先选择资料！",icon:"none"});
+					return;
+				}
+				uni.showLoading({title:"上传中",mask:true})
+				var request = []
+				this.path.map((item,index)=>{
+					request[index] = {name:index+1,uri:""}
+				})
+				this.path.map((item,index)=>{
+					request[index].uri = item;
+				})
+				var that = this;
+				var url = `http://${baseIp()}/ams/system/distribute.htm?module=PJupload&userId=${getUserInfo().userId}&mainId=${that.seq}`;
+				
+				// return;
+				uni.uploadFile({
+					url, 
+					filePath: "",
+					name: '',
+					files:request,
+					success: (res) => {
+						if(typeof(res.data) == 'string'){
+							var data = JSON.parse(res.data);
+						}else{
+							var data =res.data;
+						}
+						if(data.code == 1){
+							that.isUp = true;
+							uni.hideLoading();
+							uni.showToast({title:data.message,mask:true})
+						}
+					}
+				});
+			},
 			// 贷款类型 - 保证
 			radioChange2(evt) {
 				for (let i = 0; i < this.items2.length; i++) {
@@ -583,6 +635,21 @@
 							}
 						},
 					})
+				}else if(!this.isUp){
+					uni.showModal({
+						title: '您还没有上传资料',
+						content: '您还没有上传资料，请先上传！',
+						success: function (res) {
+							if (res.confirm) {
+								// console.log('用户点击确定');
+								return ;
+							} else if (res.cancel) {
+								// console.log('用户点击取消');
+								return ;
+							}
+						},
+					})
+					return;
 				}else{
 					var that = this;
 					uni.showLoading({
@@ -616,9 +683,7 @@
 			openFile(){
 				this.$refs.filemanager._openFile()
 			},
-			resultPath(e){
-				this.path.push(e);
-			},	
+			resultPath(e){this.path.push(`file://${e}`);},	
 			delList(e){
 				this.path.splice(e.target.dataset.value, 1)
 			},
@@ -772,7 +837,7 @@
 				uploadData.user_id = String(getUserInfo().userId);
 				uploadData.bus_code = "";
 				var url = `http://${baseIp()}/ams/system/distribute.htm?module=addCreditInfo_YD&credit={userId:"${uploadData.user_id}",title:"${uploadData.title}",customer_name:"${uploadData.customer_name}",customer_id:"${uploadData.customer_id}",cust_type:"${uploadData.cust_type}",applyCreditLine:"${uploadData.controlPer}",evaluate_modle:"${uploadData.evaluate_modle}",creditRating:"${uploadData.creditRating}",useProceeds:"${uploadData.use}",applay_reason:"${uploadData.applay_reason}",rateInterest:"${uploadData.rate}",userIds:"${uploadData.userIds}",bandsman:"${uploadData.bandsman}",mortgageType:"${uploadData.mortgageType}",pledge:"${uploadData.zyp}",loadType:"${uploadData.loadType}"}`
-				console.log(url)
+				// console.log(url)
 				var that = this;
 				uni.showModal({
 					title: '是否保存',
@@ -819,7 +884,7 @@
 	  .business-form .item{display: flex; border-bottom:1px solid rgb(230,230,230) ;}
 	  .business-form .item .text{margin: 40upx 0 40upx 40upx;font-size: 26upx;width: 28%;color: rgb(51,51,51);}
 	  .business-form .item input{margin: 32upx 0 40upx 40upx;font-size: 26upx;color: rgb(51,51,51);}
-	  .business uni-checkbox-group{display: flex;flex-wrap: wrap;}
+	  .business .group{display: flex;flex-wrap: wrap;}
 	  button.js{width: 80upx;height: 40upx;text-align: center;line-height: 40upx;font-size: 22upx;margin: 33upx 24upx 33upx 0;color: rgb(255,255,255);border: none;border-radius: 5px;
 		background: -webkit-linear-gradient(rgb(255, 128, 31), #ffbd43); /* Safari 5.1 - 6.0 */
 		background: -o-linear-gradient(rgb(255, 128, 31), #ffbd43); /* Opera 11.1 - 12.0 */
