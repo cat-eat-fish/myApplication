@@ -3,7 +3,7 @@ import {getUserInfo} from './service.js';
 var userId = getUserInfo().userId;
 
 export function baseIp(){
-	return "192.168.3.108:8080";
+	return "192.168.3.109:8080";
 }
 export function baseIp_1(){
 	return "http://192.168.3.108:8080/";

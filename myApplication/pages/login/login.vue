@@ -17,7 +17,7 @@
 				<image @tap="bindLogin" @click="goF" class="loginBtn" src="../../static/img/login_touch_SIGN%20IN_icon.png" mode=""></image>
 			</view>
 		</view>
-		<view class="forgetPassword" @click="goF">
+		<view class="forgetPassword" @click="goF" >
 			<text class="forgetPasswordText">忘记密码？</text>
 			<image class="forgetPasswordImg"  src="../../static/img/login_forgot%20pas_icon.png" mode=""></image>
 		</view>
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-	import {baseIp,api_login} from "../../config.js"
+	import {baseIp} from "../../config.js"
     import {getUserInfo,setUserInfo} from '../../service.js';
     import {mapState,mapMutations} from 'vuex'
     import mInput from '../../components/m-input.vue'
@@ -90,7 +90,10 @@
                     account: this.account,
                     password: this.password
                 };
-				var that = this,url = api_login(that.account,that.password);
+				var that = this,
+				
+					url = `http://${baseIp()}/ams/system/distribute.htm?module=login&methodyd=1&username=${data.account}&password=${data.password}`;
+				// console.log(url)
 				uni.request({
 					url,
 					success: (res) => {
@@ -102,10 +105,7 @@
 								url:"/pages/tabBar/information/information"
 							})
 						}else{
-							uni.showToast({
-								icon: 'none',
-								title: data.message,
-							});
+							uni.showToast({icon: 'none',title: data.message,});
 							this.account = "";
 							this.password = "";
 						}

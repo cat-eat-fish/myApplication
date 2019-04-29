@@ -91,7 +91,7 @@
 
 <style>
 	/* #ifdef APP-PLUS */
-	.pwd{background-color: #0A98D5;height: 100vh;}
+	.pwd{background-color: #0A98D5;height: 100vh;min-height:100vh}
 	/* #endif */
 	.pwd{background-color: #0A98D5;height: 100%;}
 	.pwd-form{margin: 0 24upx;overflow: auto;}
