@@ -1,0 +1,2 @@
+<template name="08c5a342"><view class="_view info {{ h[ 0 ].rcl }}"><view class="_view title">{{ h[ 2 ].t }}</view><view a:for="{{ h[ 3 ].li }}" a:key="index" a:for-item="item" a:for-index="index" class="_view content"><view class="_view hh">{{ h[ 5 + '-' + (item_i2 !== undefined ? item_i2 : index) ].t }}</view></view></view></template>
+<template is="08c5a342" data="{{ ...$root['0'], $root }}"/>

@@ -1,0 +1,80 @@
+
+	/* #ifdef APP-PLUS  */
+	.investigation{background-color: rgb(239,238,243);height: 100%;min-height: 100%; overflow: auto;}
+	/* #endif */
+	/* #ifdef MP-WEIXIN */
+	.investigation{background-color: rgb(239,238,243);height: 100%;min-height: 100%; overflow: auto;}
+	/* #endif */
+	.investigation{background-color: rgb(239,238,243);height: 100%;min-height: 100%;overflow: auto;}
+	.investigation-title{font-size: 30upx;color: rgb(254,138,20);margin: 40upx 0 20upx 30upx;}
+	.investigation-form{margin: 20upx 24upx 50upx;background-color: #fff;border-radius: 10px;padding: 20upx 0;}
+	.investigation-form .item{display: flex;padding: 20upx 24upx;}
+	.investigation-form .item .text{font-size: 26upx;color: rgb(55,55,55);}
+	.investigation-form .item .field{font-size: 26upx;color: rgb(102,102,102);margin-left: 10upx;}
+	.investigation-form .item .field.red{color: red;}
+	.investigation-form .item .field.ra{display: flex;color: rgb(102,102,102);}
+	
+	
+	.item .field.isf{display: flex;flex-wrap: wrap;}
+	.isf{display: flex;}
+	
+	
+	.investigation-form .field.ra .group{display: flex;}
+	.investigation-form .uni-list-cell {display: flex;}
+	.investigation-form .uni-list-cell:nth-child(1),.uni-list-cell:nth-child(3),.uni-list-cell:nth-child(5){margin-left: 35upx;}
+	.investigation-form .uni-list-cell:nth-child(2),.uni-list-cell:nth-child(4),.uni-list-cell:nth-child(6){margin-left: 100upx;}
+	.investigation-form .item.text{display: block;}
+	.investigation-form .item .field.textarea{width: 100%;height: 90upx;box-sizing: border-box;}
+	.investigation-form .item .textarea .textarea-t{height: 100% !important;}
+	.investigation-form .item .uni-input{padding: 0;}
+	.btns{display: flex;justify-content: space-between;margin: 60upx 24upx;}
+	.btns button{width: 100%;}
+	.btns .gbg{background-color: rgb(56, 147, 243);}
+	.textarea{width: 70%;margin-left: 40upx;}
+	.item-list{display: flex;width: 100%;margin: 0 0 20upx;}
+	.item-list:last-child{margin: 0;}
+	.item-list .desc{width: 70%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+	.item-list .del{width: 20%;text-align: center;background-color: rgb(56, 147, 243);color: #FFFFFF;border-radius: 10px;}
+	
+	
+	
+	.investigation-form .uni-list-cell::after{height:0}
+	.investigation-form .uni-list-cell-pd {padding: 0;}
+	
+	button.vote{width: 100%;}
+	.investigation-form.form3 .uni-list-cell{margin: 0;}
+	
+	
+	.example {padding: 0 30upx 30upx}
+	.example-title {font-size: 32upx;line-height: 32upx;color: #777;margin: 40upx 25upx;position: relative}
+	.example .example-title {margin: 40upx 0}
+	.example-body {padding: 0 40upx}
+	.uni-padding-wrap {padding: 0 30upx;}
+	button {margin: 20upx 0;}
+	.uni-helllo-text {height: 100upx;line-height: 100upx;text-align: center;}
+	.center-box {width: 500upx;height: 500upx;}
+	.uni-list-item {text-align: left;line-height: 80upx;border-bottom: 1px #f5f5f5 solid;}
+	.uni-list-item:last-child {border: none;}
+	.center-box .image {width: 100%;height: 100%;}
+	.bottom-title {line-height: 60upx;font-size: 24upx;padding: 15upx 0;}
+	.bottom-content {display: flex;flex-wrap: wrap;padding: 0 35upx;}
+	.bottom-content-box {display: flex;flex-direction: column;align-items: center;margin-bottom: 15upx;width: 25%;box-sizing: border-box;}
+	.bottom-content-image {display: flex;justify-content: center;align-items: center;width: 90upx;height: 90upx;overflow: hidden;background: #007aff;border-radius: 10upx;}
+	.bottom-content-text {font-size: 26upx;color: #333;margin-top: 10upx;}
+	.bottom-btn {height: 90upx;line-height: 90upx;border-top: 1px #f5f5f5 solid;}
+	.icon {font-family: 'iconfont';font-size: 40upx;color: #fff;}
+	.uni-popup-btns{display: flex;justify-content: space-around;align-items: flex-start;}
+	
+	
+	/*  */
+	.uni-popup-insert{}
+	.investigation-form .uni-popup-insert  .field.ra .group{flex-wrap: wrap;justify-content: start;}
+	.investigation-form .uni-popup-insert .uni-list-cell:nth-child(1),
+	.investigation-form .uni-popup-insert .uni-list-cell:nth-child(2),
+	.investigation-form .uni-popup-insert .uni-list-cell:nth-child(3),
+	.investigation-form .uni-popup-insert .uni-list-cell:nth-child(4),
+	.investigation-form .uni-popup-insert .uni-list-cell:nth-child(5),
+	.investigation-form .uni-popup-insert .uni-list-cell:nth-child(6){margin-left: 20upx;}
+
+
+

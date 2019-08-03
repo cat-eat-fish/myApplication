@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"announ { height: 100%; }\n",],undefined,{path:"./pages/tabBar/announ/announ.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/tabBar/announ/announ.wxml') } }));

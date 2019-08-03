@@ -1,0 +1,198 @@
+{
+  "@platforms": [
+    "android",
+    "iPhone",
+    "iPad"
+  ],
+  "id": "__UNI__9A9EACB",
+  "name": "诺豪云考勤",
+  "version": {
+    "name": "1.0.10",
+    "code": 1010
+  },
+  "description": "本应用提供外出审批,用车审批,请假审批,上下班打卡等服务.",
+  "launch_path": "__uniapptabbar.html",
+  "developer": {
+    "name": "",
+    "email": "",
+    "url": ""
+  },
+  "permissions": {
+    "Push": {},
+    "Maps": {
+      "coordType": "gcj02"
+    },
+    "UniNView": {
+      "description": "UniNView原生渲染"
+    }
+  },
+  "plus": {
+    "useragent": {
+      "value": "uni-app appservice",
+      "concatenate": true
+    },
+    "splashscreen": {
+      "target": "id:1",
+      "autoclose": true,
+      "waiting": true,
+      "delay": 0
+    },
+    "popGesture": "close",
+    "launchwebview": {
+      "render": "always"
+    },
+    "statusbar": {
+      "immersed": "supportedDevice",
+      "style": "light",
+      "background": "#3893f3"
+    },
+    "compatible": {
+      "ignoreVersion": true
+    },
+    "usingComponents": true,
+    "distribute": {
+      "icons": {
+        "ios": {
+          "appstore": "unpackage/res/icons/1024x1024.png",
+          "iphone": {
+            "app@2x": "unpackage/res/icons/120x120.png",
+            "app@3x": "unpackage/res/icons/180x180.png",
+            "notification@2x": "unpackage/res/icons/40x40.png",
+            "notification@3x": "unpackage/res/icons/60x60.png",
+            "settings@2x": "unpackage/res/icons/58x58.png",
+            "settings@3x": "unpackage/res/icons/87x87.png",
+            "spotlight@2x": "unpackage/res/icons/80x80.png",
+            "spotlight@3x": "unpackage/res/icons/120x120.png"
+          },
+          "ipad": {
+            "app": "unpackage/res/icons/76x76.png",
+            "app@2x": "unpackage/res/icons/152x152.png",
+            "notification": "unpackage/res/icons/20x20.png",
+            "notification@2x": "unpackage/res/icons/40x40.png",
+            "proapp@2x": "unpackage/res/icons/167x167.png",
+            "settings": "unpackage/res/icons/29x29.png",
+            "settings@2x": "unpackage/res/icons/58x58.png",
+            "spotlight": "unpackage/res/icons/40x40.png",
+            "spotlight@2x": "unpackage/res/icons/80x80.png"
+          }
+        },
+        "android": {
+          "hdpi": "unpackage/res/icons/72x72.png",
+          "ldpi": "unpackage/res/icons/48x48.png",
+          "mdpi": "unpackage/res/icons/48x48.png",
+          "xhdpi": "unpackage/res/icons/96x96.png",
+          "xxhdpi": "unpackage/res/icons/144x144.png",
+          "xxxhdpi": "unpackage/res/icons/192x192.png"
+        }
+      },
+      "splashscreen": {
+        "ios": {
+          "iphone": {
+            "portrait-896h@3x": "unpackage/res/qdt/ios/1242+2688.png",
+            "retina35": "unpackage/res/qdt/ios/640+960.png",
+            "retina40": "unpackage/res/qdt/ios/640+1136.png",
+            "retina47": "unpackage/res/qdt/ios/750+1334.png",
+            "retina55": "unpackage/res/qdt/ios/1242+2208.png",
+            "iphonex": "unpackage/res/qdt/ios/1125+2436.png",
+            "portrait-896h@2x": "unpackage/res/qdt/ios/828+1792.png",
+            "retina40l": "unpackage/res/qdt/ios/1136+640.png",
+            "retina47l": "unpackage/res/qdt/ios/1334+750.png",
+            "retina55l": "unpackage/res/qdt/ios/2208+1242.png",
+            "iphonexl": "unpackage/res/qdt/ios/2436+1125.png",
+            "landscape-896h@2x": "unpackage/res/qdt/ios/1792+828.png",
+            "landscape-896h@3x": "unpackage/res/qdt/ios/2688+1242.png"
+          }
+        },
+        "android": {
+          "xxhdpi": "unpackage/res/qdt/andorid/1080+1882.png",
+          "xhdpi": "unpackage/res/qdt/andorid/720+1242.png",
+          "hdpi": "unpackage/res/qdt/andorid/480+762.png"
+        }
+      },
+      "google": {
+        "targetSdkVersion": 26,
+        "permissions": [
+          "<uses-feature android:name=\"android.hardware.camera\"/>",
+          "<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
+          "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
+          "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
+          "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+          "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+          "<uses-permission android:name=\"android.permission.BLUETOOTH\"/>",
+          "<uses-permission android:name=\"android.permission.BLUETOOTH_ADMIN\"/>",
+          "<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
+          "<uses-permission android:name=\"android.permission.CAMERA\"/>",
+          "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
+          "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
+          "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
+          "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
+          "<uses-permission android:name=\"android.permission.GET_TASKS\"/>",
+          "<uses-permission android:name=\"android.permission.GET_TOP_ACTIVITY_INFO\"/>",
+          "<uses-permission android:name=\"android.permission.INTERNET\"/>",
+          "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
+          "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
+          "<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>",
+          "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
+          "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+          "<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>",
+          "<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
+          "<uses-permission android:name=\"android.permission.SYSTEM_ALERT_WINDOW\"/>",
+          "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+          "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+          "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
+          "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
+          "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>",
+          "<uses-permission android:name=\"android.permission.BLUETOOTH\"/>",
+          "<uses-permission android:name=\"android.permission.BLUETOOTH_ADMIN\"/>"
+        ]
+      },
+      "apple": {
+        "privacyDescription": {
+          "NSCameraUsageDescription": "拍照需要使用您设备的摄像头,记录考勤",
+          "NSLocationWhenInUseUsageDescription": "需要获取您的当前位置信息,记录考勤",
+          "NSLocationAlwaysAndWhenInUseUsageDescription": "需要获取您的当前位置信息,记录考勤",
+          "NSPhotoLibraryUsageDescription": "需要使用您设备的相册读权限，上传图片"
+        }
+      },
+      "plugins": {
+        "push": {
+          "igexin": {
+            "appid": "4mf4CMlLFm5Cwap83MFT06",
+            "appkey": "mzxe6aVqYX7sQArYP1Gl23",
+            "appsecret": "Q993KskzQm53kfHG3K7L3A"
+          }
+        },
+        "maps": {
+          "amap": {
+            "appkey_ios": "bbba80dcb2a935c9c71ba51ad60655cf",
+            "appkey_android": "7b9020d94d531dc39b76b61c11b5f11e"
+          }
+        },
+        "speech": {},
+        "oauth": {},
+        "audio": {
+          "mp3": {
+            "description": "Android平台录音支持MP3格式文件"
+          }
+        }
+      }
+    },
+    "allowsInlineMediaPlayback": true,
+    "safearea": {
+      "background": "#ffffff",
+      "bottom": {
+        "offset": "auto"
+      }
+    },
+    "uni-app": {
+      "compilerVersion": "2.1.3",
+      "control": "v8",
+      "nvueCompiler": "weex"
+    },
+    "secondwebview": {
+      "id": "1",
+      "launch_path": "__uniappview.html",
+      "kernel": "WKWebview"
+    }
+  }
+}

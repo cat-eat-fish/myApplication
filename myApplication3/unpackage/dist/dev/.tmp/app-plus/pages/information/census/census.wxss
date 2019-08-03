@@ -1,0 +1,8 @@
+.btns {
+  position: fixed;
+  margin: 24rpx 30rpx;
+  bottom: 40rpx;
+  left: 30rpx;
+  right: 30rpx;
+}
+

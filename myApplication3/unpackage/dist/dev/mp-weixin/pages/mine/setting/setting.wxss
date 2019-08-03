@@ -1,0 +1,11 @@
+
+.logout{
+	margin-top: 80rpx;width: 96%;position: fixed;bottom: 80rpx;left: 2%;
+}
+.tx{width: 400rpx;height:400rpx;margin:50rpx auto 0;
+}
+.tx .icon{width: 100%;height: 100%;border-radius: 50%;}
+.tx .btns{width: 100%;display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;-webkit-box-pack: justify;-webkit-justify-content: space-between;-ms-flex-pack: justify;justify-content: space-between;}
+.tx .doupload{width: 48%;}
+.tx .noupload{width: 48%;}
+

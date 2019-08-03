@@ -1,0 +1,34 @@
+{
+  "description": "项目配置文件。",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "es6": true,
+    "urlCheck": false,
+    "minified": true,
+    "postcss": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.7.0",
+  "appid": "wx9c5936d52bd9d046",
+  "projectname": "诺豪云考勤",
+  "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
+    "game": {
+      "current": -1,
+      "list": []
+    },
+    "miniprogram": {
+      "current": -1,
+      "list": []
+    }
+  }
+}

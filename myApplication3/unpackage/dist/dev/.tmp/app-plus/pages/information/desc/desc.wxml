@@ -1,0 +1,1 @@
+<block wx:if="{{pageState}}"><view class="info"><view class="title">{{info.title}}</view><view class="time">{{info.creattime}}</view><view class="content"><view class="hh">{{info.content}}</view><block wx:if="{{info.picture}}"><view class="imgs"><image class="img" src="{{info.picture}}" mode="aspectFill"></image></view></block></view></view></block>

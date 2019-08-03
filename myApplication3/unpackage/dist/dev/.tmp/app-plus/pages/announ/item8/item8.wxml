@@ -1,0 +1,1 @@
+<view class="info"><view class="title">{{title}}</view><block wx:for="{{content}}" wx:for-item="item" wx:for-index="index" wx:key="index"><view class="content"><view class="hh">{{item}}</view></view></block></view>

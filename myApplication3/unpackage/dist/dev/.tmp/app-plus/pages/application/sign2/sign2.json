@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "考勤打卡",
+  "usingComponents": {
+    "cpimg": "/components/cpimg"
+  }
+}

@@ -1,0 +1,16 @@
+	/* #ifdef APP-PLUS  */
+	.ratingProcess{}
+	/* #endif */
+	.ratingProcess{}
+	.ratingProcess-title{display: flex;justify-content: space-between; margin: 20upx 24upx;padding-bottom: 10px;border-bottom: 1px solid #000;}
+	.ratingProcess-title .img{width: 120upx;height:120upx;border-radius: 50%;background-color:rgb(56, 147, 243);text-align: center;line-height: 120upx;color: #fff;}
+	.ratingProcess-title .text{margin-top: 60upx;}
+	.ratingProcess-con{margin: 20upx 24upx 0;}
+	.ratingProcess-con .item{margin: 0 0 30upx;display: flex;}
+	.ratingProcess-con .item .text-l{color: #929292;width: 172upx;}
+	.ratingProcess-con .item .text-r{margin-left: 20upx;}
+	.ratingProcess-con .item-other{display: flex;justify-content: space-between;border: 5px solid #999999;border-right: none;border-left: none;padding: 10px 0;}
+	
+	
+	
+	

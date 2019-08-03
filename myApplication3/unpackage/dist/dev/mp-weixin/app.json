@@ -1,0 +1,95 @@
+{
+  "pages": [
+    "pages/application/thisapp/thisapp",
+    "pages/tabBar/information/information",
+    "pages/login/login",
+    "pages/tabBar/application/application",
+    "pages/tabBar/mine/mine",
+    "pages/information/pendingInfo/pendingInfo",
+    "pages/application/forApproval/forApproval",
+    "pages/application/approvalMonitoring/approvalMonitoring",
+    "pages/application/launched/launched",
+    "pages/application/haveApproved/haveApproved",
+    "pages/application/approvalExam/approvalExam",
+    "pages/application/approvalNotice/approvalNotice",
+    "pages/application/sign/sign",
+    "pages/application/leave/leave",
+    "pages/application/egress/egress",
+    "pages/application/bus/bus",
+    "pages/application/sign2/sign2",
+    "pages/application/rule/rule",
+    "pages/application/investigation6/investigation6",
+    "pages/application/investigation7/investigation7",
+    "pages/application/investigation8/investigation8",
+    "pages/application/ratingProcess6/ratingProcess6",
+    "pages/application/ratingProcess7/ratingProcess7",
+    "pages/application/ratingProcess8/ratingProcess8",
+    "pages/application/census/census",
+    "pages/application/leave2/leave2",
+    "pages/application/ratingProcess9/ratingProcess9",
+    "pages/application/investigation9/investigation9",
+    "pages/tabBar/announ/announ",
+    "pages/announ/item1/item1",
+    "pages/announ/item2/item2",
+    "pages/announ/item3/item3",
+    "pages/announ/item4/item4",
+    "pages/announ/item5/item5",
+    "pages/announ/item6/item6",
+    "pages/announ/item7/item7",
+    "pages/announ/item8/item8",
+    "pages/announ/item9/item9",
+    "pages/announ/item10/item10",
+    "pages/pwd/pwd",
+    "pages/mine/setting/setting",
+    "pages/register/register",
+    "pages/information/census/census",
+    "pages/information/list/list",
+    "pages/information/desc/desc"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#3893f3",
+    "backgroundColor": "#fbf9fe"
+  },
+  "tabBar": {
+    "color": "#bbbbbb",
+    "selectedColor": "#3893f3",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/tabBar/information/information",
+        "text": "消息",
+        "iconPath": "static/img/xiaoxi0.png",
+        "selectedIconPath": "static/img/xiaoxi.png"
+      },
+      {
+        "pagePath": "pages/tabBar/application/application",
+        "text": "应用",
+        "iconPath": "static/img/yingyong0.png",
+        "selectedIconPath": "static/img/yingyong.png"
+      },
+      {
+        "pagePath": "pages/tabBar/announ/announ",
+        "text": "公告",
+        "iconPath": "static/img/announ0.png",
+        "selectedIconPath": "static/img/announ.png"
+      },
+      {
+        "pagePath": "pages/tabBar/mine/mine",
+        "text": "我的",
+        "iconPath": "static/img/mine0.png",
+        "selectedIconPath": "static/img/mine.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 50000
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "仅在打卡记录时获取位置信息，方便记录"
+    }
+  },
+  "usingComponents": {}
+}

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "淡季请假审批",
+  "usingComponents": {
+    "uni-number-box": "/components/uni-number-box/uni-number-box"
+  }
+}

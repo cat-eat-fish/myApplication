@@ -1,0 +1,314 @@
+{
+    "pages": [ //pages数组中第一项表示应用启动页,
+        {
+            "path" : "pages/application/thisapp/thisapp",
+            "style" : {
+        		"app-plus": {
+        			"titleNView": false ,//禁用原生导航栏
+        			"bounce":"none"
+        		}
+        	}
+        },
+		{
+            "path": "pages/tabBar/information/information",
+            "style": {
+                "navigationBarTitleText": "消息",
+				"enablePullDownRefresh": true
+            }
+        }, {
+            "path": "pages/login/login",
+            "style": {
+                "navigationBarTitleText": ""
+            }
+        }
+        ,{
+            "path" : "pages/tabBar/application/application",
+            "style" : {
+				"navigationBarTitleText": "应用"
+			}
+        }
+        ,{
+            "path" : "pages/tabBar/mine/mine",
+            "style" : {
+				"navigationBarTitleText": "个人中心",
+				"enablePullDownRefresh": true,
+				"app-plus": {
+					"bounce": "vertical",
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue532",
+							"fontSrc": "/static/font/uni.ttf",
+							"fontSize": "22px",
+							"color": "#ffffff"
+						}]
+					}
+				}
+			}
+        }
+        ,{
+            "path" : "pages/information/pendingInfo/pendingInfo",
+            "style" : {
+				"navigationBarTitleText": "待审信息"
+			}
+        }
+        ,{
+            "path" : "pages/application/forApproval/forApproval",
+            "style" : {
+				"navigationBarTitleText": "待我审批"
+			}
+        }
+        ,{
+            "path" : "pages/application/approvalMonitoring/approvalMonitoring",
+            "style" : {
+				"navigationBarTitleText": "审批监控"
+			}
+        }
+        ,{
+            "path" : "pages/application/launched/launched",
+            "style" : {
+				"navigationBarTitleText": "我发起的"
+			}
+        }
+        ,{
+            "path" : "pages/application/haveApproved/haveApproved",
+            "style" : {
+				"navigationBarTitleText": "我已审批"
+			}
+        }
+        ,{
+            "path" : "pages/application/approvalExam/approvalExam",
+            "style" : {
+				"navigationBarTitleText": "审批受理"
+			}
+        }
+        ,{
+            "path" : "pages/application/approvalNotice/approvalNotice",
+            "style" : {
+				"navigationBarTitleText": "审批通知"
+			}
+        }
+        ,{
+            "path" : "pages/application/sign/sign",
+            "style" : {
+				"navigationBarTitleText": "考勤打卡"
+			}
+        }
+        ,{
+            "path" : "pages/application/leave/leave",
+            "style" : {
+				"navigationBarTitleText": "淡季请假审批"
+			}
+        }
+        ,{
+            "path" : "pages/application/egress/egress",
+            "style" : {
+				"navigationBarTitleText": "外出审批"
+			}
+        }
+        ,{
+            "path" : "pages/application/bus/bus",
+            "style" : {
+				"navigationBarTitleText": "公车管理审批"
+			}
+        }
+        ,{
+            "path" : "pages/application/sign2/sign2",
+            "style" : {
+				"navigationBarTitleText": "考勤打卡"
+			}
+        }
+        ,{
+            "path" : "pages/application/rule/rule",
+            "style" : {
+				"navigationBarTitleText": "考勤规则"
+			}
+        }
+        ,{
+            "path" : "pages/application/investigation6/investigation6",
+            "style" : {
+				"navigationBarTitleText": ""
+			}
+        }
+        ,{
+            "path" : "pages/application/investigation7/investigation7",
+            "style" : {
+				"navigationBarTitleText": ""
+			}
+        }
+        ,{
+            "path" : "pages/application/investigation8/investigation8",
+            "style" : {
+				"navigationBarTitleText": ""
+			}
+        }
+        ,{
+            "path" : "pages/application/ratingProcess6/ratingProcess6",
+            "style" : {
+				"navigationBarTitleText": "外出审批详情"
+			}
+        }
+        ,{
+            "path" : "pages/application/ratingProcess7/ratingProcess7",
+            "style" : {
+				"navigationBarTitleText": "请假审批详情"
+			}
+        }
+        ,{
+            "path" : "pages/application/ratingProcess8/ratingProcess8",
+            "style" : {
+				"navigationBarTitleText": "用车审批详情"
+			}
+        }
+        ,{
+            "path" : "pages/application/census/census",
+            "style" : {
+				"navigationBarTitleText": "考勤统计"
+			}
+        }
+        ,{
+            "path" : "pages/application/leave2/leave2",
+            "style" : {
+				"navigationBarTitleText": "旺季请假审批"
+			}
+        }
+        ,{
+            "path" : "pages/application/ratingProcess9/ratingProcess9",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/application/investigation9/investigation9",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/tabBar/announ/announ",
+            "style" : {
+				"navigationBarTitleText": "企业公告"
+			}
+        }
+        ,{
+            "path" : "pages/announ/item1/item1",
+            "style" : {
+				"navigationBarTitleText": "公告详情"
+			}
+        }
+        ,{
+            "path" : "pages/announ/item2/item2",
+            "style" : {
+				"navigationBarTitleText": "公告详情"
+			}
+        }
+        ,{
+            "path" : "pages/announ/item3/item3",
+            "style" : {
+				"navigationBarTitleText": "公告详情"
+			}
+        }
+        ,{
+            "path" : "pages/announ/item4/item4",
+            "style" : {
+				"navigationBarTitleText": "公告详情"
+			}
+        },{
+            "path" : "pages/announ/item5/item5",
+            "style" : {
+				"navigationBarTitleText": "公告详情"
+			}
+        }
+        ,{
+            "path" : "pages/announ/item6/item6",
+            "style" : {
+            	"navigationBarTitleText": "公告详情"
+            }
+        }
+        ,{
+            "path" : "pages/announ/item7/item7",
+            "style" : {
+            	"navigationBarTitleText": "公告详情"
+            }
+        }
+        ,{
+            "path" : "pages/announ/item8/item8",
+            "style" : {
+            	"navigationBarTitleText": "公告详情"
+            }
+        }
+        ,{
+            "path" : "pages/announ/item9/item9",
+            "style" : {
+            	"navigationBarTitleText": "公告详情"
+            }
+        }
+        ,{
+            "path" : "pages/announ/item10/item10",
+			   "style" : {
+				"navigationBarTitleText": "公告详情"
+			   }
+        },{
+            "path" : "pages/pwd/pwd",
+			   "style" : {
+				"navigationBarTitleText": "修改密码"
+			   }
+        }
+        ,{
+            "path" : "pages/mine/setting/setting",
+            "style" : {
+				"navigationBarTitleText": "个人设置"
+			}
+        }
+        ,{
+            "path" : "pages/register/register",
+            "style" : {
+				"navigationBarTitleText": "注册"
+			}
+        }
+        ,{
+            "path" : "pages/information/census/census",
+            "style" : {
+				"navigationBarTitleText": "日志"
+			}
+        }
+        ,{
+            "path" : "pages/information/list/list",
+            "style" : {
+				"navigationBarTitleText": "日志列表"
+			}
+        }
+        ,{
+            "path" : "pages/information/desc/desc",
+            "style" : {
+				"navigationBarTitleText": "日志详情"
+			}
+        }
+    ],
+    "tabBar": {
+        "color": "#bbbbbb",
+        "selectedColor": "#3893f3",
+        "backgroundColor": "#ffffff",
+        "list": [{
+            "pagePath": "pages/tabBar/information/information",
+            "text": "消息",
+            "iconPath": "static/img/xiaoxi0.png",
+            "selectedIconPath": "static/img/xiaoxi.png"
+        },{
+            "pagePath": "pages/tabBar/application/application",
+            "text": "应用",
+            "iconPath": "static/img/yingyong0.png",
+            "selectedIconPath": "static/img/yingyong.png"
+        }, {
+            "pagePath": "pages/tabBar/announ/announ",
+            "text": "公告",
+            "iconPath": "static/img/announ0.png",
+            "selectedIconPath": "static/img/announ.png"
+        },{
+            "pagePath": "pages/tabBar/mine/mine",
+            "text": "我的",
+            "iconPath": "static/img/mine0.png",
+            "selectedIconPath": "static/img/mine.png"
+        }]
+    },
+    "globalStyle": {
+        "navigationBarTextStyle": "white",
+        "navigationBarBackgroundColor": "#3893f3",
+        "backgroundColor": "#fbf9fe"
+    }
+}

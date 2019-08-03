@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"btns { position: fixed; margin: ",[0,24]," ",[0,30],"; bottom: ",[0,40],"; left: ",[0,30],"; right: ",[0,30],"; }\n",],undefined,{path:"./pages/information/census/census.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/information/census/census.wxml') } }));

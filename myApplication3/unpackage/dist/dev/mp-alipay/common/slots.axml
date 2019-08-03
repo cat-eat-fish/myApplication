@@ -1,0 +1,19 @@
+<import src="/components/uni-collapse-item/uni-collapse-item.vue.axml" />
+<import src="/components/uni-list-item/uni-list-item.vue.axml" />
+
+<template name="default_13" parent="2c8abdd3"><view class="_view title" style="padding:20rpx 0; font-weight:bold; width:100%; text-align:center; border-bottom:1px solid #666">打卡备注</view><view class="_view content" style="padding:20rpx 10rpx; width:100%"><text class="_text text">打卡时间:</text><text class="_text">{{ h[ 11246 + _t ].t }}</text><view class="_view text">打卡地点:</view><view class="_view">{{ h[ 11250 + _t ].t }}</view></view><view class="_view content" style="padding:20rpx 10rpx; width:100%"><view class="_view">{{ h[ 11253 + _t ].t }}</view><view class="_view"><image class="_image" style="width:200rpx; height:200rpx" mode="aspectFill" src="{{ h[ 11255 + _t ][ 'src' ] }}"></image></view></view><view class="_view bottom" style="padding:20rpx 10rpx; color:cadetblue; width:100%; text-align:center; border-top:1px solid #666" data-cid="{{ _c || c }}" data-hid="{{ 11256 + _t }}" onTap="_pe">关闭</view></template>
+
+<template name="default_1" parent="6ff7ad33"><view a:for="{{ h[ 2014 + _t ].li }}" a:key="index2" a:for-item="item2" a:for-index="index2" class="_view" style="padding:30rpx 20rpx"><view class="_view con-t">{{ h[ 2016 + _t + '-' + (item2_i2 !== undefined ? item2_i2 : index2) ].t }}</view><template is="octoParse" data="{{ nodes: h[ 2017 + _t + '-' + (item2_i2 !== undefined ? item2_i2 : index2) ].html }}"/></view></template>
+
+<template name="default_2" parent="6ff7ad33"><template is="6e918bd4" data="{{ ...$root[ cp + 1 + _t + '-' + (item_i2 !== undefined ? item_i2 : index) ], $root, s_default: 'default_1', _t: (_t || '') + '-' + (item_i2 !== undefined ? item_i2 : index) }}" a:for="{{ h[ 1012 + _t ].li }}" a:key="index" a:for-item="item" a:for-index="index" /></template>
+
+<template name="default_3" parent="5905e055"><swiper class="_swiper swiper-box" data-cid="{{ _c || c }}" data-hid="{{ 1003 + _t }}" onChange="_pe"><swiper-item a:for="{{ h[ 1004 + _t ].li }}" a:key="index" a:for-item="item" a:for-index="index" class="_swiper-item"><view class="_view swiper-item {{ h[ 1005 + _t + '-' + (item_i2 !== undefined ? item_i2 : index) ].cl }}"><image class="_image" src="{{ h[ 1006 + _t + '-' + (item_i2 !== undefined ? item_i2 : index) ][ 'src' ] }}" mode="aspectFill" data-cid="{{ _c || c }}" data-hid="{{ 1006 + _t + '-' + (item_i2 !== undefined ? item_i2 : index) }}" onTap="_pe"></image></view></swiper-item></swiper></template>
+
+<template name="default_4" parent="7316ed1b"><template is="octoParse" data="{{ nodes: h[ 2028 + _t ].html }}"/></template>
+
+<template name="default_5" parent="7316ed1b"><template is="6e918bd4" data="{{ ...$root[ cp + 1 + _t + '-' + (item_i2 !== undefined ? item_i2 : index) ], $root, s_default: 'default_4', _t: (_t || '') + '-' + (item_i2 !== undefined ? item_i2 : index) }}" a:for="{{ h[ 1026 + _t ].li }}" a:key="index" a:for-item="item" a:for-index="index" /></template>
+
+<template name="default_6" parent="6978dd9b"><template is="38a096b4" data="{{ ...$root[ cp + 1 + _t + '-' + (item_i2 !== undefined ? item_i2 : index) ], $root, _t: (_t || '') + '-' + (item_i2 !== undefined ? item_i2 : index) }}" a:for="{{ h[ 1004 + _t ].li }}" a:key="index" a:for-item="item" a:for-index="index" /></template>
+
+<template name="default_7" parent="1ce23e72"><template is="38a096b4" data="{{ ...$root[ cp + 1 + _t ], $root, _t: _t || '' }}" /><template is="38a096b4" data="{{ ...$root[ cp + 2 + _t ], $root, _t: _t || '' }}" /><template is="38a096b4" data="{{ ...$root[ cp + 3 + _t ], $root, _t: _t || '' }}" /><template is="38a096b4" data="{{ ...$root[ cp + 4 + _t ], $root, _t: _t || '' }}" /></template>
+

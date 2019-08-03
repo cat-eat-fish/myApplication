@@ -1,0 +1,11 @@
+.noList {
+  text-align: center;
+  margin: 40rpx auto;
+  color: #333;
+  font-size: 28rpx;
+}
+.noList .add {
+    color: #3893f3;
+    margin-left: 20rpx;
+}
+

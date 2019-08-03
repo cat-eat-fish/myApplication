@@ -1,0 +1,111 @@
+<template>
+	<view class="approvalNotice">
+		<view class="content-no" v-if="dataInfo.length === 0">
+			<view class="iconfont iconc-kongzhuangtai"></view>
+			<view class="text">暂无任何审批通知</view>
+		</view>
+		<view class="content-has" v-else>
+			<view class="item" v-for="(item,index) in dataInfo" :key="index">
+				<!-- <view class="item-datetime">{{item.approvetime}}</view> -->
+				<view class="item-main">
+					<view class="vimg">
+						<image class="img" src="../../../static/img/message_icon_01.png" mode=""></image>
+					</view>
+					<view class="text">
+						<view class="text-t">审批通知</view>
+						<view class="item-main-main" @click="goPage(item)">
+							<view class="item-main-main-1">
+								<view class="item-main-main-1-l">
+									<view class="item-main-main-1-l-time">{{item.time}}</view>
+									<!-- <view class="item-main-main-1-l-text">待审信息</view> -->
+								</view>
+								<view class="item-main-main-1-r">{{item.date}}</view>
+							</view>
+							<view class="item-main-main-2">
+								<text >标题 : </text>
+								<text> {{item.title}}</text>
+							</view>
+							<view class="item-main-main-3">
+								<text >业务名称 : </text>
+								<text> {{item.symboltablename}}</text>
+							</view>
+							<view class="item-main-main-3">
+								<text>开始办理时间 : </text>
+								<text> {{item.applay_date}}</text>
+							</view>
+							<view class="item-main-main-4">
+								<text>发起人 : </text>
+								<text> {{item.name}}</text>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	import {baseIp} from "../../../config.js"
+    import {getUserInfo,setUserInfo} from '../../../service.js';
+	export default {
+		data() {
+			return {
+				dataInfo:[],
+				items:{}
+			};
+		},
+		onLoad() {
+			var that = this;
+			uni.setNavigationBarColor({
+				frontColor:  "#000000",
+				backgroundColor: "#FFFFFF"
+			});
+			var url = `${baseIp()}/ams/system/distribute.htm?module=approveRemind_YD&userId=${getUserInfo().userName}`;
+			
+			uni.request({
+				url:url,
+				success(res){
+					var data = res.data.object;
+					// console.log(data)
+					data.map((item,index)=>{
+						item.symboltablename = item.flow_type == "06" ? "请假审批" : item.flow_type == "07" ? "用车审批" : item.flow_type == "08" ? "外出审批": "";
+						item.url = item.flow_type == "06" ? `/pages/application/ratingProcess7/ratingProcess7?acceptid=${item.id}` : item.flow_type == "07" ? `/pages/application/ratingProcess8/ratingProcess8?acceptid=${item.id}` : item.flow_type == "08" ? `/pages/application/ratingProcess6/ratingProcess6?acceptid=${item.id}`: item.flow_type == "05" ? `/pages/application/ratingProcess9/ratingProcess9?acceptid=${item.id}` : "";
+					})
+					that.dataInfo = data;
+				}
+			})
+		},
+		methods:{
+			goPage(e){
+				uni.navigateTo({url:e.url});
+			}
+		}
+	}
+</script>
+
+<style>
+	uni-page-body, uni-page-refresh{height: auto;}
+	.approvalNotice{background-color: rgb(239,238,243);height:100%;min-height: 100vh;}
+	/* #ifdef APP-PLUS */
+	.approvalNotice{background-color: rgb(239,238,243);height:100%;min-height: 100vh;}
+	/* #endif */
+	/* #ifdef MP-WEIXIN */
+	.approvalNotice{background-color: rgb(239,238,243);height:100%;min-height: 100vh;}
+	/* #endif */
+	.approvalNotice .content-no{height: 100%; background-position: center;background-size: 40%;}
+	.approvalNotice .content-no .iconfont{font-size: 140px;margin: 48% 30%;position: absolute;top: 0;bottom: 0;left: 0;right: 0;}
+	.approvalNotice .content-no .text{position: absolute;top: 740upx;bottom: 0;left: 0;right: 0;margin: auto;text-align: center;}
+	.approvalNotice .item {overflow: hidden;margin: 0 24upx;padding-top: 38upx;}
+	.approvalNotice .item .item-datetime{font-size: 22upx;color: #FFFFFF;border-radius: 10px; text-align: center;padding: 26upx;background-color: rgb(206,206,206);width: 272upx;margin: 80upx auto 30upx;}
+	.approvalNotice .item .item-main{display: flex;}
+	.approvalNotice .item .item-main .img{width: 120upx;height: 120upx;margin-right: 24upx;}
+	.approvalNotice .item .item-main .text-t{color: rgb(153,153,153);font-size: 22upx;}
+	.approvalNotice .item .item-main .item-main-main{border-radius: 10px; background-color: #FFFFFF;padding: 30upx 24upx;margin-top: 10upx;}
+	.item-main-main-1,.item-main-main-1-l{display: flex;}
+	.item-main-main-1-l{color: rgb(51,51,51);font-size: 30upx;}
+	.item-main-main-1-r{font-size: 22upx;color: rgb(153,153,153);flex: 1;text-align: right;}
+	.item-main-main-2,.item-main-main-3,.item-main-main-4{color: rgb(102,102,102);font-size: 24upx;margin-top: 20upx;}
+	.item-main-main-2{margin-top: 40upx;}
+	.item-main-main-5{font-size: 26upx;color: rgb(254,138,20);margin-top: 40upx;}
+</style>

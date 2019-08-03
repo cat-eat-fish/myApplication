@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"noList { text-align: center; margin: ",[0,40]," auto; color: #333; font-size: ",[0,28],"; }\n.",[1],"noList .",[1],"add { color: #3893f3; margin-left: ",[0,20],"; }\n",],undefined,{path:"./pages/information/list/list.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/information/list/list.wxml') } }));

@@ -1,0 +1,19 @@
+{
+  "navigationBarTitleText": "个人中心",
+  "enablePullDownRefresh": true,
+  "bounce": "vertical",
+  "titleNView": {
+    "buttons": [
+      {
+        "text": "",
+        "fontSrc": "/static/font/uni.ttf",
+        "fontSize": "22px",
+        "color": "#ffffff"
+      }
+    ]
+  },
+  "usingComponents": {
+    "uni-collapse": "/components/uni-collapse/uni-collapse",
+    "uni-collapse-item": "/components/uni-collapse-item/uni-collapse-item"
+  }
+}

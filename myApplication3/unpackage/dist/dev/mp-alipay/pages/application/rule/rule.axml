@@ -1,0 +1,3 @@
+<import src="/htmlparse/index.axml" />
+        <import src="/components/uni-collapse-item/uni-collapse-item.vue.axml"/><import src="/components/uni-collapse/uni-collapse.vue.axml"/><template name="6ff7ad33"><view class="_view {{ h[ 0 ].rcl }}"><view class="_view sign-title"><view class="_view sign-title-l"><view class="_view portrait">{{ h[ 4 ].t }}</view><view class="_view text"><view class="_view name">{{ h[ 7 ].t }}</view><view class="_view gz">考勤组:公司考勤</view></view></view></view><template is="66ecf2e8" data="{{ ...$root[ cp + 0 ], $root, s_default: 'default_2', _t: _t || '' }}" a:if="{{ h[ 10 ]._if }}" /></view></template>
+<template is="6ff7ad33" data="{{ ...$root['0'], $root }}"/>
